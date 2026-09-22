@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-display: var(--font-playfair);
+  --font-body: var(--font-jakarta);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-muted: var(--surface-muted);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-sage: var(--sage);
+  --color-sky: var(--sky);
+  --color-ochre: var(--ochre);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-error: var(--error);
+  --color-error-soft: var(--error-soft);
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-pill: 9999px;
+
+  --shadow-card: 0 4px 20px -2px rgb(30 58 47 / 0.04);
+  --shadow-floating: 0 12px 36px -4px rgb(30 58 47 / 0.09);
+  --shadow-action: 0 8px 28px rgb(30 58 47 / 0.12);
+}
+
+:root {
+  --background: #fbf9f6;
+  --foreground: #1b1c1a;
+  --surface: #ffffff;
+  --surface-subtle: #f5f3f0;
+  --surface-muted: #efeeeb;
+  --brand: #1e3a2f;
+  --brand-strong: #07241a;
+  --brand-soft: #cde5d6;
+  --sage: #dcebe2;
+  --sky: #dceaf2;
+  --ochre: #c5a059;
+  --muted: #424844;
+  --border: #d8ddd9;
+  --error: #ba1a1a;
+  --error-soft: #ffdad6;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  background: var(--background);
+  color: var(--foreground);
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
+html[data-menu-open="true"] {
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ochre);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+}
+
+.mobile-nav-dialog::backdrop {
+  background: rgb(7 36 26 / 0.3);
+  backdrop-filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

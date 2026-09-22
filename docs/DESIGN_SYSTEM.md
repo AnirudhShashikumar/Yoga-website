@@ -1,0 +1,136 @@
+# Prabha Yogashala Design System
+
+## Extracted direction
+
+All four Stitch export folders contain the same `DESIGN.md`; the screenshots cover Home, About, Classes, and Schedule. Additional standalone screenshots cover a public concept, class cards, Admin, and Customer Dashboard. Together they establish an editorial, calm, premium, traditional, and accessible direction.
+
+The generated HTML is not production source. Its CDN scripts, remote temporary images, placeholder phone number, material icon font, arbitrary utility values, and invented business content must not be copied directly.
+
+## Visual thesis
+
+Quiet editorial discipline: warm ivory canvas, deep forest typography, readable humanist body text, measured serif headlines, light sage and sky accents, spacious composition, restrained depth, and natural photography. Typography, photography, and layout carry the identity; avoid lotus, mandala, chakra, neon, heavy glass effects, and generic SaaS patterns.
+
+## Canonical color tokens
+
+| Token | Value | Purpose |
+| --- | --- | --- |
+| `background` | `#FBF9F6` | Default warm ivory canvas |
+| `surface` | `#FFFFFF` | Elevated cards and sheets |
+| `surface-subtle` | `#F5F3F0` | Form controls and quiet panels |
+| `surface-muted` | `#EFEEEB` | Nested or inactive surfaces |
+| `foreground` | `#1B1C1A` | Primary body text |
+| `muted` | `#424844` | Secondary readable text |
+| `brand` | `#1E3A2F` | Primary buttons, headings, strong accents |
+| `brand-strong` | `#07241A` | Highest-emphasis forest tone |
+| `brand-soft` | `#CDE5D6` | Soft sage emphasis |
+| `sage` | `#DCEBE2` | Status and thematic tint |
+| `sky` | `#DCEAF2` | Informational/breathwork tint; not body text |
+| `ochre` | `#C5A059` | Sparse credential and focus accent |
+| `border` | `#D8DDD9` | Thin neutral-green perimeter |
+| `error` | `#BA1A1A` | Error text and destructive actions |
+| `error-soft` | `#FFDAD6` | Error background |
+
+The Stitch source uses both `#07241A` and `#1E3A2F` as “primary.” The production system keeps both with explicit semantic roles rather than treating the inconsistency as interchangeable.
+
+## Typography
+
+- Display and headings: Playfair Display, weights 500–600.
+- Body, labels, navigation, forms, and data: Plus Jakarta Sans, weights 400–700.
+- Use `next/font` so fonts are self-hosted by the build and do not require runtime Google Fonts requests.
+
+| Role | Desktop | Mobile | Guidance |
+| --- | --- | --- | --- |
+| Display | 56/64, 600 | 38/44, 600 | Hero-only; keep line length controlled |
+| Heading 1 | 36/44, 500 | 32/40, 500 | Primary page heading |
+| Heading 2 | 36/44, 500 | 28/36, 500 | Major sections |
+| Heading 3 | 26/34, 500 | 24/32, 500 | Card groups and subsections |
+| Heading 4 | 20/28, 600 | 20/28, 600 | Cards and compact modules |
+| Body large | 18/28, 400 | 18/28, 400 | Introductions and summaries |
+| Body | 16/24, 400 | 16/24, 400 | Default reading text |
+| Body small | 14/20, 400 | 14/20, 400 | Secondary content only |
+| Label | 14–15/20, 600 | 14–15/20, 600 | Buttons and routine controls |
+| Metadata | 12–13/18, 600 | 12–13/18, 600 | Nonessential tags only |
+
+Do not use 11px generated labels for controls. The production floor is 14px for text people use regularly and 12px for genuinely secondary metadata.
+
+## Spacing and layout
+
+- Base spacing unit: 4px.
+- Common steps: 8, 12, 16, 24, 32, 40, 48, 64, 80, 112px.
+- Container: maximum 1280px.
+- Outer gutters: 20px mobile, 24px tablet, 32px desktop.
+- Public content uses a 4-column mental model on mobile and a 12-column grid on desktop.
+- Major public sections: 64px mobile, 80px tablet, 112px desktop vertical padding.
+- Card padding: 24px mobile, up to 32px desktop.
+- Dashboard surfaces may use tighter rhythm, but not smaller text or touch targets.
+
+## Shape and elevation
+
+- Small radius: 4px for minor indicators only.
+- Medium radius: 8px.
+- Large radius: 12px.
+- Control radius: 16px.
+- Card radius: 24px.
+- Pill radius: fully rounded.
+- Resting card shadow: `0 4px 20px -2px rgba(30,58,47,0.04)`.
+- Floating surface shadow: `0 12px 36px -4px rgba(30,58,47,0.09)`.
+- Sticky/action shadow: `0 8px 28px rgba(30,58,47,0.12)`.
+
+Prefer a thin border and tonal separation over stronger shadow. Do not reproduce the inconsistent radius values embedded in the Stitch Tailwind configuration.
+
+## Components
+
+### Buttons
+
+- Primary: forest background, white text, pill shape, 48–52px tall.
+- Secondary: ivory background, subtle forest border, forest text.
+- Ghost: transparent with clear hover/focus state.
+- Destructive: red only for genuine destructive actions.
+- Disabled states must remain readable and must not rely only on opacity.
+
+### Cards
+
+Use white surfaces, 24px corners, thin green-tinted borders, and restrained shadows. Public cards may use 4:5 or 16:10 imagery. Admin and customer cards prioritize scanability and real data over decoration.
+
+### Forms
+
+Inputs, selects, and textareas use a minimum 52px control height, 16px corners, visible labels above fields, explicit help/error IDs, strong focus outlines, and `aria-invalid`/`aria-describedby` when validation is implemented. Errors must be announced and described in text, not color alone.
+
+### Badges and statuses
+
+Use sage for positive/available, sky for information, ochre for limited emphasis, neutral gray-green for inactive/default, and red for errors or cancelled/destructive states. Do not use colored dots unless they convey live status.
+
+### Accordion
+
+Prefer native `details`/`summary` when it meets the interaction. Preserve keyboard behavior and a visible expanded state. Do not add a JavaScript accordion solely for animation.
+
+### Empty and loading states
+
+Empty states explain the actual absence of data and may offer one relevant next action. Skeletons reserve layout without suggesting fictional content. Never render mock records as a loading or empty-state substitute.
+
+## Public, customer, and admin surfaces
+
+- Public pages are editorial and photography-led with generous whitespace.
+- Customer pages are calm working surfaces; the first viewport prioritizes the next real action or truthful empty state.
+- Admin pages are denser but retain typography, colors, and accessibility. Revenue, membership, capacity, and other unsupported metrics shown in concept screenshots must not appear.
+
+## Imagery
+
+- Use natural daylight, authentic movement, calm studio textures, and varied ages/abilities when licensed assets are available.
+- Do not treat Stitch’s temporary Google-hosted image URLs as production assets or proof of client identity.
+- The client currently reports no professional photography. Image selection and rights remain unresolved.
+- Never use an AI-generated face as the real instructor or founder.
+- All meaningful images require useful alt text; decorative images use empty alt text.
+
+## Motion
+
+Allow subtle opacity/position reveals, hover feedback, image transitions, menus, and accordion transitions. Avoid scroll hijacking, parallax, WebGL, custom cursors, or a large animation dependency. The global foundation disables nonessential motion when `prefers-reduced-motion: reduce` is active.
+
+## Responsive behavior
+
+Test at 390, 768, 1024, 1280, and 1440px. Navigation becomes a keyboard-accessible mobile menu. Public card grids collapse without losing hierarchy. Dashboard navigation becomes a practical mobile pattern, not a squeezed desktop sidebar. Tables must reflow or scroll within labeled regions without causing viewport overflow.
+
+## Dark mode status
+
+The questionnaire asks for dark mode, but the approved Stitch references define only the light warm-ivory system. Dark mode is not implemented in Milestone 1 and requires either approved tokens or an explicit scope decision before implementation.
+

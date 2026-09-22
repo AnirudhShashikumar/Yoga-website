@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-surface":"#1b1c1a","on-secondary-fixed":"#0b1f16","on-secondary-fixed-variant":"#364b40","on-primary-fixed-variant":"#304c41","inverse-primary":"#aecebe","on-error":"#ffffff","secondary-fixed-dim":"#b4ccbe","on-tertiary-container":"#bc9852","on-background":"#1b1c1a","primary-fixed-dim":"#aecebe","surface-container-low":"#f5f3f0","on-primary":"#ffffff","inverse-surface":"#30312f","secondary":"#4e6357","tertiary-fixed":"#ffdea5","outline":"#727974","outline-variant":"#c1c8c3","on-primary-container":"#86a496","on-tertiary-fixed-variant":"#5d4201","on-secondary-container":"#52675b","primary-fixed":"#caeada","on-primary-fixed":"#032017","surface-variant":"#e4e2df","tertiary-fixed-dim":"#e9c176","surface-container":"#efeeeb","on-secondary":"#ffffff","background":"#fbf9f6","surface-container-high":"#eae8e5","surface-bright":"#fbf9f6","primary":"#07241a","error":"#ba1a1a","inverse-on-surface":"#f2f0ed","surface-container-highest":"#e4e2df","on-tertiary":"#ffffff","on-error-container":"#93000a","surface-tint":"#486458","surface":"#fbf9f6","error-container":"#ffdad6","surface-dim":"#dbdad7","on-surface-variant":"#424844","primary-container":"#1e3a2f","surface-container-lowest":"#ffffff","tertiary":"#2b1d00","secondary-fixed":"#d0e8d9","secondary-container":"#cde5d6","tertiary-container":"#463100","on-tertiary-fixed":"#261900"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","gutter-mobile":"1rem","space-md":"1rem","gutter":"1.5rem","margin":"3rem","space-lg":"1.5rem","space-sm":"0.5rem","space-xl":"2.5rem","margin-mobile":"1.25rem"},"fontFamily":{"label-md":["Plus Jakarta Sans"],"headline-sm":["Playfair Display"],"headline-lg-mobile":["Playfair Display"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-md":["Playfair Display"],"body-md":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-lg":["Playfair Display"],"display-lg":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"body-sm":["Plus Jakarta Sans"]},"fontSize":{"label-md":["13px",{"lineHeight":"18px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"0em","fontWeight":"500"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"700"}],"headline-md":["26px",{"lineHeight":"34px","fontWeight":"500"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-lg":["15px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.01em","fontWeight":"500"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.02em","fontWeight":"600"}],"display-lg-mobile":["38px",{"lineHeight":"44px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/85 backdrop-blur-md shadow-[0_4px_20px_-2px_rgba(30,58,47,0.05)]"><div class="h-20 max-w-[1280px] mx-auto px-gutter-mobile lg:px-gutter flex items-center justify-between gap-space-md"><a class="flex flex-col justify-center select-none" data-path="home" href="#"><span class="font-headline-sm text-headline-sm tracking-tight text-primary">PRABHA YOGASHALA</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mt-0.5">Yoga & Mindfulness | M.Sc • NIS Certified</span></a><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-bold"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#">Home</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="about" href="#">About</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="classes" href="#">Classes</a><a aria-current="page" class="transition-colors text-primary font-bold" data-path="schedule" href="#">Schedule</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="pricing" href="#">Pricing</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="workshops" href="#">Workshops</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="gallery" href="#">Gallery</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="faq" href="#">FAQ</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-sm"><a aria-label="Quick Call or WhatsApp Enquiry" class="w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors" href="tel:+919876543210"><span class="material-symbols-outlined text-[20px]">chat</span></a><a class="hidden sm:inline-flex items-center justify-center h-[46px] px-space-lg bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-all shadow-[0_4px_16px_rgba(7,36,26,0.15)]" data-path="book-trial-class" href="#">Book Trial Class</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Subtle Ambient Glow Element -->
+<div class="relative w-full max-w-[1280px] mx-auto px-gutter-mobile lg:px-gutter pt-8 pb-16">
+<div class="absolute -top-12 right-12 w-96 h-96 rounded-full bg-secondary-container/20 blur-3xl pointer-events-none -z-10"></div>
+<!-- Editorial Header & High-Contrast Timeslot Callout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12">
+<div class="lg:col-span-8 flex flex-col">
+<div class="inline-flex items-center gap-2 mb-3">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-label-md text-label-md uppercase tracking-wider text-secondary">Weekly Sacred Practice Schedule</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-4">
+          Nourish Mind & Body: Find Your Daily Rhythm
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+          Carefully structured sessions designed for longevity, spine health, and inner silence. Open to all ages, beginners, and lifelong practitioners.
+        </p>
+</div>
+<!-- Prominent Availability Pillar -->
+<div class="lg:col-span-4 bg-surface-container-low rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-2 font-label-md text-label-md text-secondary mb-2">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+<span>DAILY PRACTICE WINDOWS</span>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="font-label-md text-label-md text-on-surface">Dawn Batches</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">5:00 AM – 8:00 AM</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="font-label-md text-label-md text-on-surface">Dusk Batches</span>
+<span class="font-label-lg text-label-lg text-primary font-bold">5:00 PM – 8:00 PM</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Preliminary V1 Notice Pill -->
+<div class="p-5 rounded-xl bg-secondary-container/40 text-on-secondary-container flex flex-col sm:flex-row sm:items-center gap-4 mb-10 shadow-sm">
+<div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-on-secondary shrink-0">
+<span class="material-symbols-outlined text-[22px]">info</span>
+</div>
+<div class="flex-1">
+<div class="font-label-md text-label-md text-primary font-bold uppercase tracking-wide">Preliminary V1 Timetable</div>
+<div class="font-body-md text-body-md text-on-surface-variant mt-0.5">
+          Batches are tailored and confirmed upon trial registration to seamlessly accommodate your personal health goals, physical stamina, and global timezone.
+        </div>
+</div>
+<a class="inline-flex items-center justify-center px-4 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shrink-0" href="https://wa.me/919876543210" rel="noopener noreferrer" target="_blank">
+        Request Custom Hour
+      </a>
+</div>
+<!-- Master Filter & Delivery Controls -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm mb-8 space-y-6">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div>
+<span class="font-label-md text-label-md text-secondary block mb-1">PRACTICE ENVIRONMENT</span>
+<div class="inline-flex flex-wrap p-1.5 rounded-full bg-surface-container gap-1" id="formatFilter">
+<button class="filter-tab px-5 py-2.5 rounded-full font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-all" data-filter="all" type="button">
+              All Sessions
+            </button>
+<button class="filter-tab px-5 py-2.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" data-filter="online" type="button">
+              Online Batches (Worldwide)
+            </button>
+<button class="filter-tab px-5 py-2.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" data-filter="offline" type="button">
+              Offline Studio (In-Person)
+            </button>
+</div>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2.5 rounded-full">
+<span class="w-3 h-3 rounded-full bg-secondary-fixed-dim"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">Timezone: <strong class="text-primary font-semibold">IST (UTC+05:30) • Global Friendly</strong></span>
+</div>
+</div>
+<!-- Day Selector Carousel -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md text-secondary">SELECT DAY OF PRACTICE</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sunday: Self-Study & Immersive Workshops</span>
+</div>
+<div class="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3" id="dayPicker">
+<button class="day-btn flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all" data-day="mon" type="button">
+<span class="font-label-sm text-label-sm opacity-80 uppercase tracking-wider">Day 1</span>
+<span class="font-headline-sm text-headline-sm mt-0.5">Monday</span>
+</button>
+<button class="day-btn flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-all" data-day="tue" type="button">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Day 2</span>
+<span class="font-headline-sm text-headline-sm mt-0.5">Tuesday</span>
+</button>
+<button class="day-btn flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-all" data-day="wed" type="button">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Day 3</span>
+<span class="font-headline-sm text-headline-sm mt-0.5">Wednesday</span>
+</button>
+<button class="day-btn flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-all" data-day="thu" type="button">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Day 4</span>
+<span class="font-headline-sm text-headline-sm mt-0.5">Thursday</span>
+</button>
+<button class="day-btn flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-all" data-day="fri" type="button">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Day 5</span>
+<span class="font-headline-sm text-headline-sm mt-0.5">Friday</span>
+</button>
+<button class="day-btn flex flex-col items-center justify-center py-3.5 px-2 rounded-xl bg-surface-container-low text-on-surface font-label-md text-label-md hover:bg-surface-container transition-all" data-day="sat" type="button">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Day 6</span>
+<span class="font-headline-sm text-headline-sm mt-0.5">Saturday</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Main Content & Timetable Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Schedule Columns (8 Cols) -->
+<div class="lg:col-span-8 flex flex-col gap-10">
+<!-- MORNING BATCHES -->
+<div>
+<div class="flex items-center justify-between pb-3 mb-4">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[20px]">light_mode</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Morning Batches</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pranayama, Sun Salutations & Joint Liberation</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container px-3 py-1 rounded-full text-secondary">5:00 AM – 8:00 AM</span>
+</div>
+<!-- Morning Cards Stack -->
+<div class="space-y-4" id="morningSlots">
+<!-- Slot 1 -->
+<div class="slot-card bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6" data-type="online">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low flex flex-col items-center justify-center text-center shrink-0">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Time</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold leading-none mt-1">5:00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">AM</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-1.5">
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      Online Zoom HD
+                    </span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      60 Mins
+                    </span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> Max 10-12 practitioners
+                    </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Brahma Muhurta Classical Hatha</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Guided by <strong class="text-on-surface font-medium">Prabha Yogashala Master</strong> • Sukshma Vyayama, gentle spine mobilization, and traditional stillness.
+                  </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-3 shrink-0">
+<span class="font-label-sm text-label-sm text-secondary">4 Spots Remaining</span>
+<button class="px-6 py-3 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all shadow-sm" type="button">
+                  Reserve Spot
+                </button>
+</div>
+</div>
+<!-- Slot 2 -->
+<div class="slot-card bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6" data-type="offline">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low flex flex-col items-center justify-center text-center shrink-0">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Time</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold leading-none mt-1">6:15</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">AM</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-1.5">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-0.5 rounded-full font-label-sm text-label-sm font-semibold">
+                      Offline Studio (In-Person)
+                    </span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      60 Mins
+                    </span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> Max 10 practitioners
+                    </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Sthira Sukham: Foundation & Alignment</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Guided by <strong class="text-on-surface font-medium">Prabha Yogashala Master</strong> • Props assisted posture correction for seniors, back relief & joint strength.
+                  </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-3 shrink-0">
+<span class="font-label-sm text-label-sm text-secondary">2 Spots Remaining</span>
+<button class="px-6 py-3 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all shadow-sm" type="button">
+                  Reserve Spot
+                </button>
+</div>
+</div>
+<!-- Slot 3 -->
+<div class="slot-card bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6" data-type="online">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low flex flex-col items-center justify-center text-center shrink-0">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Time</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold leading-none mt-1">7:15</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">AM</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-1.5">
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      Online Zoom HD
+                    </span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      60 Mins
+                    </span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> Max 12 practitioners
+                    </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Gentle Morning Vinyasa & Pranayama</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Guided by <strong class="text-on-surface font-medium">Prabha Yogashala Master</strong> • Breath-synchronized slow transitions and Nadis purification.
+                  </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-3 shrink-0">
+<span class="font-label-sm text-label-sm text-secondary">3 Spots Remaining</span>
+<button class="px-6 py-3 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all shadow-sm" type="button">
+                  Reserve Spot
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- EVENING BATCHES -->
+<div>
+<div class="flex items-center justify-between pb-3 mb-4">
+<div class="flex items-center gap-3">
+<span class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined text-[20px]">wb_twilight</span>
+</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Evening Batches</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Decompression, Restorative Yin & Yoga Nidra</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container px-3 py-1 rounded-full text-secondary">5:00 PM – 8:00 PM</span>
+</div>
+<!-- Evening Cards Stack -->
+<div class="space-y-4" id="eveningSlots">
+<!-- Slot 4 -->
+<div class="slot-card bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6" data-type="offline">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low flex flex-col items-center justify-center text-center shrink-0">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Time</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold leading-none mt-1">5:00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">PM</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-1.5">
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-0.5 rounded-full font-label-sm text-label-sm font-semibold">
+                      Offline Studio (In-Person)
+                    </span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      60 Mins
+                    </span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> Max 10 practitioners
+                    </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Therapeutic Spinal Unwinding</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Guided by <strong class="text-on-surface font-medium">Prabha Yogashala Master</strong> • Tailored for working professionals and seniors experiencing lower back tension.
+                  </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-3 shrink-0">
+<span class="font-label-sm text-label-sm text-secondary">1 Spot Remaining</span>
+<button class="px-6 py-3 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all shadow-sm" type="button">
+                  Reserve Spot
+                </button>
+</div>
+</div>
+<!-- Slot 5 -->
+<div class="slot-card bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6" data-type="online">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low flex flex-col items-center justify-center text-center shrink-0">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Time</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold leading-none mt-1">6:15</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">PM</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-1.5">
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      Online Zoom HD
+                    </span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      60 Mins
+                    </span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> Max 12 practitioners
+                    </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Sunset Yin & Deep Diaphragmatic Breath</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Guided by <strong class="text-on-surface font-medium">Prabha Yogashala Master</strong> • Long passive holds, fascia release, and central nervous system calming.
+                  </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-3 shrink-0">
+<span class="font-label-sm text-label-sm text-secondary">5 Spots Remaining</span>
+<button class="px-6 py-3 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all shadow-sm" type="button">
+                  Reserve Spot
+                </button>
+</div>
+</div>
+<!-- Slot 6 -->
+<div class="slot-card bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col md:flex-row md:items-center justify-between gap-6" data-type="online">
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container-low flex flex-col items-center justify-center text-center shrink-0">
+<span class="font-label-sm text-label-sm text-secondary uppercase">Time</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold leading-none mt-1">7:15</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">PM</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-1.5">
+<span class="bg-secondary-container text-on-secondary-fixed-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      Online Zoom HD
+                    </span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-0.5 rounded-full font-label-sm text-label-sm">
+                      60 Mins
+                    </span>
+<span class="font-label-sm text-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span> Max 12 practitioners
+                    </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Yoga Nidra & Guided Deep Sleep Meditation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                    Guided by <strong class="text-on-surface font-medium">Prabha Yogashala Master</strong> • Conscious relaxation inducing theta brainwave states for restorative rest.
+                  </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-3 shrink-0">
+<span class="font-label-sm text-label-sm text-secondary">3 Spots Remaining</span>
+<button class="px-6 py-3 rounded-full bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-all shadow-sm" type="button">
+                  Reserve Spot
+                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sunday Immersive Note -->
+<div class="rounded-xl p-8 bg-surface-container-low flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">SUNDAY REST & INTENSIVES</span>
+<h4 class="font-headline-sm text-headline-sm text-primary mt-1">Weekend Svadhyaya & Masterclasses</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mt-1">
+              Regular batches pause on Sunday. Periodic masterclasses cover Pranayama science, Anatomy in Asana, and Patanjali Yoga Sutras.
+            </p>
+</div>
+<a class="px-6 py-3 rounded-full bg-surface-container-lowest text-primary hover:bg-surface-container font-label-md text-label-md shadow-sm transition-all shrink-0" data-path="workshops" href="#">
+            View Weekend Workshops
+          </a>
+</div>
+</div>
+<!-- Right Support Information Sidebar (4 Cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Global Timezone Guide -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</span>
+<div>
+<h3 class="font-label-lg text-label-lg text-primary">Worldwide Timezone Guide</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Batches sync comfortably globally</p>
+</div>
+</div>
+<div class="space-y-3 text-body-sm font-body-sm">
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-primary block">United States (EST / PST)</span>
+<span class="text-on-surface-variant font-body-sm">Evenings sync with Indian Dawns</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Zoom Live</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-primary block">United Kingdom (GMT / BST)</span>
+<span class="text-on-surface-variant font-body-sm">Morning & Afternoon sync</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Zoom Live</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md text-primary block">Gulf / UAE (GST)</span>
+<span class="text-on-surface-variant font-body-sm">Only 1.5 hrs time difference</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Zoom Live</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-4">
+            Unsure of your local slot? Drop our team a note and we will compute the exact conversion for your city.
+          </p>
+</div>
+<!-- 10-Minute Pre-Session Checklist (Senior Friendly) -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">checklist</span>
+</span>
+<div>
+<h3 class="font-label-lg text-label-lg text-primary">Pre-Class Preparation</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Simple steps 10 mins prior</p>
+</div>
+</div>
+<ul class="space-y-3 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Light Stomach:</strong> Ensure at least 2 hours after a light meal, or practice in the morning on an empty stomach with warm water.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Gentle Props:</strong> Keep a yoga mat, a firm cushion or folded blanket for spine elevation, and a water flask nearby.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Camera Placement:</strong> If attending online, place camera side-view at waist height so your postures can be safely reviewed and corrected.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">check_circle</span>
+<span><strong>Loose Cotton Garments:</strong> Wear breathable attire facilitating natural diaphragmatic expansion.</span>
+</li>
+</ul>
+</div>
+<!-- Direct Acharya Inquiry Card -->
+<div class="rounded-xl p-6 bg-primary-container text-on-primary shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<span class="font-label-sm text-label-sm text-on-primary-container uppercase tracking-wider block mb-1">Direct Master Support</span>
+<h3 class="font-headline-sm text-headline-sm text-on-primary mb-2">Need a custom private batch?</h3>
+<p class="font-body-sm text-body-sm text-on-primary-container mb-6">
+              If your rehabilitation or personal schedule falls outside the standard dawn/dusk slots, speak directly with Master Prabha to arrange a tailored time.
+            </p>
+<a class="w-full inline-flex items-center justify-center gap-2 py-3 px-5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md hover:bg-secondary-fixed-dim transition-all shadow-sm" href="https://wa.me/919876543210?text=Hello%20Prabha%20Yogashala,%20I%20would%20like%20to%20request%20a%20tailored%20schedule%20for%20my%20practice." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+              WhatsApp Master Directly
+            </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    // Mode Filter logic (Online / Offline / All)
+    const filterButtons = document.querySelectorAll('#formatFilter .filter-tab');
+    const slotCards = document.querySelectorAll('.slot-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Toggle Active Styles
+        filterButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+          b.classList.add('text-on-surface-variant');
+        });
+        btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.remove('text-on-surface-variant');
+
+        const filterVal = btn.getAttribute('data-filter');
+        slotCards.forEach(card => {
+          const type = card.getAttribute('data-type');
+          if (filterVal === 'all' || type === filterVal) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Day of the Week Selector Logic
+    const dayButtons = document.querySelectorAll('#dayPicker .day-btn');
+    dayButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        dayButtons.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary');
+          b.classList.add('bg-surface-container-low', 'text-on-surface');
+          const span = b.querySelector('span:first-child');
+          if (span) {
+            span.classList.remove('opacity-80');
+            span.classList.add('text-secondary');
+          }
+        });
+
+        button.classList.add('bg-primary', 'text-on-primary');
+        button.classList.remove('bg-surface-container-low', 'text-on-surface');
+        const activeSpan = button.querySelector('span:first-child');
+        if (activeSpan) {
+          activeSpan.classList.add('opacity-80');
+          activeSpan.classList.remove('text-secondary');
+        }
+      });
+    });
+  })();
+</script></main><footer class="w-full bg-surface-container-low text-on-surface mt-space-xl"><div class="max-w-[1280px] mx-auto px-gutter-mobile lg:px-gutter py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-xl"><div class="lg:col-span-4 flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary mb-space-xs">PRABHA YOGASHALA</span><p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md max-w-sm">Bringing authentic yoga to practitioners worldwide through mindful online and sanctuary-grounded offline practice, honoring traditional lineage and anatomically sound methodology.</p><div class="inline-flex flex-wrap gap-space-xs mb-space-md"><span class="bg-secondary-container text-on-secondary-fixed-variant px-space-sm py-0.5 rounded-full font-label-sm text-label-sm">7+ Years Experience</span><span class="bg-secondary-container text-on-secondary-fixed-variant px-space-sm py-0.5 rounded-full font-label-sm text-label-sm">M.Sc in Yoga</span><span class="bg-secondary-container text-on-secondary-fixed-variant px-space-sm py-0.5 rounded-full font-label-sm text-label-sm">NIS Certified</span></div><div class="flex items-center gap-space-sm text-secondary"><a aria-label="Instagram Channel" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">photo_camera</span></a><a aria-label="YouTube Channel" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">play_circle</span></a><a aria-label="WhatsApp Communication" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">chat</span></a></div></div><div class="lg:col-span-2 flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-primary mb-space-xs">Offerings</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="classes" href="#">Hatha Traditional</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="classes" href="#">Ashtanga Vinyasa</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="classes" href="#">Pranayama & Kriya</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="classes" href="#">Therapeutic Yoga</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="workshops" href="#">Immersive Retreats</a></div><div class="lg:col-span-3 flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-primary mb-space-xs">Studio & Timings</span><div class="p-space-sm rounded-lg bg-surface-container mb-space-xs"><div class="font-label-sm text-label-sm text-secondary uppercase">Morning Batches</div><div class="font-body-sm text-body-sm text-on-surface font-medium">5:00 AM – 8:00 AM</div></div><div class="p-space-sm rounded-lg bg-surface-container"><div class="font-label-sm text-label-sm text-secondary uppercase">Evening Batches</div><div class="font-body-sm text-body-sm text-on-surface font-medium">5:00 PM – 8:00 PM</div></div><p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Online Interactive via Zoom & In-Studio Shala</p></div><div class="lg:col-span-3 flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-primary mb-space-xs">Support & Legal</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="faq" href="#">Frequently Asked Questions</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="contact" href="#">Connect with Master</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="pricing" href="#">Membership & Passes</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="privacy-policy" href="#">Privacy Policy</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="terms-of-service" href="#">Terms of Practice</a></div></div><div class="mt-space-xl pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-body-sm text-body-sm"><p>© 2025 Prabha Yogashala. Certified Yoga Acharya. All rights reserved.</p><p class="font-label-sm text-label-sm text-secondary">Rooted in Sthira & Sukha</p></div></div></footer><a class="fixed bottom-6 right-6 z-40 flex items-center gap-space-xs px-space-md py-3 bg-primary text-on-primary rounded-full shadow-[0_8px_28px_rgba(30,58,47,0.18)] hover:bg-primary-container transition-all" href="https://wa.me/919876543210" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">forum</span><span class="font-label-md text-label-md">Enquire with Master</span></a></body></html>

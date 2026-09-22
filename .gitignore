@@ -1,0 +1,17 @@
+node_modules/
+.pnpm-store/
+.next/
+out/
+build/
+coverage/
+.vercel/
+.turbo/
+*.tsbuildinfo
+
+# Local secrets and environment-specific configuration
+.env*
+
+# Operating-system and editor files
+.DS_Store
+.idea/
+.vscode/

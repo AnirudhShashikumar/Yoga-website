@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-surface":"#1b1c1a","on-secondary-fixed":"#0b1f16","on-secondary-fixed-variant":"#364b40","on-primary-fixed-variant":"#304c41","inverse-primary":"#aecebe","on-error":"#ffffff","secondary-fixed-dim":"#b4ccbe","on-tertiary-container":"#bc9852","on-background":"#1b1c1a","primary-fixed-dim":"#aecebe","surface-container-low":"#f5f3f0","on-primary":"#ffffff","inverse-surface":"#30312f","secondary":"#4e6357","tertiary-fixed":"#ffdea5","outline":"#727974","outline-variant":"#c1c8c3","on-primary-container":"#86a496","on-tertiary-fixed-variant":"#5d4201","on-secondary-container":"#52675b","primary-fixed":"#caeada","on-primary-fixed":"#032017","surface-variant":"#e4e2df","tertiary-fixed-dim":"#e9c176","surface-container":"#efeeeb","on-secondary":"#ffffff","background":"#fbf9f6","surface-container-high":"#eae8e5","surface-bright":"#fbf9f6","primary":"#07241a","error":"#ba1a1a","inverse-on-surface":"#f2f0ed","surface-container-highest":"#e4e2df","on-tertiary":"#ffffff","on-error-container":"#93000a","surface-tint":"#486458","surface":"#fbf9f6","error-container":"#ffdad6","surface-dim":"#dbdad7","on-surface-variant":"#424844","primary-container":"#1e3a2f","surface-container-lowest":"#ffffff","tertiary":"#2b1d00","secondary-fixed":"#d0e8d9","secondary-container":"#cde5d6","tertiary-container":"#463100","on-tertiary-fixed":"#261900"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-xs":"0.25rem","gutter-mobile":"1rem","space-md":"1rem","gutter":"1.5rem","margin":"3rem","space-lg":"1.5rem","space-sm":"0.5rem","space-xl":"2.5rem","margin-mobile":"1.25rem"},"fontFamily":{"label-md":["Plus Jakarta Sans"],"headline-sm":["Playfair Display"],"headline-lg-mobile":["Playfair Display"],"body-lg":["Plus Jakarta Sans"],"label-sm":["Plus Jakarta Sans"],"headline-md":["Playfair Display"],"body-md":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"headline-lg":["Playfair Display"],"display-lg":["Playfair Display"],"display-lg-mobile":["Playfair Display"],"body-sm":["Plus Jakarta Sans"]},"fontSize":{"label-md":["13px",{"lineHeight":"18px","letterSpacing":"0.04em","fontWeight":"600"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg-mobile":["28px",{"lineHeight":"36px","letterSpacing":"0em","fontWeight":"500"}],"body-lg":["18px",{"lineHeight":"28px","fontWeight":"400"}],"label-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.08em","fontWeight":"700"}],"headline-md":["26px",{"lineHeight":"34px","fontWeight":"500"}],"body-md":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-lg":["15px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"600"}],"headline-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.01em","fontWeight":"500"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.02em","fontWeight":"600"}],"display-lg-mobile":["38px",{"lineHeight":"44px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-sm":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}}</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 w-full z-50 bg-surface/85 backdrop-blur-md shadow-[0_4px_20px_-2px_rgba(30,58,47,0.05)]"><div class="h-20 max-w-[1280px] mx-auto px-gutter-mobile lg:px-gutter flex items-center justify-between gap-space-md"><a class="flex flex-col justify-center select-none" data-path="home" href="#"><span class="font-headline-sm text-headline-sm tracking-tight text-primary">PRABHA YOGASHALA</span><span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mt-0.5">Yoga & Mindfulness | M.Sc • NIS Certified</span></a><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-primary font-bold"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#">Home</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="about" href="#">About</a><a aria-current="page" class="transition-colors text-primary font-bold" data-path="classes" href="#">Classes</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="schedule" href="#">Schedule</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="pricing" href="#">Pricing</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="workshops" href="#">Workshops</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="gallery" href="#">Gallery</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="faq" href="#">FAQ</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-sm"><a aria-label="Quick Call or WhatsApp Enquiry" class="w-10 h-10 rounded-full flex items-center justify-center text-primary hover:bg-surface-container transition-colors" href="tel:+919876543210"><span class="material-symbols-outlined text-[20px]">chat</span></a><a class="hidden sm:inline-flex items-center justify-center h-[46px] px-space-lg bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-all shadow-[0_4px_16px_rgba(7,36,26,0.15)]" data-path="book-trial-class" href="#">Book Trial Class</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Subtle Ambient Glow -->
+<div class="relative w-full max-w-[1280px] mx-auto px-gutter-mobile lg:px-gutter pt-8 pb-16">
+<div class="absolute top-12 left-1/2 -translate-x-1/2 w-[720px] h-[280px] bg-secondary-container/20 blur-[130px] -z-10 rounded-full pointer-events-none"></div>
+<!-- Editorial Header Block -->
+<div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-12">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed-variant font-label-sm text-label-sm uppercase tracking-widest mb-4">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        Curriculum & Daily Offerings
+      </div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-4">
+        The Path of Conscious Practice
+      </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+        Rooted in authentic pedagogical lineage, anatomy-informed discipline, and deep inner stillness. Explore twelve dedicated streams crafted for foundational healing, athletic mastery, and meditative grace.
+      </p>
+</div>
+<!-- Interactive Filter System -->
+<div class="flex items-center justify-start md:justify-center overflow-x-auto pb-4 mb-10 no-scrollbar">
+<div class="inline-flex p-1.5 bg-surface-container-high rounded-full gap-1 shadow-sm shrink-0">
+<button class="filter-btn active px-5 py-2.5 rounded-full font-label-md text-label-md transition-all duration-300 bg-primary text-on-primary shadow-sm" data-category="all" onclick="filterClasses('all', this)">
+          All Classes
+        </button>
+<button class="filter-btn px-5 py-2.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300" data-category="restorative" onclick="filterClasses('restorative', this)">
+          Beginners & Restorative
+        </button>
+<button class="filter-btn px-5 py-2.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300" data-category="dynamic" onclick="filterClasses('dynamic', this)">
+          Dynamic & Strength
+        </button>
+<button class="filter-btn px-5 py-2.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300" data-category="therapeutic" onclick="filterClasses('therapeutic', this)">
+          Therapeutic & Speciality
+        </button>
+<button class="filter-btn px-5 py-2.5 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300" data-category="breath" onclick="filterClasses('breath', this)">
+          Breath & Meditation
+        </button>
+</div>
+</div>
+<!-- Active Count Counter -->
+<div class="flex items-center justify-between mb-8 px-2">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">Available Sequences</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container font-label-sm text-label-sm font-bold text-primary" id="class-count">12 Formats</span>
+</div>
+<div class="text-on-surface-variant font-label-sm text-label-sm hidden sm:block">
+        Taught by Certified Acharyas • M.Sc Yoga Lineage
+      </div>
+</div>
+<!-- Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" id="classes-grid">
+<!-- Card 1: Hatha Yoga -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all restorative">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Serene yogi in an authentic classic Trikonasana Triangle Pose inside a warm, sunlit studio with linen mats, natural limestone wall, and earthy pine foliage in Prabha Yogashala, cinematic soft daylight, editorial wellness style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4DexilPjfQWYJn3ZiH0dXA_R9VDc8xE61H4lIPBmxmb3h047MuYsqGYvsDQbpXMm8E__vVSAqxvDFUwU-qllcNA0c6AWulYEWZ2IGXsB953g2tWtDjzlitiHubK6AuZKyunOUttUheMjZ0V_NNOf5dIjn6TR1GHbuQ8MaVT-9icxOmCkJCy41aK98ELiEV0VdFP1ehB1dbUJHW0-84mqs-imcrTYfJ4gvToYXwwSoGnOOHQXB8NEkaQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">All Levels</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Online & Studio</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>60 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Hatha Yoga</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Classical</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Foundational balance, anatomical precision, and sustained holds honoring authentic Hatha Vidya. Ideal for posture stability and cellular harmony.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Spinal alignment & skeletal symmetry</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Steady breath integration (Sthira & Sukha)</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Calms autonomic nervous system</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Batch Mode</span>
+<span class="text-primary font-label-md text-label-md">Morning • Evening</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="book-trial-class" href="#">
+              Book Trial
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 2: Ashtanga Yoga -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all dynamic">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Dedicated practitioner demonstrating a clean, disciplined Marichyasana binding twist in an authentic Mysore-style wood floor studio, golden morning sun casting geometric window shadows, muted forest green and linen palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW2opQ-RuijbxIlJv3_iWLEi9b0EfjcetYLPf_siNJ3Y5Ld29mTIjbaPGQp_8zgSWWNrI4bAIm1T5DAbcGUSd5yqSu6fvOTMEkx88Lt-qg4f-346KY7-F4QdgH-9q5v8HSNG5ceCw7DIGokqE4CnQ_GI3oWSEG76Y78kOrKrfMAzk0icDSByUBFEGSNJCaO_auPiffjpRSWd42Fmta7yP-FjLERcdIBsttYKiwuPXFg49wx4SDSmnpRw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Intermediate / Adv</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Studio & Online</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>75 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Ashtanga Yoga</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Primary Series</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Structured progressive vinyasa combining ujjayi breath, bandhas, and drishti focus. Builds uncompromising inner discipline, heat, and structural tone.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Dynamic internal purification (Tapas)</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Unbroken breath-movement cadence</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Deep core integration & wrist strength</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Focus</span>
+<span class="text-primary font-label-md text-label-md">Mysore & Led</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="book-trial-class" href="#">
+              Book Trial
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 3: Power Yoga -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all dynamic">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Athletic yoga practitioner seamlessly transitioning in an arm balance posture (Chaturanga to Bakasana), high definition muscular tone and concentration, minimalist sanctuary background with soft natural side lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyuR5Vt7CnD5L65HUEXYfBMc582mAxoQC9aoGxSvbM8RFypL4oR3U7qPibtlHP2DZF-W4nspF5Ni4Hf5nc-BtALtKJEnoyt6NyppoEyr1OOBJExEO8YYjBOQCohMXt9Mlz-lGOmB90n8WKDdCbsHRwBGST_VC-pO9Gtdhe1-wzzGBBBPcc0ya6bdkHQEJFyVAaYkDnR-FzYUJunYCzeBq2-krnGPaBCQrMMiKaaz5rWtxFn9XcRqH7Sg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Intermediate</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Studio & Online</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>60 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Power Yoga</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Vigor Flow</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Fast-paced athletic flow designed for cardiovascular conditioning, functional muscle tone, stamina, and calorie activation without joint friction.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Elevated cardiac stamina & endurance</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Total-body metabolic toning</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Shoulder & core stabilizer strength</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Intensity</span>
+<span class="text-primary font-label-md text-label-md">High • Sweat Active</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="book-trial-class" href="#">
+              Book Trial
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 4: Yin Yoga -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all restorative">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Female practitioner resting gently in a supported Dragon Pose or restorative butterfly pose supported by organic bolsters, tranquil serene twilight ambient lighting, warm terracotta and sage room tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8hqza1TmzLEkFGaE5WfAWtP2lW8rm5W8I-d2P4D78Tj3e1EPTUImmH9TMJCQHDy9x5CyONwdlPV3-VFAASBnO2mcKl4-Q1Y3NzbZFeRrNUgTt7rcxgohOXRK5z-D72UTCgm9uZJxzkJIdLWrsSrHXybp0uN7X1j30JFeSjoWFJ0kP7WfYcFL5i_4lnknTcjIk6S6zHYh1iP-XAT8PlCEaOCpTQasOUZIi96-fxEYC8DxGJUjoIQy6nQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Gentle / All Levels</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Online & Studio</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>60 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Yin Yoga</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Slow Release</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Targeted deep connective tissue release, fascia hydration, and extended 3 to 5 minute passive holds. A therapeutic antidote to chronic stress and tight joints.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Fascia release & joint mobility</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Meridian flow & parasympathetic bliss</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Releases emotional tension in hips</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Style</span>
+<span class="text-primary font-label-md text-label-md">Meditative Holds</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="book-trial-class" href="#">
+              Book Trial
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 5: Yoga Sports -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all dynamic">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Disciplined athlete executing advanced Natarajasana Lord of Dance with overhead grip, exquisite balance, professional training environment with timber flooring and soft studio daylight, NIS certified sports aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5iu3udru7uy9hN9Omf86yufXk3FgzzDjmuT1FmAG1aWaOnT92cZdd2HwYdUq46QIk6H7o9Ss1YDXba-wBGINHMLV_0_aTAwzbg5YCpsr3umQ0ENLBHGS9fktKOH8JBokB3e9G9QoFrSdSx6-CIzaoHFztawYocd8G2l_aVvwin-_owFzehttqkRds5OHI-Zilc2NeL39F84A47wb7Z5WzWtz5BeU9Rmk1bv_qXFzcPUlmgOft36pbuQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Advanced / Athletes</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Studio Only</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>75 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Yoga Sports</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">NIS Standard</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Curriculum rooted in National Institute of Sports (NIS) methodologies. Emphasizes competition-grade posture perfection, biomechanical accuracy, and extreme neuromuscular control.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Championship alignment angles</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Proprioceptive balance training</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Sports injury prevention biomechanics</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Format</span>
+<span class="text-primary font-label-md text-label-md">High Technical</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="book-trial-class" href="#">
+              Enquire Shala
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 6: Meditation -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all breath">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Meditator in serene Padmasana lotus seat with hands in Jnana Mudra, closed eyes, calm breathing expression, ambient soft dawn light through a temple window, warm earth tones, peaceful minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvBf9CEtb_XQxpVymr3s1OXTT-kgyNh2_fgmsYowSEdtsdYteJc7KyRYyooCU5z6RUHLj4iJ6jW9lReIStDfvsv26Nk9N6Agh2R70sJ-rGhUZqkk7jsdKe5TRUnzVo1a4m97RljE0E2niQL5atFXdAltGX1zAGQ0kRfYz8TKa6EUHtad6_wlE561UiCzdybfKHEQAiYaBQtlEM_e1wsL7QdZM0Cs3NDoxvqdZkR66vfx7b-aAoW0ZbMg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">All Levels</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Online & Studio</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>45 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Meditation</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Dhyana</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Traditional mindfulness and Dharana concentration practices systematically guiding practitioners into deep Dhyana. Eliminates mental noise and cultivates lasting clarity.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Cultivates emotional regulation & calm</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Restructures cognitive focus & sleep</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Vedic self-inquiry & stillness</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Sessions</span>
+<span class="text-primary font-label-md text-label-md">Early Dawn • Sunset</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="book-trial-class" href="#">
+              Book Trial
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 7: Pranayama -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all breath">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Close portrait of a dedicated yogi performing Nadi Shodhana alternate nostril breathing with Vishnu Mudra, peaceful facial posture, soft studio sunrise illumination, authentic discipline aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlr1X1U6XRE3a-rUYWhMzptLI-h0zAYbpW_ub_gWh0ocrazJo47uBN87DakwzMMZpVrLJHL-9wE5SAAzNxpuISEA7-ugpfPEx6wXN5aIMlpVkvR5F2AMAmxGHuwFdUc-osbBGzdGLNmgpD7nL7H1tMMOz4cATTEV5xyAsCSVQkLoShAzzh2OaIQ7jekPId5i7ZCFn1Ww68LM9MWe-NXm764gw1sdnB3159e_ZHa0q60hZIxDzP70TxPw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">All Levels</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Online & Studio</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>45 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Pranayama</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Pranic Science</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Sanskrit respiratory mechanics covering Kapalabhati, Bhastrika, and Nadi Shodhana. Regulates vital life energy (Prana), purifies nadis, and expands lung volume.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Optimized diaphragm & vital capacity</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Balances Ida & Pingala energetic channels</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Detoxifies respiratory system</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Pedagogy</span>
+<span class="text-primary font-label-md text-label-md">Vedic Breath Mastery</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="book-trial-class" href="#">
+              Book Trial
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 8: Personal Yoga -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all therapeutic restorative">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Master yoga instructor offering gentle anatomical alignment adjustment to a student in a peaceful private sanctuary, tactile wooden textures, serene atmosphere, natural light pouring in." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOhdlSMwsglLZG6X_pS3sggLFZsczUwLZGzLn9BUOIBh7TwgLBZAqbkioy6K2Wxt7vVc3XiO3aZebSn3yIAwyxcreNafW5zISOac_dcYlz-IVV_u_Qf5HwnSCWrZgojiaJOdSA6ypXWSJyC3Dp60eaOCR2eGBSinV1asMgopaW1V-zV5DigyD8m6gCGmkC4Wmo7P7FIr5tJNZpraIpB3wR-ogZkblz1t36pRGnw2lLFBZvBe9fqbDwLA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Tailored / 1-on-1</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Online & In-Person</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>60 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Personal Yoga</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Private Mentorship</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Bespoke one-on-one sessions curated around your physical constitution, metabolic rhythm, personal health milestones, or rehabilitation needs.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Individualized biomechanical assessment</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Custom progression timetable</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Direct daily guidance from Acharya</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Schedule</span>
+<span class="text-primary font-label-md text-label-md">Flexible Hours</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="contact" href="#">
+              Enquire Master
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 9: Corporate Yoga -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all restorative therapeutic">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Modern mindful professional corporate team practicing seated breathwork and gentle desk thoracic stretches inside a bright, plant-filled architectural corporate office, sophisticated aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABnTKz4JN2SC_6h6vLyvGuheL4lQa-6vc1e4rPZ1YZPv45wLw4CZRWZ2cr4c0J9lGhz4ZkPN0YLgVJXUryS4EpZjCU1fadmgfbBEdQDaGLFxlACBwKvzJ6kz3BkNq4XsIA7RAEMrAzXGNuCXHVzu3kHTj_lVpkeLlVJE6NZltYi94DnIPb_CnemdBXBYnSk2GHv9y-LvSpCK29l3d2eg4w9X-EIX_F_pxT7G2DobiQdwOWkNNBwYeQ2g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Corporate Groups</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Onsite & Online</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>45-60 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Corporate Yoga</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Workplace Vitality</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Designed specifically to counter desk fatigue, repetitive strain, and mental burn-out. Combines chair/mat mobility with quick autonomic reset techniques.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Relieves tech-neck & lumbar compression</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Enhances team focus & creative presence</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Micro-mindfulness for executive energy</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Modules</span>
+<span class="text-primary font-label-md text-label-md">Custom Workshops</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="contact" href="#">
+              Book Proposal
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 10: Prenatal Yoga -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all therapeutic restorative">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Expecting mother gently practicing supported Baddha Konasana with bolsters, soft morning glow illuminating the peaceful studio, feeling nurtured, warm earthy aesthetic, natural linen fabrics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxDolPh9dzH4rUp-DxZnEvaVuZw3NVjVbtp60G9syA9qKaN7DHM3TOHnAaxbRH2GUpU3BoQ-EHw57vTA1tJUXeTiKOFITV7olBBNN_yp7IGlKRBq-N9_RCSh9tbZ9k7I16jzObn1_b5KI0Z3SGJgkWs1NgLdXCTJipSe_bhtex0IHmnioHfDMIRjNqPYwIfA3pVovGCZkBswKQsDN3Qa8KMAC6zVmq9JINL_WGlJQBOu93f_zdC21tBA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Gentle / Trimesters</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Online & Studio</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>50 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Prenatal Yoga</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Maternal Care</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Medical-aligned, nurturing sequences safe for expecting mothers. Centers on gentle pelvic flexibility, diaphragm ease, and calm mental readiness for birthing.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Pelvic floor tone & hip openness</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Relieves sacroiliac & lower back ache</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Deep connection with maternal breath</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Doctor Aligned</span>
+<span class="text-primary font-label-md text-label-md">Certified Safe</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="book-trial-class" href="#">
+              Book Trial
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 11: Kids Yoga -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all restorative therapeutic">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Two happy children practicing Vrikshasana Tree Pose on eco-friendly cork mats in a warm, airy studio space, joy and steady balance, educational and nurturing atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCspVuKy4P5JfxIQbm8l-MYHzDcvtiq3q1CXDF1Tds2jPcwxkg5lk-jCp4iEmlq3KjHPLQNIaawGIj4brD7bsJ0vkAHMidzOYdCUJuAWN2p_ngyA4FEGP1m0hMDgwUQ986iKp8iSu-zYb-HQFBYppSxHV67U6r0Ut2dVgZcxZdDyHOHEbfIQFxv2DXuapVkGmtsod2aGXEEQxZtKlFK3Auv8GXVMhDepN128oCSzGWGuhB3f-OMBo3aYA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Ages 6–14</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">Studio & Online</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>45 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Kids Yoga</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Young Seedlings</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Joyful, playful movement cultivating healthy spine alignment, body awareness, emotional resilience, and sharp school concentration habits.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Corrects developmental slouching habits</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Fosters patience & emotional grounding</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Improves spatial agility & motor skills</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Groups</span>
+<span class="text-primary font-label-md text-label-md">Weekend Batches</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="book-trial-class" href="#">
+              Enroll Child
+            </a>
+</div>
+</div>
+</article>
+<!-- Card 12: Therapy Yoga -->
+<article class="class-card group flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" data-tags="all therapeutic">
+<div class="relative w-full h-56 overflow-hidden">
+<img class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="Individual performing safe therapeutic spinal rehabilitation stretch using specialized yoga ropes and wooden wall props under master practitioner guidance, clinical clean tranquility, warm ivory light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcNI6sTe_2n9bOCI6RWDHuQ1UOnGO_DVJGHSwhQsd1xLuGB2aoCPMFsRVOvWx6hUyA10u16ID0Q93uvlLBSD3VeRJ1kLwCne_m8Wr_zHQSL73sdztQ6OJbUFH21bgJ5dzIgVVlFdL4-4J_v0X_EQJOCBeLM_J7YQf4cvqwG2NtGf1jkKp6CdLFw8KdhuRSAjFgTmH5hH3r7i5hn1uBiCxFakKD9z6ArjmCRxqr4W3K9vdBof4NUjU98Q"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-4 left-4 flex flex-wrap gap-1.5">
+<span class="px-2.5 py-1 rounded-full bg-surface/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold">Therapeutic</span>
+<span class="px-2.5 py-1 rounded-full bg-secondary-fixed/90 backdrop-blur-md text-on-secondary-fixed font-label-sm text-label-sm font-medium">In-Person & Online</span>
+</div>
+<div class="absolute bottom-3 right-4 flex items-center gap-1 text-on-primary text-xs font-label-md bg-primary/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+<span class="material-symbols-outlined text-[15px]">schedule</span>
+<span>60 Min</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between bg-surface-container-lowest">
+<div>
+<div class="flex items-center justify-between mb-2">
+<h2 class="font-headline-sm text-headline-sm text-primary">Therapy Yoga</h2>
+<span class="font-label-sm text-label-sm text-secondary font-medium tracking-wide">Medical Focus</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 leading-relaxed">
+              Targeted clinical interventions for chronic lower back pain, cervical spondylosis, sciatica, arthritis stiffness, and orthopedic post-op recovery.
+            </p>
+<div class="space-y-2 mb-6">
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Spinal decompression & nerve relief</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Restores articular range of motion</span>
+</div>
+<div class="flex items-start gap-2 text-on-surface text-xs font-body-sm">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">check_circle</span>
+<span>Evidence-based yoga therapy protocols</span>
+</div>
+</div>
+</div>
+<div class="pt-4 mt-auto border-t-0 bg-surface-container-low/50 -mx-6 -mb-6 p-6 flex items-center justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-secondary font-label-sm text-label-sm uppercase">Assessment</span>
+<span class="text-primary font-label-md text-label-md">Doctor / Case Review</span>
+</div>
+<a class="inline-flex items-center justify-center h-10 px-5 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" data-path="contact" href="#">
+              Consult Master
+            </a>
+</div>
+</div>
+</article>
+</div>
+<!-- Curriculum Comparison Feature Ribbon -->
+<div class="mt-20 p-8 sm:p-12 rounded-xl bg-surface-container-low relative overflow-hidden shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<div class="lg:col-span-8 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary mb-2">Holistic Shala Standard</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-3">Online Interactive or Grounded Shala Sanctuary</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl leading-relaxed">
+            Every session is capped to preserve individual attention. Online students receive real-time postural verbal adjustments via dedicated multi-angle cameras, matching the rigor of our in-person shala practice.
+          </p>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-6">
+<div class="p-3 bg-surface rounded-lg">
+<div class="font-label-sm text-label-sm text-secondary uppercase">Max Batch Size</div>
+<div class="font-headline-sm text-headline-sm text-primary mt-1">15 Practitioners</div>
+</div>
+<div class="p-3 bg-surface rounded-lg">
+<div class="font-label-sm text-label-sm text-secondary uppercase">Credentials</div>
+<div class="font-headline-sm text-headline-sm text-primary mt-1">M.Sc • NIS Cert.</div>
+</div>
+<div class="p-3 bg-surface rounded-lg col-span-2 sm:col-span-1">
+<div class="font-label-sm text-label-sm text-secondary uppercase">Props Provided</div>
+<div class="font-headline-sm text-headline-sm text-primary mt-1">Organic Cotton</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col justify-center items-start lg:items-end">
+<div class="w-full lg:max-w-xs p-6 bg-surface-container-lowest rounded-xl shadow-sm space-y-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary">First Time to Prabha?</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Experience one guided session.</p>
+</div>
+</div>
+<a class="w-full flex items-center justify-center h-12 bg-primary text-on-primary rounded-full font-label-md text-label-md hover:bg-primary-container transition-all shadow-sm" data-path="book-trial-class" href="#">
+              Book Complimentary Trial
+            </a>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Consultation & Diagnostic Action -->
+<div class="mt-16 bg-primary text-on-primary rounded-xl p-8 sm:p-14 relative overflow-hidden shadow-xl">
+<!-- Decorative Backdrop Circles -->
+<div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-secondary/20 blur-3xl pointer-events-none"></div>
+<div class="absolute -left-16 -bottom-16 w-80 h-80 rounded-full bg-secondary-container/10 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl mx-auto text-center flex flex-col items-center">
+<span class="px-3.5 py-1 rounded-full bg-surface/10 text-inverse-primary font-label-sm text-label-sm uppercase tracking-widest mb-4 backdrop-blur-sm">
+          Personal Guidance
+        </span>
+<h2 class="font-headline-lg text-headline-lg tracking-tight mb-4 text-on-primary">
+          Not Sure Which Class Fits Your Body?
+        </h2>
+<p class="font-body-lg text-body-lg text-on-primary-container max-w-xl mb-8 leading-relaxed">
+          Every human anatomy has distinct spinal curvatures, energetic states, and rehabilitation requirements. Speak directly with our Master Teacher for a tailored recommendation.
+        </p>
+<div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-8 bg-surface text-primary rounded-full font-label-md text-label-md hover:bg-surface-container transition-all shadow-md" href="https://wa.me/919876543210?text=Hello%20Prabha%20Yogashala,%20I%20would%20like%20guidance%20on%20choosing%20the%20right%20class%20for%20my%20body." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span>WhatsApp Acharya Consultation</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-12 px-8 rounded-full font-label-md text-label-md text-on-primary bg-primary-container hover:bg-secondary/40 transition-colors" data-path="contact" href="#">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span>Request Call Back</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Script for Filtering Logic -->
+<script>
+    function filterClasses(category, btnElement) {
+      // Update Button State
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.add('text-on-surface-variant');
+      });
+      btnElement.classList.remove('text-on-surface-variant');
+      btnElement.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+
+      // Filter Cards
+      const cards = document.querySelectorAll('.class-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const tags = card.getAttribute('data-tags') || '';
+        if (category === 'all' || tags.includes(category)) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Update Count
+      const countDisplay = document.getElementById('class-count');
+      if (countDisplay) {
+        countDisplay.textContent = visibleCount + (visibleCount === 1 ? ' Format' : ' Formats');
+      }
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface mt-space-xl"><div class="max-w-[1280px] mx-auto px-gutter-mobile lg:px-gutter py-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-xl"><div class="lg:col-span-4 flex flex-col"><span class="font-headline-md text-headline-md tracking-tight text-primary mb-space-xs">PRABHA YOGASHALA</span><p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md max-w-sm">Bringing authentic yoga to practitioners worldwide through mindful online and sanctuary-grounded offline practice, honoring traditional lineage and anatomically sound methodology.</p><div class="inline-flex flex-wrap gap-space-xs mb-space-md"><span class="bg-secondary-container text-on-secondary-fixed-variant px-space-sm py-0.5 rounded-full font-label-sm text-label-sm">7+ Years Experience</span><span class="bg-secondary-container text-on-secondary-fixed-variant px-space-sm py-0.5 rounded-full font-label-sm text-label-sm">M.Sc in Yoga</span><span class="bg-secondary-container text-on-secondary-fixed-variant px-space-sm py-0.5 rounded-full font-label-sm text-label-sm">NIS Certified</span></div><div class="flex items-center gap-space-sm text-secondary"><a aria-label="Instagram Channel" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">photo_camera</span></a><a aria-label="YouTube Channel" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">play_circle</span></a><a aria-label="WhatsApp Communication" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">chat</span></a></div></div><div class="lg:col-span-2 flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-primary mb-space-xs">Offerings</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="classes" href="#">Hatha Traditional</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="classes" href="#">Ashtanga Vinyasa</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="classes" href="#">Pranayama & Kriya</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="classes" href="#">Therapeutic Yoga</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="workshops" href="#">Immersive Retreats</a></div><div class="lg:col-span-3 flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-primary mb-space-xs">Studio & Timings</span><div class="p-space-sm rounded-lg bg-surface-container mb-space-xs"><div class="font-label-sm text-label-sm text-secondary uppercase">Morning Batches</div><div class="font-body-sm text-body-sm text-on-surface font-medium">5:00 AM – 8:00 AM</div></div><div class="p-space-sm rounded-lg bg-surface-container"><div class="font-label-sm text-label-sm text-secondary uppercase">Evening Batches</div><div class="font-body-sm text-body-sm text-on-surface font-medium">5:00 PM – 8:00 PM</div></div><p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">Online Interactive via Zoom & In-Studio Shala</p></div><div class="lg:col-span-3 flex flex-col gap-space-xs"><span class="font-label-lg text-label-lg text-primary mb-space-xs">Support & Legal</span><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="faq" href="#">Frequently Asked Questions</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="contact" href="#">Connect with Master</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="pricing" href="#">Membership & Passes</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="privacy-policy" href="#">Privacy Policy</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="terms-of-service" href="#">Terms of Practice</a></div></div><div class="mt-space-xl pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-body-sm text-body-sm"><p>© 2025 Prabha Yogashala. Certified Yoga Acharya. All rights reserved.</p><p class="font-label-sm text-label-sm text-secondary">Rooted in Sthira & Sukha</p></div></div></footer><a class="fixed bottom-6 right-6 z-40 flex items-center gap-space-xs px-space-md py-3 bg-primary text-on-primary rounded-full shadow-[0_8px_28px_rgba(30,58,47,0.18)] hover:bg-primary-container transition-all" href="https://wa.me/919876543210" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">forum</span><span class="font-label-md text-label-md">Enquire with Master</span></a></body></html>
