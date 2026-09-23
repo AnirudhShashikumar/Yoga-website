@@ -1,6 +1,6 @@
 # Prabha Yogashala Implementation Status
 
-Last updated: 2026-09-22
+Last updated: 2026-09-23
 
 ## Completed
 
@@ -55,13 +55,25 @@ Last updated: 2026-09-22
 - Removed premature Account links from the public shell so the completed public website has no links to unimplemented authentication routes.
 - No Supabase schema, authentication, customer portal, admin portal, payment, or membership functionality was implemented.
 
+### Milestone 4 Supabase Data Foundation and Security
+
+- Added ordered, clean-project Supabase migrations for profiles, protected roles, classes, class sessions, bookings, trial enquiries, workshops, and gallery metadata.
+- Added constrained enums, foreign keys, query-driven indexes, timezone-aware timestamps, reliable `updated_at` triggers, archive/publication state, and database-enforced lifecycle transitions.
+- Separated Auth identity from editable application profiles. New Auth users receive a hard-coded `customer` role; request metadata is not trusted for authorization.
+- Protected `user_roles` from all Data API mutation, added a fixed-search-path admin authorization helper, and prevented customer payloads from injecting ownership, administrative status, IDs, or audit timestamps.
+- Enabled RLS on every exposed application table with explicit least-privilege grants and policies for anonymous, customer, and admin contexts.
+- Added four public-read, admin-write Storage buckets with MIME/size limits and entity-oriented path constraints. No fake media was uploaded.
+- Added a production-safe seed containing only the 12 verified practices. No people, schedules, bookings, prices, workshops, or gallery events are seeded.
+- Added a rollback-only 48-assertion pgTAP suite for anonymous, customer A, customer B, and admin boundaries, including reciprocal isolation and protected-column behavior.
+- Documented the schema, trust boundary, static taxonomy mapping, Storage architecture, abuse controls, local workflow, and generated database-type workflow in `DATABASE.md`.
+- No authentication UI, protected routes, dashboards, live frontend data, booking persistence, payments, or memberships were implemented.
+
 ## In progress
 
-- None. Milestone 3 is complete as a bounded public-website run.
+- None. Milestone 4 is complete at source level. Runtime database verification awaits an environment with Supabase CLI and Docker.
 
 ## Remaining
 
-- Milestone 4: Supabase schema, migrations, seed strategy, and RLS.
 - Milestone 5: Authentication and route/session protection.
 - Milestone 6: Customer portal.
 - Milestone 7: Booking integration.
@@ -102,6 +114,9 @@ Last updated: 2026-09-22
 - The About founder image and Gallery media are abstract development placeholders. Production photography, captions, ordering, alt text, and usage rights remain client dependencies.
 - Contact and Trial Enquiry forms currently validate in the browser and prepare an unsent WhatsApp message. Persistence, spam protection, server validation, consent recording, and administrative processing belong to later backend milestones.
 - Privacy and Terms are structured drafts, not approved legal documents, and are marked `noindex` until reviewed.
+- This machine has neither the Supabase CLI nor Docker installed, and no remote Supabase credentials were supplied. The clean reset, seed execution, database lint, generated types, and 48-assertion pgTAP RLS suite could not be executed in this run; no runtime RLS-pass claim has been made.
+- Admin role provisioning is intentionally outside the Data API. Before production launch, establish an audited operational process or a narrowly scoped server-only provisioning workflow.
+- Public trial-enquiry insertion is only a database capability. The frontend must not use it until a server-validated, rate-limited, bot-aware submission boundary is implemented.
 
 ## Checks
 
@@ -124,7 +139,11 @@ Last updated: 2026-09-22
 - Internal-link crawl passed with no dead public links, including every class-to-trial query link.
 - Class filtering, native FAQ keyboard expansion, mobile navigation focus/Escape behavior, Contact validation, and Trial Enquiry validation/completion were exercised in the browser.
 - Browser console/runtime review found no application errors or warnings, and the content-integrity scan found no unsupported public claims.
+- Milestone 4 migration, seed, RLS, Storage, and pgTAP assets received static source review, including test-plan count and taxonomy parity checks.
+- Supabase runtime checks were not executable because the Supabase CLI and Docker are unavailable in this environment.
+- ESLint and strict TypeScript validation passed after Milestone 4.
+- The Next.js production build passed with the framework-supported webpack fallback. The default Turbopack build could not run in this sandbox because its CSS worker was prohibited from binding a local port; no application compilation error was reported.
 
 ## Exact recommended next implementation task
 
-Implement Milestone 4: define the Supabase PostgreSQL schema, migrations, content-safe seed strategy, storage boundaries, and row-level security for profiles, protected roles, classes, class sessions, bookings, trial enquiries, workshops, and gallery items. Add explicit RLS verification for anonymous, customer A, customer B, and admin contexts; do not begin authentication UI, customer pages, admin pages, payments, or live booking integration in that milestone.
+Implement Milestone 5: add Supabase email authentication and server-managed session protection for registration, email verification, login, logout, password recovery/reset, and guarded customer/admin route groups. Preserve the protected database role model, default every registration to `customer`, verify server-side authorization, and do not begin customer/admin dashboard features, live bookings, payments, or public live-data migration.

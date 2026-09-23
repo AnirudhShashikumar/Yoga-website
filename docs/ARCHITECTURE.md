@@ -46,8 +46,9 @@ src/
     utils/                framework-agnostic helpers
   types/                  shared domain types; generated DB types will live here
 supabase/
-  migrations/             schema, functions, policies, triggers (Milestone 4)
-  seed.sql                optional content-safe local fixtures only
+  migrations/             ordered schema, security, and Storage migrations
+  seed.sql                production-safe verified practice content only
+  tests/database/         rollback-only pgTAP security verification
 public/                   approved, optimized local assets
 docs/                     persistent project decisions and status
 ```
@@ -84,9 +85,9 @@ Milestone 5 will implement Supabase email authentication: registration, verifica
 - RLS policies remain the final data-access boundary.
 - Any admin helper function must use a fixed `search_path` and be inaccessible to ordinary clients unless explicitly safe.
 
-## Planned relational model
+## Relational model
 
-Milestone 4 will define migrations after business rules are confirmed.
+Milestone 4 implements the database model below. Detailed relationships, access rules, migration commands, and Storage boundaries are maintained in `DATABASE.md`.
 
 - `profiles`: one-to-one with `auth.users`; permitted customer-editable profile fields.
 - `user_roles`: protected role assignment.
@@ -97,7 +98,9 @@ Milestone 4 will define migrations after business rules are confirmed.
 - `workshops`: managed publication record.
 - `gallery_items`: managed media metadata and publication order.
 
-Use UUID primary keys, foreign keys, check constraints or PostgreSQL enums where appropriate, UTC timestamps, unique constraints, and indexes driven by real query paths. Avoid deleting referenced records; use publication or archive state where history matters.
+The model uses UUID primary keys, deliberate foreign-key deletion behavior, PostgreSQL enums and check constraints, timezone-aware timestamps, update triggers, uniqueness rules, and query-driven indexes. Publication/status and archival preserve history; application tables expose no Data API delete privilege.
+
+`auth.users` remains the authentication identity source. An Auth trigger creates only a blank profile and the hard-coded `customer` role. Protected `user_roles` records—not user metadata, profile data, forms, query parameters, or browser state—authorize administrators. Ordinary clients, including Data API admin sessions, cannot mutate role assignments.
 
 ## State transitions
 
@@ -109,7 +112,7 @@ Transitions must be enforced in server/database logic, not inferred from button 
 
 ## Storage
 
-Use Supabase Storage only for approved class, workshop, and gallery media. Store object paths in PostgreSQL, not public URLs. Define separate public and restricted buckets only when access rules require them. Validate MIME type, extension, and size server-side and enforce equivalent bucket policies.
+Use the public-read, admin-write `class-media`, `workshop-media`, `gallery-media`, and `founder-media` buckets only for approved media. Store object paths in PostgreSQL, not public URLs. Bucket limits and MIME allowlists provide baseline enforcement; future server workflows must also validate content, extension, MIME type, size, filename, and media rights. Object bytes are managed through the Storage API, never by directly editing `storage.objects`.
 
 ## Error, loading, and empty states
 
@@ -133,7 +136,7 @@ The root layout owns title templates, description, theme color, and favicon. Lat
 - Run lint, strict typecheck, and production build after each major milestone.
 - Add focused unit tests for validation, state transitions, and pure domain logic.
 - Add integration tests for Server Actions and repository behavior.
-- Explicitly test Supabase RLS with customer A, customer B, anonymous, and admin contexts.
+- Explicitly test Supabase RLS with customer A, customer B, anonymous, and admin contexts. The rollback-only pgTAP suite covers visibility, reciprocal ownership isolation, protected-column injection, managed-content permissions, lifecycle transitions, and Storage policy presence.
 - Add end-to-end tests for public navigation, auth, route protection, trial enquiries, bookings, class/schedule administration, and responsive navigation when those features exist.
 
 ## Deployment
