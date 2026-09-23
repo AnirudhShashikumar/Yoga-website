@@ -24,8 +24,8 @@ src/
   app/
     (public)/             public routes, added from Milestone 2
     (auth)/               authentication routes, added in Milestone 5
-    (customer)/           customer routes and guarded layout, Milestone 6
-    (admin)/              admin routes and guarded layout, Milestone 8
+    (customer)/           guarded customer foundation; features begin Milestone 6
+    (admin)/              guarded admin foundation; features begin Milestone 8
     layout.tsx            document, fonts, global metadata foundation
     globals.css           semantic design tokens and global accessibility rules
   components/
@@ -40,6 +40,7 @@ src/
     gallery/
     schedule/
     workshops/
+  proxy.ts                Supabase session refresh and early portal authorization
   lib/
     supabase/             browser/server clients and later auth helpers
     validation/           shared Zod schemas
@@ -75,7 +76,7 @@ Route groups organize code without changing public URLs. Do not create a second 
 
 ## Authentication and authorization
 
-Milestone 5 will implement Supabase email authentication: registration, verification, login, logout, password recovery/reset, and server-managed sessions.
+Milestone 5 implements Supabase email authentication: registration, verification, login, logout, password recovery/reset, and server-managed cookie sessions. The operational flow and hosted-project configuration are maintained in `AUTH.md`.
 
 - Public registration creates customer access only.
 - Store editable profile information separately from protected role assignment.
@@ -84,6 +85,9 @@ Milestone 5 will implement Supabase email authentication: registration, verifica
 - Server actions must check the authenticated user and required role.
 - RLS policies remain the final data-access boundary.
 - Any admin helper function must use a fixed `search_path` and be inaccessible to ordinary clients unless explicitly safe.
+- Next.js 16 `proxy.ts` calls verified `getClaims()` early so `@supabase/ssr` can refresh cookie sessions. It performs early portal redirects, while each protected layout independently rechecks session and role before rendering.
+- Admin routing always resolves the protected `user_roles` record. Auth metadata and editable profile data never authorize access.
+- Post-auth redirects are limited to the authenticated role's own portal subtree; untrusted external or malformed destinations are discarded.
 
 ## Relational model
 

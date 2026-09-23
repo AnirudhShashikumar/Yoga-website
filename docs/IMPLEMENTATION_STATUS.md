@@ -68,13 +68,26 @@ Last updated: 2026-09-23
 - Documented the schema, trust boundary, static taxonomy mapping, Storage architecture, abuse controls, local workflow, and generated database-type workflow in `DATABASE.md`.
 - No authentication UI, protected routes, dashboards, live frontend data, booking persistence, payments, or memberships were implemented.
 
+### Milestone 5 Authentication, Sessions, and Route Authorization
+
+- Added `/login`, `/register`, `/forgot-password`, `/reset-password`, `/verify-email`, and the `/auth/confirm` server callback using the installed Supabase SSR/JavaScript APIs.
+- Added Zod-validated Server Actions for registration, login, logout, recovery requests, and password updates with safe typed errors and no password persistence or logging.
+- Preserved customer-only registration: no role input is accepted or sent; safe name/phone metadata is validated before being copied to `profiles`, while `user_roles` remains authoritative.
+- Added Next.js 16 `proxy.ts` session refresh using verified claims, private/no-store handling for authenticated responses, and early protection for customer/admin portal paths.
+- Added independent server-side protected layouts for `/dashboard/*` and `/admin/*`, with customers and admins routed only to their intended portal.
+- Added strict role-compatible redirect validation and focused tests covering external, protocol-relative, malformed, encoded-backslash, unrelated, and cross-role destinations.
+- Added a short-lived HTTP-only recovery marker in addition to the verified recovery session before accepting a password update.
+- Added accessible, responsive auth forms with password-manager autocomplete, show/hide controls, pending states, field-linked errors, error focus, live announcements, and noindex metadata.
+- Added the public-header Sign In/My Account/Admin integration without changing the primary trial-class CTA or using client state as an authorization boundary.
+- Added only minimal protected customer/admin landing states; no dashboard features or CRUD were implemented.
+- Added `.env.example`, versioned local confirmation/recovery templates, hosted configuration instructions, and the repeatable live-auth checklist in `AUTH.md`.
+
 ## In progress
 
-- None. Milestone 4 is complete at source level. Runtime database verification awaits an environment with Supabase CLI and Docker.
+- None. Milestone 5 is complete at source level. Database and live authentication verification await a configured Supabase runtime.
 
 ## Remaining
 
-- Milestone 5: Authentication and route/session protection.
 - Milestone 6: Customer portal.
 - Milestone 7: Booking integration.
 - Milestone 8: Admin portal.
@@ -117,6 +130,8 @@ Last updated: 2026-09-23
 - This machine has neither the Supabase CLI nor Docker installed, and no remote Supabase credentials were supplied. The clean reset, seed execution, database lint, generated types, and 48-assertion pgTAP RLS suite could not be executed in this run; no runtime RLS-pass claim has been made.
 - Admin role provisioning is intentionally outside the Data API. Before production launch, establish an audited operational process or a narrowly scoped server-only provisioning workflow.
 - Public trial-enquiry insertion is only a database capability. The frontend must not use it until a server-validated, rate-limited, bot-aware submission boundary is implemented.
+- No Supabase project credentials, local Supabase runtime, SMTP sender, or live email templates were available, so registration, delivery, confirmation, login, refresh, logout, recovery, and role routing have not been end-to-end verified.
+- The hosted Supabase project must use the documented SSR token-hash email templates and exact redirect allowlist. Default fragment-based templates are not the intended server confirmation flow.
 
 ## Checks
 
@@ -143,7 +158,12 @@ Last updated: 2026-09-23
 - Supabase runtime checks were not executable because the Supabase CLI and Docker are unavailable in this environment.
 - ESLint and strict TypeScript validation passed after Milestone 4.
 - The Next.js production build passed with the framework-supported webpack fallback. The default Turbopack build could not run in this sandbox because its CSS worker was prohibited from binding a local port; no application compilation error was reported.
+- Milestone 5 focused auth tests passed: 4 tests covering safe redirects, role-compatible routing, registration role stripping, normalization, and password validation.
+- ESLint and strict TypeScript validation passed after Milestone 5 implementation.
+- The Milestone 5 production build passed with the framework-supported webpack fallback; `/dashboard` and `/admin` are confirmed as request-rendered routes behind Proxy.
+- Login, registration, forgot-password, missing-reset-session, and confirmation-result routes rendered with one `h1`, correct metadata, and no horizontal overflow across 25 route/viewport combinations at 390px, 768px, 1024px, 1280px, and 1440px.
+- Browser checks confirmed first-invalid-field focus, accessible error announcements, keyboard operation of password visibility, valid auth-page internal links, safe missing-configuration redirects, invalid confirmation handling, and no browser console errors or warnings.
 
 ## Exact recommended next implementation task
 
-Implement Milestone 5: add Supabase email authentication and server-managed session protection for registration, email verification, login, logout, password recovery/reset, and guarded customer/admin route groups. Preserve the protected database role model, default every registration to `customer`, verify server-side authorization, and do not begin customer/admin dashboard features, live bookings, payments, or public live-data migration.
+After connecting Supabase and completing the pending migration, RLS, and live-auth verification, implement Milestone 6: build the protected customer portal using only the signed-in customer's real profile and booking data, including truthful loading/error/empty states and permitted profile editing. Do not add booking creation, admin features, payments, memberships, or fictional dashboard data.

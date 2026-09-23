@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+import { AccountLink } from "@/components/auth/account-link";
 import { ButtonLink } from "@/components/ui/button";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { publicNavigation } from "@/config/navigation";
@@ -72,6 +73,7 @@ export function PublicHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 xl:flex">
+          <AccountLink />
           <ButtonLink href="/book" size="sm">
             {primaryCta}
           </ButtonLink>
@@ -148,7 +150,8 @@ export function PublicHeader() {
           </nav>
 
           <div className="border-t border-brand/10 bg-surface-subtle px-5 py-6 sm:px-6">
-            <div className="mx-auto max-w-xl">
+            <div className="mx-auto grid max-w-xl gap-3 sm:grid-cols-2">
+              <AccountLink mobile onNavigate={() => setIsMenuOpen(false)} />
               <ButtonLink href="/book" size="lg" onClick={() => setIsMenuOpen(false)}>
                 {primaryCta}
               </ButtonLink>

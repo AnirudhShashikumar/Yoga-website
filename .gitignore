@@ -10,6 +10,7 @@ coverage/
 
 # Local secrets and environment-specific configuration
 .env*
+!.env.example
 
 # Operating-system and editor files
 .DS_Store

@@ -40,6 +40,8 @@ Database triggers enforce these transitions. Reopening or reversing a terminal s
 
 The `auth.users` insert trigger creates a blank profile and assigns only `customer`. It ignores user metadata and request payloads. `private.is_admin()` is a `SECURITY DEFINER` helper with a fixed empty `search_path`; it reads the protected role table for RLS decisions.
 
+Registration may temporarily store validated full name and phone in Auth user metadata so the email-confirmation callback can copy them into `profiles`. That metadata never contains or determines a role; the database trigger still assigns `customer` independently.
+
 Neither ordinary customers nor Data API admins receive `INSERT`, `UPDATE`, or `DELETE` privileges on `user_roles`. Trusted role provisioning must therefore be performed through controlled project administration or a future narrowly scoped server-only operation. A service-role secret is not required by this milestone and must never be exposed through `NEXT_PUBLIC_*` values or browser code.
 
 Insert guards overwrite customer-controlled booking/enquiry ownership, status, IDs, audit timestamps, and consent audit metadata. Anonymous/customer enquiry policies require affirmative consent; they do not infer consent from submission. Column privileges additionally limit profile updates and prevent customer booking status updates. Route guards and client-visible role values are UX aids only; PostgreSQL privileges, RLS, constraints, and triggers are the security boundary.

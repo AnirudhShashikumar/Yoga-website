@@ -10,3 +10,11 @@ max_rows = 1000
 [auth]
 site_url = "http://127.0.0.1:3000"
 additional_redirect_urls = ["http://localhost:3000/**", "http://127.0.0.1:3000/**"]
+
+[auth.email.template.confirmation]
+subject = "Confirm your Prabha Yogashala account"
+content_path = "./supabase/templates/confirmation.html"
+
+[auth.email.template.recovery]
+subject = "Reset your Prabha Yogashala password"
+content_path = "./supabase/templates/recovery.html"
