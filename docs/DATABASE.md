@@ -2,7 +2,7 @@
 
 ## Scope
 
-Milestone 4 establishes the reproducible Supabase foundation only. The public website still reads the typed static content in `src/config/classes.ts`; authentication UI, application mutations, dashboards, and live public reads are intentionally deferred.
+Milestone 4 established the reproducible Supabase foundation. Milestone 5.5 subsequently linked and verified that foundation against the hosted staging project. The public website still reads the typed static content in `src/config/classes.ts`; application mutations, dashboard features, and live public reads remain deferred.
 
 The database contains no passwords, payment data, medical histories, government identifiers, or other fields outside the approved V1. Authentication identity and email remain in Supabase Auth.
 
@@ -95,16 +95,31 @@ Only protected admins may create, replace, or delete objects. Upload workflows m
 
 The anonymous insert policy is database defense in depth, not approval for a generic browser-to-table submission path. The later integration must use a server action or route handler with server-side Zod validation, payload length limits, normalized contact data, rate limiting, a honeypot or Turnstile-style control if required, explicit consent capture, and non-sensitive error responses. RLS does not prevent spam.
 
+## Hosted staging verification
+
+Verified on 2026-09-24 against the Supabase project referenced by the uncommitted `.env.local`:
+
+- The Supabase CLI is a project-local development dependency and is locked at 2.117.0 in `pnpm-lock.yaml`; no global installation is required.
+- The linked project reference exactly matches `NEXT_PUBLIC_SUPABASE_URL`. The reference and all credentials remain unprinted and uncommitted.
+- A migration dry run showed only the three ordered project migrations and `supabase/seed.sql`. The migrations and seed were then applied successfully to the linked staging database.
+- The hosted migration history contains `20260923000100`, `20260923000200`, and `20260923000300` in order.
+- The hosted `classes` table contains exactly 12 rows and 12 unique slugs, matching the approved static taxonomy. No users, bookings, sessions, prices, workshops, or gallery records were seeded.
+- `supabase db lint --linked --level warning --fail-on error` reported no schema errors.
+- The exact rollback-only pgTAP suite completed all 48 assertions successfully. The project-local `supabase test db --linked` command still requires a Docker-compatible runtime, so the same checked-in SQL was executed through the official hosted database-query endpoint. A deliberate one-assertion failure probe was detected before accepting the green result, confirming that the transport reports pgTAP failures rather than masking them.
+- Hosted `public` schema types were generated into `src/types/database.generated.ts` and are now used by the browser, server, and Proxy Supabase client factories.
+
+The pgTAP file was corrected only to place five data-modifying CTEs at the statement top level, which PostgreSQL requires. Its 48 assertion count and security expectations are unchanged. Test identities and records remain transaction-local and are rolled back.
+
 ## Local migration and verification workflow
 
-Prerequisites are the Supabase CLI and a running Docker-compatible engine.
+Prerequisites are the project dependencies and a running Docker-compatible engine.
 
 ```bash
-supabase start
-supabase db reset
-supabase test db
-supabase db lint --local --level warning
-supabase gen types typescript --local > src/types/database.generated.ts
+pnpm exec supabase start
+pnpm exec supabase db reset
+pnpm exec supabase test db
+pnpm exec supabase db lint --local --level warning
+pnpm exec supabase gen types typescript --local > src/types/database.generated.ts
 ```
 
 `supabase db reset` recreates the local database, applies ordered migrations, and then applies `supabase/seed.sql`. Never run a destructive reset against a linked production project. Review generated type changes before committing; do not hand-author a file that claims to be generated.

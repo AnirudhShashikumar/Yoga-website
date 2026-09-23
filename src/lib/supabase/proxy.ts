@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { getPublicEnvironment } from "@/lib/env";
 import type { AppRole } from "@/lib/auth/redirects";
+import type { Database } from "@/types/database.generated";
 
 function isProtectedPath(pathname: string) {
   return pathname === "/dashboard" || pathname.startsWith("/dashboard/") ||
@@ -38,7 +39,7 @@ export async function updateSession(request: NextRequest) {
 
   try {
     const environment = getPublicEnvironment();
-    const supabase = createServerClient(
+    const supabase = createServerClient<Database>(
       environment.NEXT_PUBLIC_SUPABASE_URL,
       environment.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
       {

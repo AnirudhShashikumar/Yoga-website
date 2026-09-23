@@ -323,16 +323,14 @@ select lives_ok(
   $$update public.profiles set phone = '8888888881' where id = '10000000-0000-4000-8000-000000000001'$$,
   'customer A can update a permitted own profile field'
 );
+with changed as (
+  update public.profiles
+  set phone = 'compromised'
+  where id = '20000000-0000-4000-8000-000000000002'
+  returning 1
+)
 select is(
-  (
-    with changed as (
-      update public.profiles
-      set phone = 'compromised'
-      where id = '20000000-0000-4000-8000-000000000002'
-      returning 1
-    )
-    select count(*) from changed
-  ),
+  (select count(*) from changed),
   0::bigint,
   'customer A cannot update customer B profile'
 );
@@ -349,16 +347,14 @@ select is(
   'customer A cannot read customer B bookings'
 );
 select is((select count(*) from public.trial_enquiries), 0::bigint, 'customer A cannot read enquiry management data');
+with changed as (
+  update public.classes
+  set name = 'Compromised'
+  where id = 'c0000000-0000-4000-8000-000000000001'
+  returning 1
+)
 select is(
-  (
-    with changed as (
-      update public.classes
-      set name = 'Compromised'
-      where id = 'c0000000-0000-4000-8000-000000000001'
-      returning 1
-    )
-    select count(*) from changed
-  ),
+  (select count(*) from changed),
   0::bigint,
   'customer A cannot mutate managed class content'
 );
@@ -374,16 +370,14 @@ select lives_ok(
   $$,
   'customer A can create a booking for an eligible session'
 );
+with changed as (
+  update public.bookings
+  set status = 'confirmed'
+  where customer_id = '10000000-0000-4000-8000-000000000001'
+  returning 1
+)
 select is(
-  (
-    with changed as (
-      update public.bookings
-      set status = 'confirmed'
-      where customer_id = '10000000-0000-4000-8000-000000000001'
-      returning 1
-    )
-    select count(*) from changed
-  ),
+  (select count(*) from changed),
   0::bigint,
   'customer A cannot update protected booking status'
 );
@@ -449,16 +443,14 @@ select is(
   0::bigint,
   'customer B cannot read customer A bookings'
 );
+with changed as (
+  update public.profiles
+  set phone = 'compromised'
+  where id = '10000000-0000-4000-8000-000000000001'
+  returning 1
+)
 select is(
-  (
-    with changed as (
-      update public.profiles
-      set phone = 'compromised'
-      where id = '10000000-0000-4000-8000-000000000001'
-      returning 1
-    )
-    select count(*) from changed
-  ),
+  (select count(*) from changed),
   0::bigint,
   'customer B cannot update customer A profile'
 );
@@ -468,13 +460,11 @@ select throws_ok(
   null,
   'customer B cannot promote themselves to admin'
 );
+with changed as (
+  update public.workshops set published = true returning 1
+)
 select is(
-  (
-    with changed as (
-      update public.workshops set published = true returning 1
-    )
-    select count(*) from changed
-  ),
+  (select count(*) from changed),
   0::bigint,
   'customer B cannot perform workshop administration'
 );

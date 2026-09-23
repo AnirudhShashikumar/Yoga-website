@@ -1,6 +1,6 @@
 # Prabha Yogashala Implementation Status
 
-Last updated: 2026-09-23
+Last updated: 2026-09-24
 
 ## Completed
 
@@ -82,12 +82,26 @@ Last updated: 2026-09-23
 - Added only minimal protected customer/admin landing states; no dashboard features or CRUD were implemented.
 - Added `.env.example`, versioned local confirmation/recovery templates, hosted configuration instructions, and the repeatable live-auth checklist in `AUTH.md`.
 
+### Milestone 5.5 Hosted Supabase Integration and Runtime Verification
+
+- Added the Supabase CLI as a project-local development dependency and linked the exact hosted staging project referenced by the uncommitted `.env.local`.
+- Verified `.env.local` is ignored and untracked; required public Supabase variables are present without printing their values. No service-role secret was introduced.
+- Dry-ran and applied the three ordered migrations plus the production-safe seed. Hosted migration history matches the repository, and the hosted public API returns exactly 12 class rows with 12 unique slugs.
+- Ran hosted database lint with no schema errors.
+- Corrected five pgTAP statements to PostgreSQL's required top-level data-modifying-CTE shape without changing the 48-test plan or expectations. The exact rollback-only suite then passed 48/48 against hosted staging; a deliberate failure probe confirmed failures are surfaced.
+- Generated database types from the hosted `public` schema and integrated them into the browser, server, and Proxy Supabase clients.
+- Replaced the hosted project's old Site URL and broad redirects with the exact deployed/local callback allowlist. Email confirmation, secure email change, refresh rotation, and an 8-character letter-plus-number password minimum are enabled.
+- Verified safe unauthenticated hosted behavior, anonymous data boundaries, deployed auth rendering, protected-route redirects, and invalid confirmation handling.
+- Passed focused auth tests, ESLint, strict TypeScript validation, and the Next.js production build.
+
 ## In progress
 
-- None. Milestone 5 is complete at source level. Database and live authentication verification await a configured Supabase runtime.
+- Milestone 5.5 is complete for migrations, seed, schema lint, RLS tests, hosted types, supported Auth settings, unauthenticated API checks, and anonymous deployed-route checks.
+- Production SMTP/template activation and valid customer/admin session verification remain blocked on external configuration and explicitly approved test identities.
 
 ## Remaining
 
+- Finish the two Milestone 5.5 hosted-auth blockers documented above before starting feature work.
 - Milestone 6: Customer portal.
 - Milestone 7: Booking integration.
 - Milestone 8: Admin portal.
@@ -110,6 +124,8 @@ Last updated: 2026-09-23
 - Final approved FAQ wording, Privacy Policy, and Terms & Conditions.
 - Legal business identity, governing jurisdiction, privacy-request contact, and policy effective dates.
 - Domain, Vercel, Supabase, and business-email ownership decisions.
+- Production SMTP provider, verified sender/domain, and permission to send Auth test mail to a specific mailbox.
+- Approved hosted customer and admin test identities, or explicit permission and addresses for creating temporary staging-only identities. Admin role provisioning must use the protected operational path, not browser-supplied metadata.
 - Decision on dark mode and any later multilingual work.
 
 ## Known issues and risks
@@ -120,18 +136,18 @@ Last updated: 2026-09-23
 - The dashboard screenshots contain revenue, memberships, progress, invoices, certificates, capacity, and fictional people. Those modules are outside V1 or must be replaced with real-data/empty-state patterns.
 - The questionnaire requests several features excluded from the current V1. Scope must continue to follow `PROJECT_CONTEXT.md` unless the client explicitly reauthorizes them.
 - No Git repository existed at audit time. A repository is initialized during this foundation milestone, but no commit is created automatically.
-- Supabase and Vercel projects are not yet connected, and no local secrets should be added to Git.
+- The hosted Supabase staging project and deployed Vercel origin are connected, but `.env.local` must remain outside Git and no service-role secret should be added to browser-visible configuration.
 - The light design system is approved; dark-mode tokens are not.
 - The project is intentionally pinned to TypeScript 6 and ESLint 9 because the current Next.js lint plugins do not yet support TypeScript 7 or ESLint 10. Revisit together during a controlled dependency upgrade.
 - The Homepage uses abstract local placeholders, not production photography. Their paths and replacement status are centralized in `src/config/media.ts`.
 - The About founder image and Gallery media are abstract development placeholders. Production photography, captions, ordering, alt text, and usage rights remain client dependencies.
 - Contact and Trial Enquiry forms currently validate in the browser and prepare an unsent WhatsApp message. Persistence, spam protection, server validation, consent recording, and administrative processing belong to later backend milestones.
 - Privacy and Terms are structured drafts, not approved legal documents, and are marked `noindex` until reviewed.
-- This machine has neither the Supabase CLI nor Docker installed, and no remote Supabase credentials were supplied. The clean reset, seed execution, database lint, generated types, and 48-assertion pgTAP RLS suite could not be executed in this run; no runtime RLS-pass claim has been made.
+- Docker is not installed. The project-local CLI can perform linked operations, but `supabase test db --linked` still invokes a Docker-compatible runtime; the checked-in rollback-only pgTAP SQL was therefore run through the official hosted query endpoint and passed 48/48 with failure detection verified.
 - Admin role provisioning is intentionally outside the Data API. Before production launch, establish an audited operational process or a narrowly scoped server-only provisioning workflow.
 - Public trial-enquiry insertion is only a database capability. The frontend must not use it until a server-validated, rate-limited, bot-aware submission boundary is implemented.
-- No Supabase project credentials, local Supabase runtime, SMTP sender, or live email templates were available, so registration, delivery, confirmation, login, refresh, logout, recovery, and role routing have not been end-to-end verified.
-- The hosted Supabase project must use the documented SSR token-hash email templates and exact redirect allowlist. Default fragment-based templates are not the intended server confirmation flow.
+- The exact hosted SSR callback allowlist is active. The checked-in token-hash templates are not yet active because the Free-tier project uses Supabase's default email provider, which rejected template modification. Configure custom SMTP and a verified sender before treating email Auth as production-ready.
+- No approved real test mailbox/customer/admin identities were available. Valid registration, delivery, confirmation, login, cookie refresh, logout, recovery, and customer/admin live-session routing therefore remain unverified; no end-to-end claim has been made.
 
 ## Checks
 
@@ -155,7 +171,9 @@ Last updated: 2026-09-23
 - Class filtering, native FAQ keyboard expansion, mobile navigation focus/Escape behavior, Contact validation, and Trial Enquiry validation/completion were exercised in the browser.
 - Browser console/runtime review found no application errors or warnings, and the content-integrity scan found no unsupported public claims.
 - Milestone 4 migration, seed, RLS, Storage, and pgTAP assets received static source review, including test-plan count and taxonomy parity checks.
-- Supabase runtime checks were not executable because the Supabase CLI and Docker are unavailable in this environment.
+- Hosted migrations and seed applied successfully; the hosted migration history contains all three expected versions and the public classes seed contains exactly 12 unique slugs.
+- Hosted database lint reported no schema errors, and the rollback-only RLS suite passed all 48 pgTAP assertions. A deliberate failing probe verified that test failures are detected.
+- Hosted schema type generation passed and the generated `Database` type is integrated into all three Supabase client factories.
 - ESLint and strict TypeScript validation passed after Milestone 4.
 - The Next.js production build passed with the framework-supported webpack fallback. The default Turbopack build could not run in this sandbox because its CSS worker was prohibited from binding a local port; no application compilation error was reported.
 - Milestone 5 focused auth tests passed: 4 tests covering safe redirects, role-compatible routing, registration role stripping, normalization, and password validation.
@@ -163,7 +181,11 @@ Last updated: 2026-09-23
 - The Milestone 5 production build passed with the framework-supported webpack fallback; `/dashboard` and `/admin` are confirmed as request-rendered routes behind Proxy.
 - Login, registration, forgot-password, missing-reset-session, and confirmation-result routes rendered with one `h1`, correct metadata, and no horizontal overflow across 25 route/viewport combinations at 390px, 768px, 1024px, 1280px, and 1440px.
 - Browser checks confirmed first-invalid-field focus, accessible error announcements, keyboard operation of password visibility, valid auth-page internal links, safe missing-configuration redirects, invalid confirmation handling, and no browser console errors or warnings.
+- Hosted Auth configuration verification passed for the exact Site URL, three exact callback redirects, required email confirmation, secure email change, refresh rotation, and the letter-plus-number 8-character password minimum.
+- Safe hosted API checks passed for invalid login, privacy-neutral nonexistent-account recovery, invalid refresh/logout, anonymous access to 12 published classes, and denial of anonymous profile, role-read, and role-injection attempts.
+- Focused deployed browser checks passed for the login form, anonymous dashboard/admin guards, preserved safe `next` paths, and the invalid-confirmation state.
+- Current verification commands passed: `pnpm test:auth` (4/4), `pnpm lint`, `pnpm typecheck`, and `pnpm exec next build --webpack`.
 
 ## Exact recommended next implementation task
 
-After connecting Supabase and completing the pending migration, RLS, and live-auth verification, implement Milestone 6: build the protected customer portal using only the signed-in customer's real profile and booking data, including truthful loading/error/empty states and permitted profile editing. Do not add booking creation, admin features, payments, memberships, or fictional dashboard data.
+Configure production SMTP and the checked-in hosted confirmation/recovery templates, obtain explicitly approved customer and admin staging test identities, and complete the valid registration, email, confirmation, login, refresh, logout, recovery, and role-routing matrix. Start Milestone 6 only after those checks pass.
