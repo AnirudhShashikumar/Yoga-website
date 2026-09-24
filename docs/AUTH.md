@@ -57,13 +57,13 @@ Verified on 2026-09-24:
 - The hosted minimum password length is 8 with at least one letter and one number. The application additionally enforces its documented 72-character maximum.
 - Secure email change and refresh-token rotation are enabled.
 - The project still uses Supabase's default development email provider; custom SMTP is not configured. This is not production-ready email delivery.
-- The checked-in confirmation and recovery templates are not active on the hosted project. Supabase rejected template modification because this Free-tier project is using the default email provider. No claim of hosted template parity or live email delivery is made.
+- The checked-in confirmation and recovery templates are not active on the hosted project. Supabase rejected template modification because this Free-tier project is using the default email provider. One disposable hosted signup received and completed the default confirmation email, but this does not establish production SMTP capacity or hosted template parity.
 
 To close the email blocker, configure a production SMTP provider and verified sender in Supabase Auth, then paste the subject/content from `supabase/templates/confirmation.html` and `supabase/templates/recovery.html` into their respective hosted templates. Disable provider link tracking, retain the exact Site URL and redirect list above, and send confirmation/recovery messages to an explicitly approved test mailbox.
 
 Safe hosted checks that do not require a real identity passed: invalid credentials return a generic failure; recovery for a nonexistent address returns the same neutral success shape; invalid refresh and logout tokens fail closed; anonymous users can read the 12 published class records but cannot read profiles or roles or inject a role. Deployed browser checks also confirm anonymous `/dashboard` and `/admin` requests reach `/login` with safe internal `next` values, and malformed confirmation tokens reach the invalid-link state.
 
-Valid registration/email delivery/confirmation, valid login, cookie refresh, logout, password recovery, and customer-versus-admin route behavior still require explicitly approved customer and admin test identities. The rollback-only pgTAP suite proves the database RLS contexts; it does not substitute for those live Auth/session checks.
+A non-PII disposable identity verified valid hosted registration, email delivery, confirmation, one matching profile, and one hard-coded `customer` role with no injected role metadata. Valid login, cookie refresh, logout, password recovery, and customer-versus-admin route behavior still require approved long-lived customer and admin test identities. The rollback-only pgTAP suite proves the database RLS contexts; it does not substitute for those remaining live Auth/session checks.
 
 ## Repeatable verification checklist
 

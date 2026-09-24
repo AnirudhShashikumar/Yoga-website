@@ -92,16 +92,18 @@ Last updated: 2026-09-24
 - Generated database types from the hosted `public` schema and integrated them into the browser, server, and Proxy Supabase clients.
 - Replaced the hosted project's old Site URL and broad redirects with the exact deployed/local callback allowlist. Email confirmation, secure email change, refresh rotation, and an 8-character letter-plus-number password minimum are enabled.
 - Verified safe unauthenticated hosted behavior, anonymous data boundaries, deployed auth rendering, protected-route redirects, and invalid confirmation handling.
+- Diagnosed the first production registration failure end to end. Vercel was supplying an invalid `NEXT_PUBLIC_SITE_URL`, so `getSiteUrl()` threw before `signUp()` and no Supabase request was made. The canonical HTTPS origin is now active in Production and Preview.
+- Completed one hosted disposable customer registration through email confirmation. The resulting records were exactly one Auth user, one profile, and one `customer` role; the attempted `role=admin` form field was ignored and no role metadata was stored.
 - Passed focused auth tests, ESLint, strict TypeScript validation, and the Next.js production build.
 
 ## In progress
 
-- Milestone 5.5 is complete for migrations, seed, schema lint, RLS tests, hosted types, supported Auth settings, unauthenticated API checks, and anonymous deployed-route checks.
-- Production SMTP/template activation and valid customer/admin session verification remain blocked on external configuration and explicitly approved test identities.
+- Milestone 5.5 is complete for migrations, seed, schema lint, RLS tests, hosted types, supported Auth settings, unauthenticated API checks, anonymous deployed-route checks, and one valid customer registration/email-confirmation path.
+- Production SMTP/template activation plus login, refresh, logout, recovery, and admin-role session verification remain blocked on external configuration and approved long-lived customer/admin test identities.
 
 ## Remaining
 
-- Finish the two Milestone 5.5 hosted-auth blockers documented above before starting feature work.
+- Finish the remaining Milestone 5.5 hosted-auth matrix documented above before starting feature work.
 - Milestone 6: Customer portal.
 - Milestone 7: Booking integration.
 - Milestone 8: Admin portal.
@@ -147,7 +149,7 @@ Last updated: 2026-09-24
 - Admin role provisioning is intentionally outside the Data API. Before production launch, establish an audited operational process or a narrowly scoped server-only provisioning workflow.
 - Public trial-enquiry insertion is only a database capability. The frontend must not use it until a server-validated, rate-limited, bot-aware submission boundary is implemented.
 - The exact hosted SSR callback allowlist is active. The checked-in token-hash templates are not yet active because the Free-tier project uses Supabase's default email provider, which rejected template modification. Configure custom SMTP and a verified sender before treating email Auth as production-ready.
-- No approved real test mailbox/customer/admin identities were available. Valid registration, delivery, confirmation, login, cookie refresh, logout, recovery, and customer/admin live-session routing therefore remain unverified; no end-to-end claim has been made.
+- A non-PII disposable mailbox verified valid hosted customer registration, delivery, confirmation, profile creation, and hard-coded customer-role creation. Login, cookie refresh, logout, recovery, and customer/admin live-session routing still require approved long-lived customer/admin test identities.
 
 ## Checks
 
@@ -185,7 +187,8 @@ Last updated: 2026-09-24
 - Safe hosted API checks passed for invalid login, privacy-neutral nonexistent-account recovery, invalid refresh/logout, anonymous access to 12 published classes, and denial of anonymous profile, role-read, and role-injection attempts.
 - Focused deployed browser checks passed for the login form, anonymous dashboard/admin guards, preserved safe `next` paths, and the invalid-confirmation state.
 - Current verification commands passed: `pnpm test:auth` (4/4), `pnpm lint`, `pnpm typecheck`, and `pnpm exec next build --webpack`.
+- Focused production registration verification passed on 2026-09-24: the canonical Vercel deployment reached Supabase `/signup`, delivered the confirmation email, confirmed the user, created exactly one profile and one `customer` role, and ignored an attempted admin-role field. The final clean Vercel production build completed successfully.
 
 ## Exact recommended next implementation task
 
-Configure production SMTP and the checked-in hosted confirmation/recovery templates, obtain explicitly approved customer and admin staging test identities, and complete the valid registration, email, confirmation, login, refresh, logout, recovery, and role-routing matrix. Start Milestone 6 only after those checks pass.
+Configure production SMTP and the checked-in hosted confirmation/recovery templates, obtain approved long-lived customer and admin staging identities, and complete login, refresh, logout, recovery, and customer/admin role-routing verification. Start Milestone 6 only after those checks pass.
