@@ -32,7 +32,7 @@ export function ConversionCTA({
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
-              <ButtonLink href="/book" size="lg" className="bg-white text-brand-strong hover:bg-surface-subtle">
+              <ButtonLink href="/book" variant="inverse" size="lg">
                 {primaryCta}
               </ButtonLink>
               <a

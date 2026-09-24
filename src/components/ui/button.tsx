@@ -4,7 +4,7 @@ import type { ButtonHTMLAttributes, ComponentPropsWithoutRef } from "react";
 
 import { cn } from "@/lib/utils/cn";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+type ButtonVariant = "primary" | "secondary" | "inverse" | "ghost" | "danger";
 type ButtonSize = "sm" | "md" | "lg";
 
 type ButtonStyleOptions = {
@@ -23,6 +23,7 @@ const variantClasses: Record<ButtonVariant, string> = {
     "bg-brand text-white shadow-action hover:bg-brand-strong disabled:bg-surface-muted disabled:text-muted",
   secondary:
     "border border-brand/20 bg-background text-brand hover:bg-surface-subtle",
+  inverse: "bg-white text-brand-strong shadow-action hover:bg-surface-subtle",
   ghost: "bg-transparent text-brand hover:bg-brand-soft/50",
   danger: "bg-error text-white hover:bg-red-800",
 };

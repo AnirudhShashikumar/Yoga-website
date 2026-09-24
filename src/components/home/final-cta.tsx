@@ -24,8 +24,8 @@ export function FinalCTA() {
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
               <ButtonLink
                 href="/book"
+                variant="inverse"
                 size="lg"
-                className="bg-white text-brand-strong hover:bg-surface-subtle"
               >
                 {primaryCta}
               </ButtonLink>
@@ -49,4 +49,3 @@ export function FinalCTA() {
     </section>
   );
 }
-
