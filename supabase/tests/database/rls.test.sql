@@ -3,7 +3,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path = public, extensions;
 
-select plan(48);
+select plan(56);
 
 -- Test-only identities and records. The transaction is always rolled back and
 -- these fixtures never enter supabase/seed.sql.
@@ -122,7 +122,7 @@ values
     now() + interval '8 days',
     now() + interval '8 days 1 hour',
     'offline',
-    null,
+    1,
     'published'
   ),
   (
@@ -238,6 +238,12 @@ select throws_ok(
   'anonymous cannot read bookings'
 );
 select throws_ok(
+  $$insert into public.bookings (customer_id, session_id) values ('10000000-0000-4000-8000-000000000001', '51000000-0000-4000-8000-000000000001')$$,
+  '42501',
+  null,
+  'anonymous cannot create a booking'
+);
+select throws_ok(
   $$select count(*) from public.trial_enquiries$$,
   '42501',
   null,
@@ -342,6 +348,16 @@ select throws_ok(
 );
 select is((select count(*) from public.bookings), 1::bigint, 'customer A sees only their booking');
 select is(
+  (select count(*) from public.classes where id = 'c0000000-0000-4000-8000-000000000001'),
+  1::bigint,
+  'customer A can read a published class'
+);
+select is(
+  (select count(*) from public.class_sessions where id = '51000000-0000-4000-8000-000000000001'),
+  1::bigint,
+  'customer A can read a published session'
+);
+select is(
   (select count(*) from public.bookings where customer_id = '20000000-0000-4000-8000-000000000002'),
   0::bigint,
   'customer A cannot read customer B bookings'
@@ -370,16 +386,50 @@ select lives_ok(
   $$,
   'customer A can create a booking for an eligible session'
 );
+select throws_ok(
+  $$insert into public.bookings (customer_id, session_id) values ('20000000-0000-4000-8000-000000000002', '51000000-0000-4000-8000-000000000001')$$,
+  '23505',
+  null,
+  'duplicate active customer booking is rejected'
+);
+
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '20000000-0000-4000-8000-000000000002', true);
+select set_config('request.jwt.claim.role', 'authenticated', true);
+
+select throws_ok(
+  $$insert into public.bookings (customer_id, session_id) values ('20000000-0000-4000-8000-000000000002', '51000000-0000-4000-8000-000000000002')$$,
+  'P0001',
+  'Session capacity has been reached',
+  'database rejects a customer booking after session capacity is reached'
+);
+
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claim.sub', '10000000-0000-4000-8000-000000000001', true);
+select set_config('request.jwt.claim.role', 'authenticated', true);
+
+select lives_ok(
+  $$update public.bookings set status = 'cancelled' where customer_id = '10000000-0000-4000-8000-000000000001' and session_id = '51000000-0000-4000-8000-000000000002'$$,
+  'customer A can cancel their own future active booking'
+);
 with changed as (
   update public.bookings
-  set status = 'confirmed'
-  where customer_id = '10000000-0000-4000-8000-000000000001'
+  set status = 'cancelled'
+  where id = 'b0000000-0000-4000-8000-000000000002'
   returning 1
 )
 select is(
   (select count(*) from changed),
   0::bigint,
-  'customer A cannot update protected booking status'
+  'customer A cannot cancel customer B booking'
+);
+select throws_ok(
+  $$update public.bookings set status = 'confirmed' where id = 'b0000000-0000-4000-8000-000000000001'$$,
+  '42501',
+  null,
+  'customer A cannot promote their own pending booking to confirmed'
 );
 select throws_ok(
   $$update public.bookings set customer_id = '20000000-0000-4000-8000-000000000002' where customer_id = '10000000-0000-4000-8000-000000000001'$$,
@@ -405,12 +455,22 @@ select lives_ok(
 reset role;
 select is(
   (
-    select customer_id = '10000000-0000-4000-8000-000000000001' and status = 'pending'
+    select status
+    from public.bookings
+    where customer_id = '10000000-0000-4000-8000-000000000001'
+      and session_id = '51000000-0000-4000-8000-000000000002'
+  ),
+  'cancelled'::public.booking_status,
+  'customer cancellation persists without changing booking ownership'
+);
+select is(
+  (
+    select customer_id = '10000000-0000-4000-8000-000000000001' and status = 'cancelled'
     from public.bookings
     where session_id = '51000000-0000-4000-8000-000000000002'
   ),
   true,
-  'booking trigger prevents customer A from injecting owner or status'
+  'booking trigger prevents customer A from injecting booking ownership'
 );
 select is(
   (

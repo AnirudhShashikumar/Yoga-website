@@ -1,6 +1,7 @@
 import "server-only";
 
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { cache } from "react";
 
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import type { AppRole } from "@/lib/auth/redirects";
@@ -28,7 +29,7 @@ export async function getRoleForUser(
   return data.role;
 }
 
-export async function getAuthContext(): Promise<AuthContext> {
+export const getAuthContext = cache(async (): Promise<AuthContext> => {
   let supabase: SupabaseClient;
 
   try {
@@ -50,4 +51,4 @@ export async function getAuthContext(): Promise<AuthContext> {
   if (!role) return { status: "unavailable" };
 
   return { status: "authenticated", userId: subject, role };
-}
+});
