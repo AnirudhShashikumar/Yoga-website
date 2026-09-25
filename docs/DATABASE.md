@@ -2,7 +2,7 @@
 
 ## Scope
 
-Milestone 4 established the reproducible Supabase foundation. Milestone 5.5 subsequently linked and verified that foundation against the hosted staging project. The public website still reads the typed static content in `src/config/classes.ts`; application mutations, dashboard features, and live public reads remain deferred.
+Milestone 4 established the reproducible Supabase foundation and Milestone 5.5 linked and verified it against the hosted staging project. Milestone 6 now uses the generated database types and hosted records for the customer portal: published classes, future published sessions, the authenticated customer's bookings, and permitted profile fields. Public marketing pages continue to use the typed static catalogue until their separate live-data integration milestone.
 
 The database contains no passwords, payment data, medical histories, government identifiers, or other fields outside the approved V1. Authentication identity and email remain in Supabase Auth.
 
@@ -54,12 +54,26 @@ Insert guards overwrite customer-controlled booking/enquiry ownership, status, I
 | Roles | No access | Read own; no mutation | Read all; no Data API mutation |
 | Classes | Read published, non-archived | Same | Read/create/update all |
 | Sessions | Read published sessions of published classes | Same | Read/create/update all |
-| Bookings | No access | Read own; create eligible pending booking | Read/create/update all |
+| Bookings | No access | Read own; create eligible pending booking; cancel own active future booking | Read/create/update all |
 | Trial enquiries | Insert only | Insert only | Insert/read/update |
 | Workshops | Read published, non-archived | Same | Read/create/update all |
 | Gallery items | Read published, non-archived | Same | Read/create/update all |
 
-No application-table delete privilege is exposed through the Data API. The repeatable pgTAP suite in `supabase/tests/database/rls.test.sql` exercises anonymous, customer A, customer B, and admin contexts, including reciprocal isolation and protected-column injection attempts. Test identities and records exist only inside its rolled-back transaction.
+No application-table delete privilege is exposed through the Data API. The repeatable 61-assertion pgTAP suite in `supabase/tests/database/rls.test.sql` exercises anonymous, customer A, customer B, and admin contexts, including reciprocal isolation, owner-only booking-history detail reads, ownership injection, duplicate/capacity booking behavior, and cancellation boundaries. Test identities and records exist only inside its rolled-back transaction, and `finish(true)` makes an assertion failure fail the hosted command.
+
+## Customer booking safety
+
+Migration `20260924000100_customer_portal_booking_safety.sql` adds the database boundary required by the customer portal:
+
+- A fixed-search-path `SECURITY DEFINER` insert trigger locks the target `class_sessions` row, so concurrent customer booking attempts are serialized for that session.
+- The trigger rejects missing, unpublished, cancelled/completed, past, archived-class, and over-capacity sessions. Capacity counts only active `pending` and `confirmed` bookings.
+- The original ownership/status protection trigger still derives `customer_id` from `auth.uid()` and forces customer-created bookings to `pending`; browser input cannot book for another account or inject an administrative status.
+- The existing unique active-booking index rejects obvious duplicate active bookings for the same customer/session.
+- A narrow update policy permits only the owning customer to change an active booking for a published future session to `cancelled`. Ownership, session, timestamps, and all other status transitions remain unavailable to customers.
+
+The client has not confirmed a business cancellation window. This rule therefore implements only the conservative technically valid transition; refunds, rescheduling, and policy promises are not implemented.
+
+Migration `20260925000100_customer_booking_history_visibility.sql` adds two fixed-search-path owner checks and narrow read policies so a customer can still see the real class and session referenced by their own booking after that session/class is no longer public. Another customer and anonymous visitors cannot use that history path. This preserves useful completed/cancelled booking details without republishing managed content.
 
 ## Seed and static-to-database mapping
 
@@ -97,18 +111,19 @@ The anonymous insert policy is database defense in depth, not approval for a gen
 
 ## Hosted staging verification
 
-Verified on 2026-09-24 against the Supabase project referenced by the uncommitted `.env.local`:
+Verified on 2026-09-24 and extended on 2026-09-25 against the Supabase project referenced by the uncommitted `.env.local`:
 
 - The Supabase CLI is a project-local development dependency and is locked at 2.117.0 in `pnpm-lock.yaml`; no global installation is required.
 - The linked project reference exactly matches `NEXT_PUBLIC_SUPABASE_URL`. The reference and all credentials remain unprinted and uncommitted.
 - A migration dry run showed only the three ordered project migrations and `supabase/seed.sql`. The migrations and seed were then applied successfully to the linked staging database.
-- The hosted migration history contains `20260923000100`, `20260923000200`, and `20260923000300` in order.
+- The hosted migration history contains `20260923000100`, `20260923000200`, `20260923000300`, `20260924000100`, and `20260925000100` in order.
 - The hosted `classes` table contains exactly 12 rows and 12 unique slugs, matching the approved static taxonomy. No users, bookings, sessions, prices, workshops, or gallery records were seeded.
 - `supabase db lint --linked --level warning --fail-on error` reported no schema errors.
-- The exact rollback-only pgTAP suite completed all 48 assertions successfully. The project-local `supabase test db --linked` command still requires a Docker-compatible runtime, so the same checked-in SQL was executed through the official hosted database-query endpoint. A deliberate one-assertion failure probe was detected before accepting the green result, confirming that the transport reports pgTAP failures rather than masking them.
+- The expanded rollback-only pgTAP suite completed all 61 assertions successfully through `supabase db query --linked --file supabase/tests/database/rls.test.sql`. The project-local `supabase test db --linked` wrapper still requires Docker, which is not installed. The suite now throws on any failed plan rather than relying on process status from informational TAP output.
 - Hosted `public` schema types were generated into `src/types/database.generated.ts` and are now used by the browser, server, and Proxy Supabase client factories.
+- A hosted read-only state check on 2026-09-25 found 12 published, non-archived classes, zero class sessions, and zero bookings. The production portal must therefore display real class records and honest session/booking empty states until administrators publish sessions.
 
-The pgTAP file was corrected only to place five data-modifying CTEs at the statement top level, which PostgreSQL requires. Its 48 assertion count and security expectations are unchanged. Test identities and records remain transaction-local and are rolled back.
+The pgTAP file keeps data-modifying CTEs at the statement top level, scopes fixture-count assertions so real hosted users do not make the rollback-only suite brittle, and raises on assertion failure. Test identities and records remain transaction-local and are rolled back.
 
 ## Local migration and verification workflow
 

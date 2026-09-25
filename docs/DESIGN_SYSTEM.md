@@ -114,6 +114,16 @@ Empty states explain the actual absence of data and may offer one relevant next 
 - Customer pages are calm working surfaces; the first viewport prioritizes the next real action or truthful empty state.
 - Admin pages are denser but retain typography, colors, and accessibility. Revenue, membership, capacity, and other unsupported metrics shown in concept screenshots must not appear.
 
+### Customer portal system
+
+- Desktop uses a restrained forest sidebar and an ivory content canvas. Mobile replaces the sidebar with a compact account header and horizontally scrollable, keyboard-accessible section navigation; the desktop rail is never squeezed into a small viewport.
+- The active section uses text, fill, and `aria-current="page"`, not color alone. Public Website and Sign Out remain separate from the primary task navigation.
+- Overview prioritizes the customer's real name, next confirmed session, upcoming bookings, and five grounded actions. New accounts receive an intentional empty state instead of fabricated activity or decorative metrics.
+- Booking and session records use responsive bordered cards rather than dense tables. Class, date, time, format, and canonical status retain the same reading order on every breakpoint.
+- Destructive cancellation uses the error color only after the user opens an inline two-step confirmation. Pending, success, and failure messages are announced to assistive technology.
+- Profile editing uses persistent labels, supported fields only, a visible unsaved-change state, discard control, submit loading feedback, and a browser-leave warning while edits are dirty.
+- Portal loading states reserve the shell and content rhythm without implying records. Empty and error states offer one useful recovery or navigation action.
+
 ## Imagery
 
 - Use natural daylight, authentic movement, calm studio textures, and varied ages/abilities when licensed assets are available.
@@ -133,4 +143,3 @@ Test at 390, 768, 1024, 1280, and 1440px. Navigation becomes a keyboard-accessib
 ## Dark mode status
 
 The questionnaire asks for dark mode, but the approved Stitch references define only the light warm-ivory system. Dark mode is not implemented in Milestone 1 and requires either approved tokens or an explicit scope decision before implementation.
-

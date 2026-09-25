@@ -3,7 +3,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path = public, extensions;
 
-select plan(56);
+select plan(61);
 
 -- Test-only identities and records. The transaction is always rolled back and
 -- these fixtures never enter supabase/seed.sql.
@@ -133,6 +133,15 @@ values
     'online',
     null,
     'draft'
+  ),
+  (
+    '51000000-0000-4000-8000-000000000004',
+    'c0000000-0000-4000-8000-000000000002',
+    now() - interval '7 days',
+    now() - interval '7 days' + interval '1 hour',
+    'online',
+    null,
+    'completed'
   );
 
 insert into public.bookings (id, customer_id, session_id, status)
@@ -148,6 +157,12 @@ values
     '20000000-0000-4000-8000-000000000002',
     '51000000-0000-4000-8000-000000000001',
     'pending'
+  ),
+  (
+    'b0000000-0000-4000-8000-000000000003',
+    '10000000-0000-4000-8000-000000000001',
+    '51000000-0000-4000-8000-000000000004',
+    'completed'
   );
 
 insert into public.trial_enquiries (
@@ -224,6 +239,11 @@ select is(
   (select count(*) from public.class_sessions where id = '51000000-0000-4000-8000-000000000003'),
   0::bigint,
   'anonymous cannot read a draft session'
+);
+select is(
+  (select count(*) from public.class_sessions where id = '51000000-0000-4000-8000-000000000004'),
+  0::bigint,
+  'anonymous cannot read a customer booking-history session'
 );
 select throws_ok(
   $$select count(*) from public.profiles$$,
@@ -346,7 +366,7 @@ select throws_ok(
   null,
   'customer A cannot promote themselves to admin'
 );
-select is((select count(*) from public.bookings), 1::bigint, 'customer A sees only their booking');
+select is((select count(*) from public.bookings), 2::bigint, 'customer A sees only their bookings');
 select is(
   (select count(*) from public.classes where id = 'c0000000-0000-4000-8000-000000000001'),
   1::bigint,
@@ -356,6 +376,16 @@ select is(
   (select count(*) from public.class_sessions where id = '51000000-0000-4000-8000-000000000001'),
   1::bigint,
   'customer A can read a published session'
+);
+select is(
+  (select count(*) from public.class_sessions where id = '51000000-0000-4000-8000-000000000004'),
+  1::bigint,
+  'customer A can read the completed session in their booking history'
+);
+select is(
+  (select count(*) from public.classes where id = 'c0000000-0000-4000-8000-000000000002'),
+  1::bigint,
+  'customer A can read the unpublished class in their booking history'
 );
 select is(
   (select count(*) from public.bookings where customer_id = '20000000-0000-4000-8000-000000000002'),
@@ -503,6 +533,16 @@ select is(
   0::bigint,
   'customer B cannot read customer A bookings'
 );
+select is(
+  (select count(*) from public.class_sessions where id = '51000000-0000-4000-8000-000000000004'),
+  0::bigint,
+  'customer B cannot read customer A booking-history session'
+);
+select is(
+  (select count(*) from public.classes where id = 'c0000000-0000-4000-8000-000000000002'),
+  0::bigint,
+  'customer B cannot read an unpublished class through customer A history'
+);
 with changed as (
   update public.profiles
   set phone = 'compromised'
@@ -535,8 +575,20 @@ set local role authenticated;
 select set_config('request.jwt.claim.sub', 'a0000000-0000-4000-8000-00000000000a', true);
 select set_config('request.jwt.claim.role', 'authenticated', true);
 
-select is((select count(*) from public.profiles), 3::bigint, 'admin can read all profiles');
-select is((select count(*) from public.bookings), 3::bigint, 'admin can read all bookings');
+select is(
+  (
+    select count(*)
+    from public.profiles
+    where id in (
+      '10000000-0000-4000-8000-000000000001',
+      '20000000-0000-4000-8000-000000000002',
+      'a0000000-0000-4000-8000-00000000000a'
+    )
+  ),
+  3::bigint,
+  'admin can read all fixture profiles'
+);
+select is((select count(*) from public.bookings), 4::bigint, 'admin can read all bookings');
 select is((select count(*) from public.trial_enquiries), 4::bigint, 'admin can read all trial enquiries');
 select is(
   (select count(*) from public.classes where id = 'c0000000-0000-4000-8000-000000000002'),
@@ -626,5 +678,5 @@ select is(
   'storage has the four expected admin policies'
 );
 
-select * from finish();
+select * from finish(true);
 rollback;

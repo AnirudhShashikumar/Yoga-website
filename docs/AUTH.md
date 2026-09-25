@@ -63,7 +63,11 @@ To close the email blocker, configure a production SMTP provider and verified se
 
 Safe hosted checks that do not require a real identity passed: invalid credentials return a generic failure; recovery for a nonexistent address returns the same neutral success shape; invalid refresh and logout tokens fail closed; anonymous users can read the 12 published class records but cannot read profiles or roles or inject a role. Deployed browser checks also confirm anonymous `/dashboard` and `/admin` requests reach `/login` with safe internal `next` values, and malformed confirmation tokens reach the invalid-link state.
 
-A non-PII disposable identity verified valid hosted registration, email delivery, confirmation, one matching profile, and one hard-coded `customer` role with no injected role metadata. Valid login, cookie refresh, logout, password recovery, and customer-versus-admin route behavior still require approved long-lived customer and admin test identities. The rollback-only pgTAP suite proves the database RLS contexts; it does not substitute for those remaining live Auth/session checks.
+A non-PII disposable identity verified valid hosted registration, email delivery, confirmation, one matching profile, and one hard-coded `customer` role with no injected role metadata.
+
+The project lead subsequently completed the following live browser checks against the deployed application: confirmed-customer login and `/dashboard` access, customer rejection/rerouting from `/admin`, session persistence, sign out, post-logout protected-route enforcement, and recognition of a directly provisioned controlled admin role at `/admin`. The hosted `user_roles` table contains separate customer and admin assignments. These results are **LIVE BROWSER VERIFIED (project lead, 2026-09-25)** and establish the role-routing path without introducing public admin registration or a service-role browser credential.
+
+Password-recovery email delivery and the complete recovery/reset/reuse-expiry path remain **NOT YET VERIFIED** and blocked on production SMTP plus hosted template activation. This is a production-release blocker, not a Milestone 6 implementation blocker. The rollback-only pgTAP suite proves database authorization contexts; it does not substitute for the remaining recovery email test.
 
 ## Repeatable verification checklist
 

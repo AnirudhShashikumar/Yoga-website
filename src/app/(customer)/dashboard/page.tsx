@@ -55,7 +55,7 @@ export default async function CustomerOverviewPage() {
         <h2 id="booking-summary-heading" className="sr-only">Booking summary</h2>
         <div className="grid gap-4 sm:grid-cols-3">
           {[
-            ["Upcoming", upcoming.length, "Published future sessions"],
+            ["Upcoming", upcoming.length, "Active future bookings"],
             ["Completed", completed, "Recorded completed bookings"],
             ["Cancelled", cancelled, "Retained booking history"],
           ].map(([label, value, description]) => (

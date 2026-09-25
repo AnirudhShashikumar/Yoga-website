@@ -15,7 +15,7 @@ export function SessionCard({ session, alreadyBooked = false }: { session: Custo
             <StatusBadge tone="info">{session.format}</StatusBadge>
             {alreadyBooked ? <StatusBadge tone="success">Already booked</StatusBadge> : null}
             <span className="text-xs font-bold uppercase tracking-[0.12em] text-brand/60">
-              Available session
+              Published session
             </span>
           </div>
           <h2 className="mt-3 font-display text-2xl font-medium text-brand-strong">

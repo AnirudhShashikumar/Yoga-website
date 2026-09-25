@@ -24,17 +24,18 @@ src/
   app/
     (public)/             public routes, added from Milestone 2
     (auth)/               authentication routes, added in Milestone 5
-    (customer)/           guarded customer foundation; features begin Milestone 6
-    (admin)/              guarded admin foundation; features begin Milestone 8
+    (customer)/           complete guarded customer portal
+    (admin)/              guarded admin foundation; full portal remains deferred
     layout.tsx            document, fonts, global metadata foundation
     globals.css           semantic design tokens and global accessibility rules
   components/
     ui/                   low-level reusable visual primitives
-    layout/               public, customer, and admin shells when implemented
+    customer/             customer shell, navigation, cards, forms, and states
+    layout/               shared public layout components
   config/                 verified site data, navigation, CTA language, taxonomy
   features/               domain slices added only when their milestone begins
     auth/
-    bookings/
+    customer/             customer DTOs, reads, validation, actions, and tests
     classes/
     enquiries/
     gallery/
@@ -89,6 +90,19 @@ Milestone 5 implements Supabase email authentication: registration, verification
 - Admin routing always resolves the protected `user_roles` record. Auth metadata and editable profile data never authorize access.
 - Post-auth redirects are limited to the authenticated role's own portal subtree; untrusted external or malformed destinations are discarded.
 
+## Customer portal architecture
+
+Milestone 6 implements one customer-only application shell over `/dashboard`, `/dashboard/bookings`, `/dashboard/classes`, `/dashboard/schedule`, and `/dashboard/profile`.
+
+- The protected route-group layout resolves the authenticated account and the protected `user_roles` record before rendering. Anonymous users go to login with the exact safe destination; administrators remain on the admin surface rather than implicitly receiving customer access.
+- Server Components perform customer reads through `src/features/customer/data.ts`. That module is server-only, reauthorizes every query, returns explicit presentation DTOs, and never exposes raw Supabase responses to Client Components.
+- Server Actions in `src/features/customer/actions.ts` reauthorize, validate UUID/profile input with Zod, derive customer identity from the authenticated session, execute the mutation, return privacy-safe action state, and revalidate every affected customer route.
+- Client Components are limited to pending/action feedback, cancellation confirmation, active responsive navigation, device-timezone formatting, and profile dirty-state protection.
+- Published classes are read from Supabase. Upcoming schedule entries are published future `class_sessions` joined to published classes. Bookings are the authenticated customer's own joined records. The portal never synthesizes sessions, availability counts, or customer activity.
+- Booking success is shown only after the database insert returns successfully. The UI disables duplicate submission, recognizes already-booked sessions, and immediately revalidates Dashboard, My Bookings, Explore Classes, and Schedule.
+- Customer cancellation is a conservative technical rule, not an invented business window: only the owner's active `pending` or `confirmed` booking for a published future session may transition to `cancelled`. The UI requires an explicit inline confirmation.
+- Session timestamps are stored as instants and rendered in the visitor's device timezone using semantic `time` elements. No unconfirmed business timezone is assumed.
+
 ## Relational model
 
 Milestone 4 implements the database model below. Detailed relationships, access rules, migration commands, and Storage boundaries are maintained in `DATABASE.md`.
@@ -105,6 +119,8 @@ Milestone 4 implements the database model below. Detailed relationships, access 
 The model uses UUID primary keys, deliberate foreign-key deletion behavior, PostgreSQL enums and check constraints, timezone-aware timestamps, update triggers, uniqueness rules, and query-driven indexes. Publication/status and archival preserve history; application tables expose no Data API delete privilege.
 
 `auth.users` remains the authentication identity source. An Auth trigger creates only a blank profile and the hard-coded `customer` role. Protected `user_roles` records—not user metadata, profile data, forms, query parameters, or browser state—authorize administrators. Ordinary clients, including Data API admin sessions, cannot mutate role assignments.
+
+Customer booking inserts are additionally serialized on the target session row by a fixed-search-path `SECURITY DEFINER` trigger. It verifies that the session and class are published and non-archived, requires a future start time, and enforces optional capacity against active `pending`/`confirmed` bookings atomically. This database boundary complements, rather than replaces, application validation and the unique active-booking index.
 
 ## State transitions
 
@@ -140,7 +156,7 @@ The root layout owns title templates, description, theme color, and favicon. Lat
 - Run lint, strict typecheck, and production build after each major milestone.
 - Add focused unit tests for validation, state transitions, and pure domain logic.
 - Add integration tests for Server Actions and repository behavior.
-- Explicitly test Supabase RLS with customer A, customer B, anonymous, and admin contexts. The rollback-only pgTAP suite covers visibility, reciprocal ownership isolation, protected-column injection, managed-content permissions, lifecycle transitions, and Storage policy presence.
+- Explicitly test Supabase RLS with customer A, customer B, anonymous, and admin contexts. The 61-assertion rollback-only pgTAP suite covers visibility, reciprocal ownership isolation, protected-column injection, owner-only booking-history detail reads, customer cancellation, duplicate/capacity booking safety, managed-content permissions, lifecycle transitions, and Storage policy presence. `finish(true)` makes a failed plan fail the hosted SQL command.
 - Add end-to-end tests for public navigation, auth, route protection, trial enquiries, bookings, class/schedule administration, and responsive navigation when those features exist.
 
 ## Deployment

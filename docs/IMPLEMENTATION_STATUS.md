@@ -1,6 +1,6 @@
 # Prabha Yogashala Implementation Status
 
-Last updated: 2026-09-24
+Last updated: 2026-09-25
 
 ## Completed
 
@@ -96,21 +96,32 @@ Last updated: 2026-09-24
 - Completed one hosted disposable customer registration through email confirmation. The resulting records were exactly one Auth user, one profile, and one `customer` role; the attempted `role=admin` form field was ignored and no role metadata was stored.
 - Passed focused auth tests, ESLint, strict TypeScript validation, and the Next.js production build.
 
+### Milestone 6 Customer Portal
+
+- Added the complete customer application shell and guarded routes: `/dashboard`, `/dashboard/bookings`, `/dashboard/classes`, `/dashboard/schedule`, and `/dashboard/profile`.
+- Added responsive desktop/mobile navigation with active-section semantics, Public Website, Sign Out, skip navigation, and strict customer-only layout authorization that preserves the existing admin boundary.
+- Added a server-only customer data layer with explicit DTOs for the authenticated profile/Auth email, published classes, real future published sessions, and the authenticated customer's joined bookings.
+- Added Zod-validated, reauthorized Server Actions for booking, conservative cancellation, and profile updates. Customer identity always comes from the verified session; no action accepts an arbitrary customer ID.
+- Added the real-data Overview with personalized greeting, next confirmed session, upcoming booking preview, five requested quick actions, and a polished new-customer empty state.
+- Added My Bookings sections for upcoming, past/completed, and cancelled records; canonical status indicators; class/date/time/format details; native detail disclosure; two-step cancellation confirmation; and action feedback.
+- Added live Explore Classes and Schedule views. The 12 seeded published classes are database-backed. Because the hosted database currently has zero sessions and bookings, session/booking surfaces truthfully render empty states and no booking success is fabricated.
+- Added booking pending/success/error behavior, duplicate-submission prevention, already-booked display, route revalidation after success, and no capacity/remaining-spots claims.
+- Added a real profile editor for only supported customer-editable fields, Auth email display, validation, save/discard/loading/success/error states, dirty-state leave protection, and the established password-recovery entry point. No role controls or casual email-change flow were added.
+- Added a hosted migration that serializes booking inserts per session, validates published/future eligibility, enforces optional capacity atomically, and permits only an owning customer to cancel an active future booking.
+- Expanded the rollback-only RLS suite from 48 to 61 assertions for customer booking creation, identity protection, published and owner-history class/session reads, duplicate/capacity errors, own cancellation, reciprocal denial, and existing role/storage boundaries.
+- Added focused customer access/input tests. The final checks passed: `pnpm test:auth` 4/4, `pnpm test:customer` 6/6, ESLint, strict TypeScript, whitespace validation, the 61/61 hosted pgTAP suite, hosted schema lint, and the Next.js webpack production build.
+
 ## In progress
 
-- Milestone 5.5 is complete for migrations, seed, schema lint, RLS tests, hosted types, supported Auth settings, unauthenticated API checks, anonymous deployed-route checks, and one valid customer registration/email-confirmation path.
-- Production SMTP/template activation plus login, refresh, logout, recovery, and admin-role session verification remain blocked on external configuration and approved long-lived customer/admin test identities.
+- No Milestone 6 implementation item remains in progress.
+- Production SMTP/template activation and the password-recovery delivery/reset/reuse-expiry retest remain an external production-release blocker.
 
 ## Remaining
 
-- Finish the remaining Milestone 5.5 hosted-auth matrix documented above before starting feature work.
-- Milestone 6: Customer portal.
-- Milestone 7: Booking integration.
-- Milestone 8: Admin portal.
-- Milestone 9: Connect public classes and schedule to live published data.
-- Milestone 10: Accessibility and responsive audit.
-- Milestone 11: SEO and performance.
-- Milestone 12: Production hardening and release verification.
+- Configure production SMTP, activate the checked-in confirmation/recovery templates, and complete the password-recovery production retest.
+- Milestone 7: Admin Portal. Do not start it automatically in the Milestone 6 run.
+- Connect public classes and schedule to live published data.
+- Complete the whole-site accessibility/responsive audit, SEO/performance work, and production hardening/release verification.
 
 ## Client information required
 
@@ -126,8 +137,7 @@ Last updated: 2026-09-24
 - Final approved FAQ wording, Privacy Policy, and Terms & Conditions.
 - Legal business identity, governing jurisdiction, privacy-request contact, and policy effective dates.
 - Domain, Vercel, Supabase, and business-email ownership decisions.
-- Production SMTP provider, verified sender/domain, and permission to send Auth test mail to a specific mailbox.
-- Approved hosted customer and admin test identities, or explicit permission and addresses for creating temporary staging-only identities. Admin role provisioning must use the protected operational path, not browser-supplied metadata.
+- A production SMTP provider, verified sender/domain, hosted Auth template activation, and permission to send the recovery retest to an approved mailbox.
 - Decision on dark mode and any later multilingual work.
 
 ## Known issues and risks
@@ -137,7 +147,6 @@ Last updated: 2026-09-24
 - The Stitch pages contain invented instructor identities, testimonials, exact schedules, capacities, statistics, claims, and policies. They remain visual references only.
 - The dashboard screenshots contain revenue, memberships, progress, invoices, certificates, capacity, and fictional people. Those modules are outside V1 or must be replaced with real-data/empty-state patterns.
 - The questionnaire requests several features excluded from the current V1. Scope must continue to follow `PROJECT_CONTEXT.md` unless the client explicitly reauthorizes them.
-- No Git repository existed at audit time. A repository is initialized during this foundation milestone, but no commit is created automatically.
 - The hosted Supabase staging project and deployed Vercel origin are connected, but `.env.local` must remain outside Git and no service-role secret should be added to browser-visible configuration.
 - The light design system is approved; dark-mode tokens are not.
 - The project is intentionally pinned to TypeScript 6 and ESLint 9 because the current Next.js lint plugins do not yet support TypeScript 7 or ESLint 10. Revisit together during a controlled dependency upgrade.
@@ -145,11 +154,14 @@ Last updated: 2026-09-24
 - The About founder image and Gallery media are abstract development placeholders. Production photography, captions, ordering, alt text, and usage rights remain client dependencies.
 - Contact and Trial Enquiry forms currently validate in the browser and prepare an unsent WhatsApp message. Persistence, spam protection, server validation, consent recording, and administrative processing belong to later backend milestones.
 - Privacy and Terms are structured drafts, not approved legal documents, and are marked `noindex` until reviewed.
-- Docker is not installed. The project-local CLI can perform linked operations, but `supabase test db --linked` still invokes a Docker-compatible runtime; the checked-in rollback-only pgTAP SQL was therefore run through the official hosted query endpoint and passed 48/48 with failure detection verified.
+- Docker is not installed. The project-local `supabase test db --linked` wrapper still invokes a Docker-compatible runtime; the exact checked-in rollback-only pgTAP SQL is instead run with the official `supabase db query --linked --file` command and currently passes 61/61 with failure signaling enabled.
 - Admin role provisioning is intentionally outside the Data API. Before production launch, establish an audited operational process or a narrowly scoped server-only provisioning workflow.
 - Public trial-enquiry insertion is only a database capability. The frontend must not use it until a server-validated, rate-limited, bot-aware submission boundary is implemented.
 - The exact hosted SSR callback allowlist is active. The checked-in token-hash templates are not yet active because the Free-tier project uses Supabase's default email provider, which rejected template modification. Configure custom SMTP and a verified sender before treating email Auth as production-ready.
-- A non-PII disposable mailbox verified valid hosted customer registration, delivery, confirmation, profile creation, and hard-coded customer-role creation. Login, cookie refresh, logout, recovery, and customer/admin live-session routing still require approved long-lived customer/admin test identities.
+- A non-PII disposable mailbox verified valid hosted customer registration, delivery, confirmation, profile creation, and hard-coded customer-role creation.
+- The project lead live-tested confirmed-customer login, customer dashboard access, customer/admin separation, session persistence, logout, protected-route enforcement, and a directly provisioned controlled admin role on 2026-09-25. Password recovery remains the only unverified Auth email path.
+- The hosted database currently has 12 published classes but zero class sessions and zero bookings. The customer portal is functional and intentionally shows empty schedule/booking states; end-to-end booking success/cancellation cannot be live-browser verified until a legitimate future published session exists.
+- The client has not confirmed cancellation/rescheduling policy. The portal implements only the conservative database-safe cancellation transition for an owner's active future booking and makes no refund, timing-window, or rescheduling promise.
 
 ## Checks
 
@@ -173,7 +185,7 @@ Last updated: 2026-09-24
 - Class filtering, native FAQ keyboard expansion, mobile navigation focus/Escape behavior, Contact validation, and Trial Enquiry validation/completion were exercised in the browser.
 - Browser console/runtime review found no application errors or warnings, and the content-integrity scan found no unsupported public claims.
 - Milestone 4 migration, seed, RLS, Storage, and pgTAP assets received static source review, including test-plan count and taxonomy parity checks.
-- Hosted migrations and seed applied successfully; the hosted migration history contains all three expected versions and the public classes seed contains exactly 12 unique slugs.
+- The initial three foundation migrations and seed applied successfully; the public classes seed contains exactly 12 unique slugs. The fourth and fifth customer-portal migrations were applied and verified on 2026-09-25.
 - Hosted database lint reported no schema errors, and the rollback-only RLS suite passed all 48 pgTAP assertions. A deliberate failing probe verified that test failures are detected.
 - Hosted schema type generation passed and the generated `Database` type is integrated into all three Supabase client factories.
 - ESLint and strict TypeScript validation passed after Milestone 4.
@@ -188,7 +200,13 @@ Last updated: 2026-09-24
 - Focused deployed browser checks passed for the login form, anonymous dashboard/admin guards, preserved safe `next` paths, and the invalid-confirmation state.
 - Current verification commands passed: `pnpm test:auth` (4/4), `pnpm lint`, `pnpm typecheck`, and `pnpm exec next build --webpack`.
 - Focused production registration verification passed on 2026-09-24: the canonical Vercel deployment reached Supabase `/signup`, delivered the confirmation email, confirmed the user, created exactly one profile and one `customer` role, and ignored an attempted admin-role field. The final clean Vercel production build completed successfully.
+- **LIVE BROWSER VERIFIED (project lead):** confirmed customer login, `/dashboard` access, customer denial/rerouting from `/admin`, session persistence, sign out, protected-route enforcement after logout, and controlled admin access to `/admin` all passed on the deployed application.
+- **AUTOMATED TEST VERIFIED:** `pnpm test:auth` passed 4/4 and `pnpm test:customer` passed 6/6 on 2026-09-25.
+- **DATABASE VERIFIED:** migrations `20260924000100` and `20260925000100` are present in hosted history; hosted schema lint reports no errors; the failure-signaling rollback-only RLS suite passed 61/61; hosted counts are 12 published classes, 0 sessions, and 0 bookings.
+- **AUTOMATED BUILD VERIFIED:** ESLint, strict TypeScript, `git diff --check`, and `pnpm exec next build --webpack` passed on 2026-09-25; all five customer routes are request-rendered behind Proxy.
+- **LIVE BROWSER VERIFIED (Codex):** anonymous requests to all five local customer routes redirected to `/login` with the exact encoded destination, and the resulting route boundary had no horizontal overflow at 390, 768, 1024, 1280, and 1440 pixels.
+- **NOT YET VERIFIED:** live booking creation/cancellation with a real future session, customer authenticated portal visuals at every breakpoint, and password-recovery email/reset behavior. The first two require legitimate staging data/access; recovery requires production SMTP.
 
 ## Exact recommended next implementation task
 
-Configure production SMTP and the checked-in hosted confirmation/recovery templates, obtain approved long-lived customer and admin staging identities, and complete login, refresh, logout, recovery, and customer/admin role-routing verification. Start Milestone 6 only after those checks pass.
+Configure production SMTP and a verified sender, activate the checked-in confirmation/recovery templates, and complete one privacy-safe hosted password-recovery/reset/reuse-expiry retest. After that release blocker passes, start Milestone 7 — Admin Portal — in a separate run.

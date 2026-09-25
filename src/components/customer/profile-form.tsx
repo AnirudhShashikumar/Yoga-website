@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 
 import { CustomerActionMessage } from "@/components/customer/action-message";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,7 @@ import { FormField } from "@/components/ui/form-field";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { updateProfileAction } from "@/features/customer/actions";
-import type { CustomerProfile } from "@/features/customer/types";
+import type { CustomerActionState, CustomerProfile } from "@/features/customer/types";
 import { initialCustomerActionState } from "@/features/customer/types";
 
 function fieldA11y(id: string, error: string | undefined) {
@@ -19,10 +19,8 @@ function fieldA11y(id: string, error: string | undefined) {
 }
 
 export function ProfileForm({ profile }: { profile: CustomerProfile }) {
-  const [state, action, pending] = useActionState(
-    updateProfileAction,
-    initialCustomerActionState,
-  );
+  const [state, setState] = useState<CustomerActionState>(initialCustomerActionState);
+  const [pending, startTransition] = useTransition();
   const formRef = useRef<HTMLFormElement>(null);
   const [dirty, setDirty] = useState(false);
 
@@ -49,11 +47,17 @@ export function ProfileForm({ profile }: { profile: CustomerProfile }) {
     <form
       ref={formRef}
       action={(formData) => {
-        setDirty(false);
-        action(formData);
+        startTransition(async () => {
+          const nextState = await updateProfileAction(state, formData);
+          setState(nextState);
+          if (nextState.status === "success") setDirty(false);
+        });
       }}
       noValidate
-      onChange={() => setDirty(true)}
+      onChange={() => {
+        setDirty(true);
+        if (state.status === "success") setState(initialCustomerActionState);
+      }}
     >
       <CustomerActionMessage state={state} />
       <div className="mt-6 grid gap-5 sm:grid-cols-2">
@@ -145,6 +149,7 @@ export function ProfileForm({ profile }: { profile: CustomerProfile }) {
           onClick={() => {
             formRef.current?.reset();
             setDirty(false);
+            setState(initialCustomerActionState);
           }}
         >
           Discard Changes
