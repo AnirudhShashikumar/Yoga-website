@@ -3,7 +3,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 set local search_path = public, extensions;
 
-select plan(61);
+select plan(69);
 
 -- Test-only identities and records. The transaction is always rolled back and
 -- these fixtures never enter supabase/seed.sql.
@@ -366,6 +366,12 @@ select throws_ok(
   null,
   'customer A cannot promote themselves to admin'
 );
+select throws_ok(
+  $$select * from public.admin_customer_directory()$$,
+  '42501',
+  'Administrator access is required',
+  'customer A cannot read the admin customer directory'
+);
 select is((select count(*) from public.bookings), 2::bigint, 'customer A sees only their bookings');
 select is(
   (select count(*) from public.classes where id = 'c0000000-0000-4000-8000-000000000001'),
@@ -591,6 +597,11 @@ select is(
 select is((select count(*) from public.bookings), 4::bigint, 'admin can read all bookings');
 select is((select count(*) from public.trial_enquiries), 4::bigint, 'admin can read all trial enquiries');
 select is(
+  (select count(*) from public.admin_customer_directory()),
+  2::bigint,
+  'admin can read the bounded customer auth directory'
+);
+select is(
   (select count(*) from public.classes where id = 'c0000000-0000-4000-8000-000000000002'),
   1::bigint,
   'admin can read unpublished class content'
@@ -611,6 +622,40 @@ select lives_ok(
 select lives_ok(
   $$update public.class_sessions set capacity = 24 where id = '51000000-0000-4000-8000-000000000001'$$,
   'admin can manage sessions'
+);
+select throws_ok(
+  $$update public.classes set slug = 'changed-public-practice' where id = 'c0000000-0000-4000-8000-000000000001'$$,
+  '23514',
+  'Class slugs are immutable after creation',
+  'class slugs cannot be rewritten after creation'
+);
+select throws_ok(
+  $$update public.classes set published = false where id = 'c0000000-0000-4000-8000-000000000001'$$,
+  '23514',
+  'Cancel or complete future published sessions before hiding this class',
+  'a class with future published sessions cannot be hidden'
+);
+select throws_ok(
+  $$update public.class_sessions set starts_at = starts_at + interval '1 hour' where id = '51000000-0000-4000-8000-000000000001'$$,
+  '23514',
+  'Booked session identity, timing, and format are immutable',
+  'booked session timing cannot be rewritten'
+);
+select throws_ok(
+  $$update public.class_sessions set capacity = 1 where id = '51000000-0000-4000-8000-000000000001'$$,
+  '23514',
+  'Session capacity cannot be below active bookings',
+  'session capacity cannot be reduced below active bookings'
+);
+select throws_ok(
+  $$update public.class_sessions set archived_at = now() where id = '51000000-0000-4000-8000-000000000001'$$,
+  '23514',
+  'Cancel active bookings before archiving this session',
+  'a session with active bookings cannot be archived'
+);
+select lives_ok(
+  $$update public.class_sessions set status = 'cancelled' where id = '51000000-0000-4000-8000-000000000001'$$,
+  'a booked session can be cancelled without rewriting its history'
 );
 select lives_ok(
   $$

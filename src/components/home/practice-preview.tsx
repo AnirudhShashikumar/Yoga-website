@@ -6,17 +6,14 @@ import { Container } from "@/components/ui/container";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { practices } from "@/config/classes";
+import { getPublicClasses } from "@/features/public/data";
 
-const featuredSlugs = ["hatha-yoga", "ashtanga-yoga", "pranayama", "meditation"] as const;
-const featuredPractices = featuredSlugs.map((slug) => {
-  const practice = practices.find((candidate) => candidate.slug === slug);
-  if (!practice) throw new Error(`Missing configured practice: ${slug}`);
-  return practice;
-});
 const tones = ["bg-sage", "bg-sky", "bg-amber-100", "bg-surface-muted"] as const;
 
-export function PracticePreview() {
+export async function PracticePreview() {
+  const result = await getPublicClasses();
+  const classes = result.status === "success" ? result.data : [];
+  const featured = [...classes].sort((a, b) => Number(b.featured) - Number(a.featured)).slice(0, 4);
   return (
     <Section>
       <Container>
@@ -36,7 +33,7 @@ export function PracticePreview() {
         </div>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {featuredPractices.map((practice, index) => (
+          {featured.map((practice, index) => (
             <Card key={practice.name} className="flex min-h-64 flex-col p-6">
               <div
                 aria-hidden="true"
@@ -47,7 +44,7 @@ export function PracticePreview() {
               <h3 className="mt-8 font-display text-2xl font-medium text-brand-strong">
                 {practice.name}
               </h3>
-              <p className="mt-3 text-base leading-7 text-muted">{practice.summary}</p>
+              <p className="mt-3 text-base leading-7 text-muted">{practice.short_description}</p>
               <Link
                 href={`/classes/${practice.slug}` as Route}
                 className="mt-auto inline-flex min-h-11 items-end pt-5 text-sm font-bold text-brand"

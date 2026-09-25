@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-import { classNames } from "@/config/classes";
-
 const requiredText = (label: string, minimum = 2) =>
   z.string().trim().min(minimum, `${label} is required.`);
 
@@ -19,12 +17,15 @@ export const trialEnquirySchema = z.object({
   experienceLevel: z.enum(["Beginner", "Intermediate", "Advanced"], {
     error: "Choose your experience level.",
   }),
-  interestedPractice: z.enum(classNames, { error: "Choose a practice." }),
+  interestedClassId: z.uuid("Choose a practice."),
+  interestedPractice: z.string().trim().min(1, "Choose a practice.").max(120),
   format: z.enum(["Online", "Offline"], { error: "Choose online or offline." }),
   preferredWindow: z.enum(["Morning", "Evening"], {
     error: "Choose a broad practice window.",
   }),
   message: z.string().trim().max(1000, "Keep the message under 1,000 characters."),
+  consent: z.literal("on", { error: "Consent is required to submit this enquiry." }),
+  website: z.string().max(0).optional(),
 });
 
 export const contactEnquirySchema = z.object({

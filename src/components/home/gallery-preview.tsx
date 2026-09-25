@@ -5,10 +5,14 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { homeMedia } from "@/config/media";
+import { getPublicGallery } from "@/features/public/data";
 
 const concepts = ["Movement", "Breath", "Stillness"] as const;
 
-export function GalleryPreview() {
+export async function GalleryPreview() {
+  const result = await getPublicGallery();
+  const managed = result.status === "success" ? result.data.slice(0, 3) : [];
+  const items = managed.length ? managed.map((item) => ({ src: item.publicUrl, alt: item.alt_text, caption: item.caption || item.alt_text })) : homeMedia.gallery.map((item, index) => ({ ...item, caption: concepts[index] }));
   return (
     <Section className="bg-surface-subtle">
       <Container>
@@ -23,7 +27,7 @@ export function GalleryPreview() {
           </ButtonLink>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-12">
-          {homeMedia.gallery.map((media, index) => (
+          {items.map((media, index) => (
             <figure
               key={media.src}
               className={index === 0 ? "md:col-span-6" : "md:col-span-3"}
@@ -37,7 +41,7 @@ export function GalleryPreview() {
                   className="object-cover transition-transform duration-500 hover:scale-[1.02]"
                 />
                 <figcaption className="absolute inset-x-4 bottom-4 rounded-xl bg-background/90 px-4 py-3 font-display text-lg font-medium text-brand-strong backdrop-blur">
-                  {concepts[index]}
+                  {media.caption}
                 </figcaption>
               </div>
             </figure>

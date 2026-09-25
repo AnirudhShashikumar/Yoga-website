@@ -379,7 +379,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      admin_customer_directory: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          created_at: string
+          email: string
+          email_confirmed_at: string | null
+          last_sign_in_at: string | null
+          user_id: string
+        }[]
+      }
     }
     Enums: {
       app_role: "customer" | "admin"

@@ -3,22 +3,23 @@
 import { useState } from "react";
 
 import { ClassCard } from "@/components/classes/class-card";
-import { practiceCategories, practices, type PracticeCategory } from "@/config/classes";
+import { categoryLabels, type PublicClass } from "@/features/public/types";
 import { cn } from "@/lib/utils/cn";
 
-type Filter = "All" | PracticeCategory;
+type Filter = "all" | PublicClass["category"];
 
-export function ClassExplorer() {
-  const [activeFilter, setActiveFilter] = useState<Filter>("All");
+export function ClassExplorer({ practices }: { practices: PublicClass[] }) {
+  const [activeFilter, setActiveFilter] = useState<Filter>("all");
   const visiblePractices =
-    activeFilter === "All"
+    activeFilter === "all"
       ? practices
       : practices.filter((practice) => practice.category === activeFilter);
+  const filters = ["all", ...new Set(practices.map((practice) => practice.category))] as Filter[];
 
   return (
     <div>
       <div className="flex flex-wrap gap-2" aria-label="Filter classes by category">
-        {(["All", ...practiceCategories] as const).map((filter) => (
+        {filters.map((filter) => (
           <button
             key={filter}
             type="button"
@@ -31,7 +32,7 @@ export function ClassExplorer() {
                 : "bg-surface text-brand hover:bg-brand-soft/50",
             )}
           >
-            {filter}
+            {filter === "all" ? "All" : categoryLabels[filter]}
           </button>
         ))}
       </div>

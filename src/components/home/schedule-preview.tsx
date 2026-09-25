@@ -4,13 +4,17 @@ import { CalendarIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/config/site";
+import { getPublicSessions } from "@/features/public/data";
+import { formatBusinessDateTime } from "@/lib/dates";
 
 const windows = [
   { label: "Morning", time: siteConfig.availability.morning, tone: "bg-sage" },
   { label: "Evening", time: siteConfig.availability.evening, tone: "bg-sky" },
 ] as const;
 
-export function SchedulePreview() {
+export async function SchedulePreview() {
+  const result = await getPublicSessions();
+  const sessions = result.status === "success" ? result.data.slice(0, 2) : [];
   return (
     <Section className="border-y border-brand/10 bg-surface-subtle">
       <Container>
@@ -18,15 +22,15 @@ export function SchedulePreview() {
           <div className="lg:col-span-5">
             <SectionHeading
               eyebrow="General practice windows"
-              title="A broad rhythm for morning and evening."
-              description="Individual sessions are still being finalized. These are the only confirmed availability windows."
+              title={sessions.length ? "Real sessions, published with care." : "A broad rhythm for morning and evening."}
+              description={sessions.length ? "The next published occurrences come directly from the live schedule." : "No individual session is published yet. These are the only confirmed availability windows."}
             />
             <ButtonLink href="/schedule" variant="secondary" className="mt-7">
               View Schedule
             </ButtonLink>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:col-span-7">
-            {windows.map((window) => (
+            {(sessions.length ? sessions.map((session, index) => ({ label: session.class.name, time: formatBusinessDateTime(session.starts_at), tone: index === 0 ? "bg-sage" : "bg-sky" })) : windows).map((window) => (
               <article
                 key={window.label}
                 className={`${window.tone} rounded-2xl border border-brand/10 p-7 sm:p-8`}
@@ -46,4 +50,3 @@ export function SchedulePreview() {
     </Section>
   );
 }
-
