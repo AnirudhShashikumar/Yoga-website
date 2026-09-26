@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { AdminNavigation } from "@/components/admin/admin-navigation";
+import { BrandIdentity } from "@/components/brand/brand-identity";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
 import { logoutAction } from "@/features/auth/actions";
 
 export function AdminPortalShell({ children }: { children: ReactNode }) {
@@ -14,10 +14,7 @@ export function AdminPortalShell({ children }: { children: ReactNode }) {
       </a>
       <header className="sticky top-0 z-40 border-b border-brand/10 bg-background/95 backdrop-blur-lg">
         <div className="mx-auto flex min-h-20 max-w-[90rem] items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
-          <Link href="/admin" className="flex min-w-0 flex-col py-3">
-            <span className="truncate font-display text-lg font-semibold text-brand-strong sm:text-xl">{siteConfig.name}</span>
-            <span className="truncate text-[0.68rem] font-bold uppercase tracking-[0.14em] text-brand/70">Administration</span>
-          </Link>
+          <BrandIdentity href="/admin" sublabel="Administration" priority className="py-2" />
           <div className="flex items-center gap-2">
             <Link href="/" className="hidden min-h-11 items-center rounded-pill px-4 text-sm font-semibold text-brand hover:bg-surface-subtle sm:inline-flex">Public Website</Link>
             <form action={logoutAction}><Button type="submit" variant="secondary" size="sm">Sign Out</Button></form>

@@ -167,7 +167,7 @@ Every data-driven surface must define loading, empty, success, error, unauthoriz
 
 ## SEO and metadata
 
-The root layout owns title templates, description, theme color, and favicon. Later milestones add canonical origin configuration, route metadata, sitemap, robots, and truthful structured data. Do not add local-business address schema until the address is confirmed. A social preview image is not part of the current scope.
+The root layout owns title templates, description, and theme color. App Router metadata files (`favicon.ico`, `icon.png`, and `apple-icon.png`) own browser/app icons without a conflicting manual icon declaration. Later SEO work may add canonical origin configuration, sitemap, robots, truthful structured data, and a composed social preview image. Do not add local-business address schema until the address is confirmed.
 
 ## Testing strategy
 

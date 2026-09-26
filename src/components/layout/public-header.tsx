@@ -6,10 +6,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 import { AccountLink } from "@/components/auth/account-link";
+import { BrandIdentity } from "@/components/brand/brand-identity";
 import { ButtonLink } from "@/components/ui/button";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { publicNavigation } from "@/config/navigation";
-import { primaryCta, siteConfig } from "@/config/site";
+import { primaryCta } from "@/config/site";
 import { cn } from "@/lib/utils/cn";
 
 function isActivePath(pathname: string, href: string) {
@@ -42,14 +43,7 @@ export function PublicHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-brand/10 bg-background/95 backdrop-blur-lg">
       <div className="mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
-        <Link href="/" className="group flex min-w-0 flex-col py-3">
-          <span className="truncate font-display text-lg font-semibold tracking-tight text-brand-strong sm:text-xl">
-            {siteConfig.name}
-          </span>
-          <span className="truncate text-[0.7rem] font-bold uppercase tracking-[0.12em] text-brand/75">
-            {siteConfig.philosophy}
-          </span>
-        </Link>
+        <BrandIdentity priority className="py-2" />
 
         <nav aria-label="Primary navigation" className="hidden xl:block">
           <ul className="flex items-center gap-5">
@@ -103,18 +97,7 @@ export function PublicHeader() {
       >
         <div className="flex min-h-full flex-col">
           <div className="flex min-h-20 items-center justify-between border-b border-brand/10 px-5 sm:px-6">
-            <Link
-              href="/"
-              onClick={() => setIsMenuOpen(false)}
-              className="flex min-w-0 flex-col"
-            >
-              <span className="truncate font-display text-lg font-semibold text-brand-strong">
-                {siteConfig.name}
-              </span>
-              <span className="truncate text-[0.7rem] font-bold uppercase tracking-[0.12em] text-brand/75">
-                {siteConfig.philosophy}
-              </span>
-            </Link>
+            <BrandIdentity priority onClick={() => setIsMenuOpen(false)} />
             <button
               type="button"
               aria-label="Close navigation menu"

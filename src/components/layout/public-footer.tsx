@@ -1,6 +1,7 @@
 import type { Route } from "next";
 import Link from "next/link";
 
+import { BrandLockup } from "@/components/brand/brand-identity";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/config/site";
 
@@ -39,9 +40,7 @@ export function PublicFooter() {
       <Container className="py-14 sm:py-16">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr] lg:gap-20">
           <div>
-            <Link href="/" className="font-display text-2xl font-semibold text-brand-strong">
-              {siteConfig.name}
-            </Link>
+            <BrandLockup />
             <p className="mt-4 max-w-md text-base leading-7 text-muted">
               Yoga practice for ages 10 and above, offered online and offline for
               beginner, intermediate, and advanced practitioners.

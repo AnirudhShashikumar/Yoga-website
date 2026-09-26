@@ -32,6 +32,7 @@ The product must be maintainable, secure, accessible, fast, responsive, extensib
 
 - Brand: Prabha Yogashala.
 - Philosophy supplied by the client: “Positive & Healthy Life.”
+- The approved official logo is preserved unchanged at `assets-source/branding/prabha-yogashala-logo-original.png` (SHA-256 `869a1c284fa2782f0ee1d157e1b12e9018a8e8e081fa66df0c3ff32c9cf02e9c`). Its tree, meditating figure, supporting hand, lettering, proportions, and green palette must not be redrawn or reinterpreted.
 - Teaching experience: 7 years. Do not silently convert this to “7+ years.”
 - Qualifications supplied: “M.Sc” and “NIS Certification Course.” Do not expand, rename, or imply an accrediting body until exact wording is confirmed.
 - Audience: ages 10 and above; beginner, intermediate, and advanced practitioners.
@@ -144,7 +145,6 @@ Do not use generated phrases such as “Consult Master,” “Enquire Shala,” 
 
 ## Client information required
 
-- Original logo files and permission to adapt the mark for favicon/social use.
 - Instructor or founder name and approved biography.
 - Exact M.Sc discipline and official NIS course/certification wording.
 - Physical studio address, service area, and whether Google Maps should be used.

@@ -1,6 +1,6 @@
 # Prabha Yogashala Implementation Status
 
-Last updated: 2026-09-26
+Last updated: 2026-09-27
 
 ## Completed
 
@@ -20,7 +20,7 @@ Last updated: 2026-09-26
 
 - Established a Next.js App Router, React, TypeScript, Tailwind CSS, Supabase, PostgreSQL/Supabase Storage, and Vercel architecture.
 - Added strict project configuration, lint/typecheck/build scripts, dependency versions, and ignore rules.
-- Added the root document layout, optimized font setup, metadata foundation, theme color, and a provisional lettermark favicon.
+- Added the root document layout, optimized font setup, metadata foundation, theme color, and browser icon architecture. The provisional icon was later replaced by the approved official mark.
 - Added semantic CSS tokens for color, typography, spacing, radius, shadow, focus, selection, and reduced motion.
 - Added typed configuration for verified site facts, navigation, CTA language, and class taxonomy.
 - Added environment validation and separate Supabase browser/server client factories.
@@ -123,6 +123,14 @@ Last updated: 2026-09-26
 - Replaced the trial enquiry handoff-only form with a server-validated, consent-recording database submission and optional WhatsApp follow-up. Public error messages remain generic; rate limiting/managed bot protection remains a production-hardening item.
 - Added focused admin tests and aligned `Database` types with the linked hosted schema. ESLint, strict TypeScript, auth/customer/admin tests, hosted database lint, and the webpack production build pass.
 
+### Official brand integration
+
+- Preserved the approved source logo unchanged under `assets-source/branding/` and added a reproducible asset-generation script.
+- Created a cropped transparent full lockup and a square symbol-only mark without redrawing, recoloring, or changing the artwork proportions.
+- Integrated the official identity into the public desktop/mobile header, public footer, shared authentication shell, customer portal shell, and admin portal shell.
+- Replaced the provisional lettermark favicon with App Router-native favicon, standard icon, and Apple touch icon assets based on the official symbol.
+- Retained the existing title/description system and removed the obsolete manual favicon declaration. No manifest or Open Graph image architecture was introduced.
+
 ## In progress
 
 - No Milestone 7 source implementation item remains in progress.
@@ -137,7 +145,6 @@ Last updated: 2026-09-26
 
 ## Client information required
 
-- Original logo asset.
 - Instructor/founder name, approved biography, approved portrait, and exact qualification wording.
 - Confirmed phone, social links, public email, address, and service area.
 - Approved class copy, benefits, formats, durations, capacities, and schedule.
@@ -155,7 +162,7 @@ Last updated: 2026-09-26
 
 ## Known issues and risks
 
-- The supplied logo is referenced in the questionnaire but is not present in the workspace. The current favicon is a clearly provisional “P” lettermark, not a replacement brand logo.
+- The approved official logo is integrated. Any future recolor, alternate lockup, or social-image treatment requires explicit brand approval rather than reinterpretation.
 - The Stitch HTML uses temporary Google-hosted images and a fake phone number; none may be shipped.
 - The Stitch pages contain invented instructor identities, testimonials, exact schedules, capacities, statistics, claims, and policies. They remain visual references only.
 - The dashboard screenshots contain revenue, memberships, progress, invoices, certificates, capacity, and fictional people. Those modules are outside V1 or must be replaced with real-data/empty-state patterns.

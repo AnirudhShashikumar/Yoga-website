@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { BrandIdentity } from "@/components/brand/brand-identity";
 import { CustomerNavigation } from "@/components/customer/customer-navigation";
 import { Button } from "@/components/ui/button";
-import { siteConfig } from "@/config/site";
 import { logoutAction } from "@/features/auth/actions";
 
 export function CustomerPortalShell({ children }: { children: ReactNode }) {
@@ -18,14 +18,7 @@ export function CustomerPortalShell({ children }: { children: ReactNode }) {
 
       <header className="sticky top-0 z-40 border-b border-brand/10 bg-background/95 backdrop-blur-lg">
         <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
-          <Link href="/dashboard" className="flex min-w-0 flex-col py-3">
-            <span className="truncate font-display text-lg font-semibold text-brand-strong sm:text-xl">
-              {siteConfig.name}
-            </span>
-            <span className="truncate text-[0.68rem] font-bold uppercase tracking-[0.14em] text-brand/70">
-              Customer Account
-            </span>
-          </Link>
+          <BrandIdentity href="/dashboard" sublabel="Customer Account" priority className="py-2" />
 
           <div className="flex items-center gap-2">
             <Link

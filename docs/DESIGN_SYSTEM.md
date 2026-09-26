@@ -10,6 +10,18 @@ The generated HTML is not production source. Its CDN scripts, remote temporary i
 
 Quiet editorial discipline: warm ivory canvas, deep forest typography, readable humanist body text, measured serif headlines, light sage and sky accents, spacious composition, restrained depth, and natural photography. Typography, photography, and layout carry the identity; avoid lotus, mandala, chakra, neon, heavy glass effects, and generic SaaS patterns.
 
+## Official brand identity
+
+- The client-approved master logo is preserved unchanged at `assets-source/branding/prabha-yogashala-logo-original.png`.
+- `public/brand/prabha-yogashala-logo.png` is the transparent, tightly cropped full lockup for contexts with enough vertical space, principally the public footer. It retains the official PRABHA and Yogashala lettering.
+- `public/brand/prabha-yogashala-mark.png` is the square, transparent symbol derivative containing only the official tree, meditating figure, and supporting hand. It is used in compact headers and as the source for browser/app icons.
+- Compact headers pair the official mark with existing supporting brand text. The image uses empty alternative text because the link's visible name and accessible label already identify Prabha Yogashala.
+- The complete lockup carries `alt="Prabha Yogashala"` where it is the sole visible identity. Do not repeat adjacent brand-name text.
+- Preserve artwork proportions and colors. Do not stretch, redraw, recolor, animate, glow, watermark, or use the logo as general section decoration.
+- Public, auth, customer, and admin headers remain approximately 80px high. The symbol is 44–48px so navigation and account controls keep their established alignment.
+- App Router file conventions provide the multi-size symbol favicon, 512px standard icon, and 180px warm-ivory Apple touch icon. Do not add conflicting metadata icon declarations.
+- No web manifest or Open Graph image architecture currently exists. Do not introduce a PWA solely for branding; a composed social-sharing image can be added with later SEO work using only verified messaging.
+
 ## Canonical color tokens
 
 | Token | Value | Purpose |

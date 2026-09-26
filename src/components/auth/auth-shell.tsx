@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { siteConfig } from "@/config/site";
+import { BrandIdentity } from "@/components/brand/brand-identity";
 
 export function AuthShell({ children }: { children: ReactNode }) {
   return (
@@ -18,14 +18,7 @@ export function AuthShell({ children }: { children: ReactNode }) {
       </a>
       <header className="relative z-10 border-b border-brand/10 bg-background/75 backdrop-blur-lg">
         <div className="mx-auto flex min-h-20 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
-          <Link href="/" className="flex min-w-0 flex-col py-3">
-            <span className="truncate font-display text-lg font-semibold text-brand-strong sm:text-xl">
-              {siteConfig.name}
-            </span>
-            <span className="truncate text-[0.7rem] font-bold uppercase tracking-[0.12em] text-brand/75">
-              {siteConfig.philosophy}
-            </span>
-          </Link>
+          <BrandIdentity priority className="py-2" />
           <Link
             href="/"
             className="inline-flex min-h-11 items-center rounded-pill px-4 text-sm font-semibold text-brand transition-colors hover:bg-surface"
