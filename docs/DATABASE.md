@@ -2,7 +2,7 @@
 
 ## Scope
 
-Milestone 4 established the reproducible Supabase foundation and Milestone 5.5 linked and verified it against the hosted staging project. Milestone 6 now uses the generated database types and hosted records for the customer portal: published classes, future published sessions, the authenticated customer's bookings, and permitted profile fields. Public marketing pages continue to use the typed static catalogue until their separate live-data integration milestone.
+Milestone 4 established the reproducible Supabase foundation and Milestone 5.5 linked and verified it against the hosted staging project. Milestones 6 and 7 now use the generated database types and hosted records across the customer portal, admin portal, and public managed-content surfaces.
 
 The database contains no passwords, payment data, medical histories, government identifiers, or other fields outside the approved V1. Authentication identity and email remain in Supabase Auth.
 
@@ -59,7 +59,20 @@ Insert guards overwrite customer-controlled booking/enquiry ownership, status, I
 | Workshops | Read published, non-archived | Same | Read/create/update all |
 | Gallery items | Read published, non-archived | Same | Read/create/update all |
 
-No application-table delete privilege is exposed through the Data API. The repeatable 61-assertion pgTAP suite in `supabase/tests/database/rls.test.sql` exercises anonymous, customer A, customer B, and admin contexts, including reciprocal isolation, owner-only booking-history detail reads, ownership injection, duplicate/capacity booking behavior, and cancellation boundaries. Test identities and records exist only inside its rolled-back transaction, and `finish(true)` makes an assertion failure fail the hosted command.
+No application-table delete privilege is exposed through the Data API. The repeatable 69-assertion pgTAP suite in `supabase/tests/database/rls.test.sql` exercises anonymous, customer A, customer B, and admin contexts, including reciprocal isolation, owner-only booking-history detail reads, ownership injection, duplicate/capacity booking behavior, cancellation boundaries, admin-directory access, immutable slugs, booked-session facts, and archival safeguards. Test identities and records exist only inside its rolled-back transaction, and `finish(true)` makes an assertion failure fail the hosted command.
+
+## Admin lifecycle safety
+
+Migration `20260925000200_admin_portal_safety.sql` adds the final Milestone 7 database boundaries:
+
+- `admin_customer_directory()` is a fixed-search-path `SECURITY DEFINER` function that fails unless the caller has the protected admin role and returns only the limited Auth directory fields required by customer management.
+- Class slugs are immutable after creation so public URLs and joins do not silently break.
+- A class cannot be unpublished or archived while it owns a future published session.
+- Once a session has any booking history, its class, start/end instants, and delivery format cannot be rewritten.
+- Session capacity cannot be lowered below the number of active pending/confirmed bookings.
+- A session with active bookings cannot be archived. Operators must use valid cancellation/status workflows while preserving booking history.
+
+Application actions add earlier, friendlier validation for publishing only future sessions of published, active classes. Database constraints and RLS remain authoritative under concurrency or bypass attempts.
 
 ## Customer booking safety
 
@@ -116,12 +129,12 @@ Verified on 2026-09-24 and extended on 2026-09-25 against the Supabase project r
 - The Supabase CLI is a project-local development dependency and is locked at 2.117.0 in `pnpm-lock.yaml`; no global installation is required.
 - The linked project reference exactly matches `NEXT_PUBLIC_SUPABASE_URL`. The reference and all credentials remain unprinted and uncommitted.
 - A migration dry run showed only the three ordered project migrations and `supabase/seed.sql`. The migrations and seed were then applied successfully to the linked staging database.
-- The hosted migration history contains `20260923000100`, `20260923000200`, `20260923000300`, `20260924000100`, and `20260925000100` in order.
+- The hosted migration history contains `20260923000100`, `20260923000200`, `20260923000300`, `20260924000100`, `20260925000100`, and `20260925000200` in order.
 - The hosted `classes` table contains exactly 12 rows and 12 unique slugs, matching the approved static taxonomy. No users, bookings, sessions, prices, workshops, or gallery records were seeded.
 - `supabase db lint --linked --level warning --fail-on error` reported no schema errors.
-- The expanded rollback-only pgTAP suite completed all 61 assertions successfully through `supabase db query --linked --file supabase/tests/database/rls.test.sql`. The project-local `supabase test db --linked` wrapper still requires Docker, which is not installed. The suite now throws on any failed plan rather than relying on process status from informational TAP output.
+- The established rollback-only suite passed 61/61 before Milestone 7. The eight new Milestone 7 assertions were then run directly in a rolled-back hosted SQL Editor transaction and passed 8/8. A one-command 69-assertion CLI rerun remains unavailable on this host because `supabase test db --linked` requires Docker, which is not installed.
 - Hosted `public` schema types were generated into `src/types/database.generated.ts` and are now used by the browser, server, and Proxy Supabase client factories.
-- A hosted read-only state check on 2026-09-25 found 12 published, non-archived classes, zero class sessions, and zero bookings. The production portal must therefore display real class records and honest session/booking empty states until administrators publish sessions.
+- A hosted read-only state check on 2026-09-25 found 12 published, non-archived classes, zero class sessions, and zero bookings. The portals therefore display real class records and honest session/booking empty states until administrators publish sessions.
 
 The pgTAP file keeps data-modifying CTEs at the statement top level, scopes fixture-count assertions so real hosted users do not make the rollback-only suite brittle, and raises on assertion failure. Test identities and records remain transaction-local and are rolled back.
 

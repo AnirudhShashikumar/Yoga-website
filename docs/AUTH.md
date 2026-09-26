@@ -11,6 +11,8 @@ Supabase Auth owns email/password identity. `@supabase/ssr` stores the session i
 
 Customers are redirected away from `/admin` to `/dashboard`. Admins use `/admin` exclusively and are redirected there from `/dashboard`. Database RLS remains the final data-access boundary.
 
+Milestone 7 does not add public admin registration, role controls, or a service-role credential. Every admin read/action independently resolves the current Auth user and protected `user_roles` record. The limited customer-directory database function also performs its own admin check; customers and anonymous callers cannot execute it successfully.
+
 Public registration sends only `full_name` and `phone` as safe profile metadata. It never accepts or sends a role. The database trigger creates a blank profile and the hard-coded `customer` role; after confirmation, the callback validates and copies the safe profile metadata into `profiles`. Only `user_roles` determines authorization.
 
 ## Auth flows
