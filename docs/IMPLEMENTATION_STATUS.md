@@ -224,7 +224,7 @@ Last updated: 2026-09-26
 - **MILESTONE 7 AUTOMATED VERIFIED:** `pnpm test:auth` passed 4/4, `pnpm test:customer` passed 6/6, `pnpm test:admin` passed 6/6, ESLint and strict TypeScript passed, and `pnpm exec next build --webpack` passed.
 - **MILESTONE 7 DATABASE VERIFIED:** migration `20260925000200` is applied, hosted schema lint is clean, linked type generation matches the checked-in type, and the eight new rollback-only safety assertions passed 8/8. The prior 61/61 remains the latest full-suite run.
 - **MILESTONE 7 INTEGRATION LIMIT:** no legitimate future session/customer credential set was available for a safe live end-to-end booking mutation, so the admin/customer lifecycle is not claimed as hosted browser-verified.
-- **MILESTONE 7 DEPLOYMENT VERIFIED:** Vercel marked commit `525c421` as the latest Production deployment with status Ready. Hosted smoke checks passed on `https://yoga-website-three-kappa.vercel.app` for Classes, Schedule, Workshops, Gallery, Book a Trial Class, and the anonymous `/admin` → `/login?next=%2Fadmin` guard, with no application-error state.
+- **MILESTONE 7 DEPLOYMENT VERIFIED:** Vercel marked code-bearing commit `525c421` as a Production deployment with status Ready and assigned `https://yoga-website-three-kappa.vercel.app`; the subsequent documentation-only deployment was also Ready. Hosted smoke checks passed there for Classes, Schedule, Workshops, Gallery, Book a Trial Class, and the anonymous `/admin` → `/login?next=%2Fadmin` guard, with no application-error state.
 
 ## Exact recommended next implementation task
 
