@@ -18,7 +18,13 @@ export function CustomerPortalShell({ children }: { children: ReactNode }) {
 
       <header className="sticky top-0 z-40 border-b border-brand/10 bg-background/95 backdrop-blur-lg">
         <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
-          <BrandIdentity href="/dashboard" sublabel="Customer Account" priority className="py-2" />
+          <BrandIdentity
+            href="/dashboard"
+            sublabel="Customer Account"
+            linkLabel="Prabha Yogashala customer dashboard"
+            priority
+            className="py-2"
+          />
 
           <div className="flex items-center gap-2">
             <Link

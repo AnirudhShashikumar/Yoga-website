@@ -14,7 +14,13 @@ export function AdminPortalShell({ children }: { children: ReactNode }) {
       </a>
       <header className="sticky top-0 z-40 border-b border-brand/10 bg-background/95 backdrop-blur-lg">
         <div className="mx-auto flex min-h-20 max-w-[90rem] items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
-          <BrandIdentity href="/admin" sublabel="Administration" priority className="py-2" />
+          <BrandIdentity
+            href="/admin"
+            sublabel="Administration"
+            linkLabel="Prabha Yogashala administration dashboard"
+            priority
+            className="py-2"
+          />
           <div className="flex items-center gap-2">
             <Link href="/" className="hidden min-h-11 items-center rounded-pill px-4 text-sm font-semibold text-brand hover:bg-surface-subtle sm:inline-flex">Public Website</Link>
             <form action={logoutAction}><Button type="submit" variant="secondary" size="sm">Sign Out</Button></form>

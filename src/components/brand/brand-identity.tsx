@@ -12,6 +12,7 @@ type BrandIdentityProps = {
   imageClassName?: string;
   priority?: boolean;
   onClick?: () => void;
+  linkLabel?: string;
 };
 
 export function BrandIdentity({
@@ -21,11 +22,12 @@ export function BrandIdentity({
   imageClassName,
   priority = false,
   onClick,
+  linkLabel = `${siteConfig.name} home`,
 }: BrandIdentityProps) {
   return (
     <Link
       href={href}
-      aria-label={`${siteConfig.name} home`}
+      aria-label={linkLabel}
       {...(onClick ? { onClick } : {})}
       className={cn("group flex min-w-0 items-center gap-2.5", className)}
     >
