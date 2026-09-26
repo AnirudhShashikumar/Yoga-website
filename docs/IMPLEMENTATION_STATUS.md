@@ -111,16 +111,28 @@ Last updated: 2026-09-25
 - Expanded the rollback-only RLS suite from 48 to 61 assertions for customer booking creation, identity protection, published and owner-history class/session reads, duplicate/capacity errors, own cancellation, reciprocal denial, and existing role/storage boundaries.
 - Added focused customer access/input tests. The final checks passed: `pnpm test:auth` 4/4, `pnpm test:customer` 6/6, ESLint, strict TypeScript, whitespace validation, the 61/61 hosted pgTAP suite, hosted schema lint, and the Next.js webpack production build.
 
+### Milestone 7 Admin Portal and Managed Public Data
+
+- Added the complete guarded admin shell and all approved overview, booking, customer, class, schedule, enquiry, workshop, gallery, and settings routes, including focused create/detail/edit routes.
+- Added a server-only admin data layer, explicit DTOs, Zod schemas, privacy-safe Server Action state, route revalidation, and independent admin authorization on every read and mutation.
+- Added real overview counts, status-grouped booking management, limited customer-directory/profile management, class/session lifecycle management, enquiry CRM transitions, workshop publication, and validated gallery image upload/metadata management.
+- Preserved history through unpublish/cancel/complete/close/archive operations. No Data API delete, role-management UI, public admin registration, service-role credential, payment, or unsupported setting was introduced.
+- Added migration `20260925000200_admin_portal_safety.sql` for limited admin Auth-directory access, immutable class slugs, future-session class safeguards, booked-session fact preservation, capacity floors, and active-booking archive protection; it is applied to the linked hosted database.
+- Expanded the checked-in rollback-only RLS suite from 61 to 69 assertions. The prior 61 passed together, and the eight new hosted assertions passed in a rolled-back SQL Editor run; Docker absence prevents the CLI wrapper from rerunning all 69 in one command on this host.
+- Connected public classes, class details, schedule, workshops, gallery, and homepage previews to published Supabase data while retaining verified static editorial supplements for known class slugs.
+- Replaced the trial enquiry handoff-only form with a server-validated, consent-recording database submission and optional WhatsApp follow-up. Public error messages remain generic; rate limiting/managed bot protection remains a production-hardening item.
+- Added focused admin tests and aligned `Database` types with the linked hosted schema. ESLint, strict TypeScript, auth/customer/admin tests, hosted database lint, and the webpack production build pass.
+
 ## In progress
 
-- No Milestone 6 implementation item remains in progress.
-- Production SMTP/template activation and the password-recovery delivery/reset/reuse-expiry retest remain an external production-release blocker.
+- No Milestone 7 source implementation item remains in progress.
+- Final Vercel production deployment verification is pending for the last session-safety/type/documentation commit.
 
 ## Remaining
 
 - Configure production SMTP, activate the checked-in confirmation/recovery templates, and complete the password-recovery production retest.
-- Milestone 7: Admin Portal. Do not start it automatically in the Milestone 6 run.
-- Connect public classes and schedule to live published data.
+- Complete the hosted admin → customer booking → admin management → customer update integration loop with explicitly approved disposable credentials and a legitimate future session.
+- Add production-grade anonymous enquiry rate limiting or a managed bot challenge before public launch.
 - Complete the whole-site accessibility/responsive audit, SEO/performance work, and production hardening/release verification.
 
 ## Client information required
@@ -131,6 +143,7 @@ Last updated: 2026-09-25
 - Approved class copy, benefits, formats, durations, capacities, and schedule.
 - Pricing decision and approved prices.
 - Booking cancellation/rescheduling policy.
+- Confirmation that `Asia/Kolkata` is the business scheduling timezone.
 - Workshop and gallery content.
 - Approved photographs and usage rights.
 - Replacement photography for `hero-practice.svg`, `gallery-movement.svg`, `gallery-breath.svg`, and `gallery-stillness.svg`, with final captions and alt text where images are meaningful.
@@ -152,16 +165,18 @@ Last updated: 2026-09-25
 - The project is intentionally pinned to TypeScript 6 and ESLint 9 because the current Next.js lint plugins do not yet support TypeScript 7 or ESLint 10. Revisit together during a controlled dependency upgrade.
 - The Homepage uses abstract local placeholders, not production photography. Their paths and replacement status are centralized in `src/config/media.ts`.
 - The About founder image and Gallery media are abstract development placeholders. Production photography, captions, ordering, alt text, and usage rights remain client dependencies.
-- Contact and Trial Enquiry forms currently validate in the browser and prepare an unsent WhatsApp message. Persistence, spam protection, server validation, consent recording, and administrative processing belong to later backend milestones.
+- Trial Enquiry now validates and persists consent server-side, but production-grade rate limiting or a managed bot challenge is still required before launch.
 - Privacy and Terms are structured drafts, not approved legal documents, and are marked `noindex` until reviewed.
-- Docker is not installed. The project-local `supabase test db --linked` wrapper still invokes a Docker-compatible runtime; the exact checked-in rollback-only pgTAP SQL is instead run with the official `supabase db query --linked --file` command and currently passes 61/61 with failure signaling enabled.
+- Docker is not installed. The established hosted suite passed 61/61 and the eight new Milestone 7 assertions passed 8/8 in a rolled-back hosted SQL Editor transaction; the one-command 69-test CLI wrapper could not run on this host.
 - Admin role provisioning is intentionally outside the Data API. Before production launch, establish an audited operational process or a narrowly scoped server-only provisioning workflow.
-- Public trial-enquiry insertion is only a database capability. The frontend must not use it until a server-validated, rate-limited, bot-aware submission boundary is implemented.
+- Public trial-enquiry insertion now uses a server-validated, honeypot-protected action with consent capture; rate limiting/managed bot protection remains required for production hardening.
 - The exact hosted SSR callback allowlist is active. The checked-in token-hash templates are not yet active because the Free-tier project uses Supabase's default email provider, which rejected template modification. Configure custom SMTP and a verified sender before treating email Auth as production-ready.
 - A non-PII disposable mailbox verified valid hosted customer registration, delivery, confirmation, profile creation, and hard-coded customer-role creation.
 - The project lead live-tested confirmed-customer login, customer dashboard access, customer/admin separation, session persistence, logout, protected-route enforcement, and a directly provisioned controlled admin role on 2026-09-25. Password recovery remains the only unverified Auth email path.
 - The hosted database currently has 12 published classes but zero class sessions and zero bookings. The customer portal is functional and intentionally shows empty schedule/booking states; end-to-end booking success/cancellation cannot be live-browser verified until a legitimate future published session exists.
 - The client has not confirmed cancellation/rescheduling policy. The portal implements only the conservative database-safe cancellation transition for an owner's active future booking and makes no refund, timing-window, or rescheduling promise.
+- The database has no approved settings relation, so `/admin/settings` is intentionally read-only rather than storing invented configuration.
+- Business timezone has not been client-confirmed. Admin scheduling provisionally uses `Asia/Kolkata` and stores UTC instants.
 
 ## Checks
 
@@ -206,7 +221,10 @@ Last updated: 2026-09-25
 - **AUTOMATED BUILD VERIFIED:** ESLint, strict TypeScript, `git diff --check`, and `pnpm exec next build --webpack` passed on 2026-09-25; all five customer routes are request-rendered behind Proxy.
 - **LIVE BROWSER VERIFIED (Codex):** anonymous requests to all five local customer routes redirected to `/login` with the exact encoded destination, and the resulting route boundary had no horizontal overflow at 390, 768, 1024, 1280, and 1440 pixels.
 - **NOT YET VERIFIED:** live booking creation/cancellation with a real future session, customer authenticated portal visuals at every breakpoint, and password-recovery email/reset behavior. The first two require legitimate staging data/access; recovery requires production SMTP.
+- **MILESTONE 7 AUTOMATED VERIFIED:** `pnpm test:auth` passed 4/4, `pnpm test:customer` passed 6/6, `pnpm test:admin` passed 6/6, ESLint and strict TypeScript passed, and `pnpm exec next build --webpack` passed.
+- **MILESTONE 7 DATABASE VERIFIED:** migration `20260925000200` is applied, hosted schema lint is clean, linked type generation matches the checked-in type, and the eight new rollback-only safety assertions passed 8/8. The prior 61/61 remains the latest full-suite run.
+- **MILESTONE 7 INTEGRATION LIMIT:** no legitimate future session/customer credential set was available for a safe live end-to-end booking mutation, so the admin/customer lifecycle is not claimed as hosted browser-verified.
 
 ## Exact recommended next implementation task
 
-Configure production SMTP and a verified sender, activate the checked-in confirmation/recovery templates, and complete one privacy-safe hosted password-recovery/reset/reuse-expiry retest. After that release blocker passes, start Milestone 7 — Admin Portal — in a separate run.
+Provide an explicitly approved disposable confirmed-customer login and legitimate future test-session details, then run the hosted admin-create/publish → customer-book → admin-manage → customer-observe/cancel integration test without weakening confirmation, RLS, or history safeguards.
