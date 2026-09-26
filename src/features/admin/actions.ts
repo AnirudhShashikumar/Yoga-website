@@ -245,6 +245,23 @@ export async function updateSessionAction(
   if (!times) return unavailable("The end time must be later than the start time on the selected date.");
   const context = await getAdminMutationContext();
   if (!context) return unavailable();
+  const { data: currentSession, error: currentSessionError } = await context.supabase
+    .from("class_sessions")
+    .select("status")
+    .eq("id", parsed.data.id)
+    .maybeSingle();
+  if (currentSessionError || !currentSession) return unavailable("The selected session could not be found.");
+  if (currentSession.status === "published") {
+    if (new Date(times.startsAt) <= new Date()) return unavailable("Published sessions must begin in the future.");
+    const { data: classItem, error: classError } = await context.supabase
+      .from("classes")
+      .select("published,archived_at")
+      .eq("id", parsed.data.classId)
+      .maybeSingle();
+    if (classError || !classItem?.published || classItem.archived_at) {
+      return unavailable("Published sessions must use a published, active class.");
+    }
+  }
   const { error } = await context.supabase
     .from("class_sessions")
     .update({
@@ -269,6 +286,23 @@ export async function updateSessionStatusAction(
   if (!parsed.success || !["published", "cancelled", "completed"].includes(parsed.data.status)) return unavailable("The selected session status is invalid.");
   const context = await getAdminMutationContext();
   if (!context) return unavailable();
+  if (parsed.data.status === "published") {
+    const { data: session, error: sessionError } = await context.supabase
+      .from("class_sessions")
+      .select("starts_at,class_id")
+      .eq("id", parsed.data.id)
+      .maybeSingle();
+    if (sessionError || !session) return unavailable("The selected session could not be found.");
+    if (new Date(session.starts_at) <= new Date()) return unavailable("Only future sessions can be published.");
+    const { data: classItem, error: classError } = await context.supabase
+      .from("classes")
+      .select("published,archived_at")
+      .eq("id", session.class_id)
+      .maybeSingle();
+    if (classError || !classItem?.published || classItem.archived_at) {
+      return unavailable("Publish the active class before publishing this session.");
+    }
+  }
   const { error } = await context.supabase
     .from("class_sessions")
     .update({ status: parsed.data.status as "published" | "cancelled" | "completed" })

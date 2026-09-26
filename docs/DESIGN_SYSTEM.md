@@ -124,6 +124,17 @@ Empty states explain the actual absence of data and may offer one relevant next 
 - Profile editing uses persistent labels, supported fields only, a visible unsaved-change state, discard control, submit loading feedback, and a browser-leave warning while edits are dirty.
 - Portal loading states reserve the shell and content rhythm without implying records. Empty and error states offer one useful recovery or navigation action.
 
+### Admin portal system
+
+The standalone admin Stitch screenshot is a direction reference, not a source of data or features. The production portal extracts its calm light workspace, dark forest navigation, compact summary cards, rounded panels, restrained borders, and serif/sans hierarchy while discarding fictional revenue, membership, customer, and attendance content.
+
+- Desktop uses a sticky left navigation rail and a bounded main workspace; smaller screens collapse navigation into a horizontally scrollable landmark without hiding destinations.
+- Page headers pair one clear `h1` with a short operational description and an optional primary action.
+- Record collections use responsive card grids and compact definition lists instead of fragile wide tables. Status is always written in text and never communicated by color alone.
+- Forms use the shared labels, help/error relationships, 52px controls, visible focus rings, pending states, and live action feedback. Confirmation is required before cancellation or archival.
+- Empty states state the real absence of records and offer only valid next actions. Loading and error boundaries preserve the shell and never substitute fake dashboard content.
+- Admin surfaces use the same forest, ivory, white, sage, border, ochre, and error tokens as the public/customer products; there is no separate dashboard theme or dark mode.
+
 ## Imagery
 
 - Use natural daylight, authentic movement, calm studio textures, and varied ages/abilities when licensed assets are available.

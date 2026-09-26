@@ -80,7 +80,7 @@ The centrally managed public practice list uses “Personal Yoga” as the displ
 
 ### Admin
 
-`/admin`, `/admin/bookings`, `/admin/customers`, `/admin/customers/[id]`, `/admin/classes`, `/admin/schedule`, `/admin/enquiries`, `/admin/workshops`, `/admin/gallery`, `/admin/settings`
+`/admin`, `/admin/bookings`, `/admin/customers`, `/admin/customers/[id]`, `/admin/classes`, `/admin/classes/new`, `/admin/classes/[id]`, `/admin/schedule`, `/admin/schedule/new`, `/admin/schedule/[id]`, `/admin/enquiries`, `/admin/enquiries/[id]`, `/admin/workshops`, `/admin/workshops/new`, `/admin/workshops/[id]`, `/admin/gallery`, `/admin/gallery/[id]`, `/admin/settings`
 
 ## Content integrity rules
 
@@ -129,6 +129,10 @@ The client questionnaire requested some of these capabilities. They are recorded
 - Public schedules show only published, verified sessions. Until those exist, show only the broad morning and evening availability windows.
 - Customer and admin views must show real records or explicit empty states, never fictional dashboard data.
 - Admin removal should prefer archival or unpublishing where deletion could break relationships or history.
+- Admin management uses the existing schema only. Settings is intentionally read-only until a settings schema and business rules are approved.
+- Admin schedule entry and display use `Asia/Kolkata` (India Standard Time) as the provisional operating timezone. Stored timestamps remain UTC instants; the client must reconfirm the business timezone before launch.
+- Published classes, sessions, workshops, and gallery items are authoritative for public/customer surfaces. Static class editorial copy may supplement, but never override, managed records.
+- Trial enquiries persist only after server validation and affirmative consent. Public errors remain generic; internal provider/database details are never shown to visitors.
 
 ## Standard language
 
@@ -147,6 +151,7 @@ Do not use generated phrases such as “Consult Master,” “Enquire Shala,” 
 - Public email address and confirmation of the WhatsApp number and social URLs.
 - Approved class descriptions, benefits, levels, formats, durations, days, and capacities.
 - Final schedule and scheduling rules.
+- Confirmation that `Asia/Kolkata` is the operating timezone for all managed schedules.
 - Pricing, tax treatment, and whether a public pricing page should launch as a placeholder or remain unpublished.
 - Cancellation and rescheduling rules.
 - Workshop details and publication process.
@@ -156,4 +161,3 @@ Do not use generated phrases such as “Consult Master,” “Enquire Shala,” 
 - Privacy policy, terms, governing jurisdiction, and legal business identity.
 - Domain choice, Vercel ownership, Supabase project ownership, and business email plan.
 - Transactional email provider and approved templates when email work begins.
-

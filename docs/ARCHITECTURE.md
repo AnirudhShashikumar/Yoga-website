@@ -103,6 +103,24 @@ Milestone 6 implements one customer-only application shell over `/dashboard`, `/
 - Customer cancellation is a conservative technical rule, not an invented business window: only the owner's active `pending` or `confirmed` booking for a published future session may transition to `cancelled`. The UI requires an explicit inline confirmation.
 - Session timestamps are stored as instants and rendered in the visitor's device timezone using semantic `time` elements. No unconfirmed business timezone is assumed.
 
+## Admin portal architecture
+
+Milestone 7 implements one admin-only application shell over `/admin` and the management routes documented in `PROJECT_CONTEXT.md`.
+
+- The protected layout independently verifies the Auth identity and protected `user_roles` record before rendering. Customers never receive admin data or navigation.
+- Server Components read through `src/features/admin/data.ts`; the module reauthorizes every request, selects only required columns, and maps database rows to explicit presentation DTOs.
+- Server Actions in `src/features/admin/actions.ts` reauthorize every mutation, validate form data with Zod, return privacy-safe state, and revalidate all affected admin, public, and customer routes.
+- Classes, sessions, bookings, customer profiles, enquiries, workshops, and gallery metadata use the existing RLS-protected tables. Role management is deliberately absent.
+- Customer directory email and confirmation metadata comes through the fixed-search-path, admin-checking `admin_customer_directory()` database function. It exposes no password, token, or role-mutation capability.
+- Destructive deletion is not exposed. Unpublish, cancel, complete, close, and archive transitions preserve history. Database triggers protect booked session facts, active booking capacity, immutable slugs, and future published-session dependencies.
+- Admin scheduling is entered and rendered in `Asia/Kolkata`; PostgreSQL stores UTC instants. Customer/public readers render those same instants without inventing recurrence or capacity.
+- Gallery uploads accept only approved image MIME types up to 8 MiB, generate UUID-scoped object paths, store relative paths, and remove a newly uploaded object if the metadata insert fails.
+- `/admin/settings` is a truthful read-only operational summary because the approved database has no settings relation.
+
+## Public managed-data integration
+
+Public classes, class details, schedule, workshops, gallery, and homepage previews now read published, non-archived Supabase records. The verified static practice catalogue remains a supplemental editorial source for known slugs only. The trial form uses a server action with Zod validation, a honeypot, affirmative-consent persistence, and generic errors. Rate limiting or a managed bot challenge remains a production-hardening dependency.
+
 ## Relational model
 
 Milestone 4 implements the database model below. Detailed relationships, access rules, migration commands, and Storage boundaries are maintained in `DATABASE.md`.
@@ -156,7 +174,7 @@ The root layout owns title templates, description, theme color, and favicon. Lat
 - Run lint, strict typecheck, and production build after each major milestone.
 - Add focused unit tests for validation, state transitions, and pure domain logic.
 - Add integration tests for Server Actions and repository behavior.
-- Explicitly test Supabase RLS with customer A, customer B, anonymous, and admin contexts. The 61-assertion rollback-only pgTAP suite covers visibility, reciprocal ownership isolation, protected-column injection, owner-only booking-history detail reads, customer cancellation, duplicate/capacity booking safety, managed-content permissions, lifecycle transitions, and Storage policy presence. `finish(true)` makes a failed plan fail the hosted SQL command.
+- Explicitly test Supabase RLS with customer A, customer B, anonymous, and admin contexts. The 69-assertion rollback-only pgTAP suite covers visibility, reciprocal ownership isolation, protected-column injection, owner-only booking-history detail reads, customer cancellation, duplicate/capacity booking safety, managed-content permissions, admin-directory access, admin lifecycle safeguards, and Storage policy presence. `finish(true)` makes a failed plan fail the hosted SQL command.
 - Add end-to-end tests for public navigation, auth, route protection, trial enquiries, bookings, class/schedule administration, and responsive navigation when those features exist.
 
 ## Deployment

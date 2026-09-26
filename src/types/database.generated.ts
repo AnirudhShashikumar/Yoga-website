@@ -380,12 +380,12 @@ export type Database = {
     }
     Functions: {
       admin_customer_directory: {
-        Args: Record<PropertyKey, never>
+        Args: never
         Returns: {
           created_at: string
           email: string
-          email_confirmed_at: string | null
-          last_sign_in_at: string | null
+          email_confirmed_at: string
+          last_sign_in_at: string
           user_id: string
         }[]
       }
