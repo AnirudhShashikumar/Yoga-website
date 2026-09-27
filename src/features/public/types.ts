@@ -1,9 +1,13 @@
 import type { Enums, Tables } from "@/types/database.generated";
 
-export type PublicClass = Pick<
+type PublicClassRecord = Pick<
   Tables<"classes">,
   "id" | "slug" | "name" | "short_description" | "description" | "category" | "levels" | "available_formats" | "media_path" | "featured" | "sort_order"
 >;
+
+export type PublicClass = PublicClassRecord & {
+  mediaUrl: string | null;
+};
 
 export type PublicSession = Pick<Tables<"class_sessions">, "id" | "starts_at" | "ends_at" | "format" | "capacity"> & {
   class: Pick<PublicClass, "id" | "slug" | "name">;

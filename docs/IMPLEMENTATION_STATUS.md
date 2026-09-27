@@ -131,10 +131,19 @@ Last updated: 2026-09-27
 - Replaced the provisional lettermark favicon with App Router-native favicon, standard icon, and Apple touch icon assets based on the official symbol.
 - Retained the existing title/description system and removed the obsolete manual favicon declaration. No manifest or Open Graph image architecture was introduced.
 
+### Production photography integration
+
+- Audited every public route and classified each existing image area before replacement. Founder, studio, gallery, and workshop documentary areas remain truthful placeholders or managed empty states rather than using misleading stock.
+- Added one locally optimized, licensed Homepage hero photograph and twelve semantically matched practice photographs with complete source, photographer, acquisition-date, and license provenance in `DESIGN_SYSTEM.md`.
+- Uploaded the practice set to the existing `class-media` Storage boundary. The initial non-destructive migration assigns `stock/<slug>.jpg` only when a class has no existing media path; a second narrow migration moves Prenatal Yoga from the first immutable object to its reviewed landscape replacement.
+- Extended the public class data layer to resolve record-managed Storage paths and integrated responsive `next/image` treatments into Homepage practice previews, Classes, and related-class cards while preserving numbering, hierarchy, abstract fallbacks, and decorative image semantics.
+- Added no AI imagery, hotlinked runtime asset, founder surrogate, fabricated business content, new service, or unrelated page redesign.
+
 ## In progress
 
 - No Milestone 7 source implementation item remains in progress.
 - No Milestone 7 deployment item remains in progress.
+- No production-photography source, database, or local verification item remains in progress.
 
 ## Remaining
 
@@ -152,8 +161,7 @@ Last updated: 2026-09-27
 - Booking cancellation/rescheduling policy.
 - Confirmation that `Asia/Kolkata` is the business scheduling timezone.
 - Workshop and gallery content.
-- Approved photographs and usage rights.
-- Replacement photography for `hero-practice.svg`, `gallery-movement.svg`, `gallery-breath.svg`, and `gallery-stillness.svg`, with final captions and alt text where images are meaningful.
+- Approved real founder, studio, class, workshop, and gallery photography with usage rights, captions, ordering, and meaningful alt text. Licensed generic hero/class illustrations are already documented and integrated.
 - Final approved FAQ wording, Privacy Policy, and Terms & Conditions.
 - Legal business identity, governing jurisdiction, privacy-request contact, and policy effective dates.
 - Domain, Vercel, Supabase, and business-email ownership decisions.
@@ -170,8 +178,8 @@ Last updated: 2026-09-27
 - The hosted Supabase staging project and deployed Vercel origin are connected, but `.env.local` must remain outside Git and no service-role secret should be added to browser-visible configuration.
 - The light design system is approved; dark-mode tokens are not.
 - The project is intentionally pinned to TypeScript 6 and ESLint 9 because the current Next.js lint plugins do not yet support TypeScript 7 or ESLint 10. Revisit together during a controlled dependency upgrade.
-- The Homepage uses abstract local placeholders, not production photography. Their paths and replacement status are centralized in `src/config/media.ts`.
-- The About founder image and Gallery media are abstract development placeholders. Production photography, captions, ordering, alt text, and usage rights remain client dependencies.
+- The Homepage hero and class cards use documented licensed stock illustrations. They must not be described as Prabha Yogashala people, premises, or sessions.
+- The About founder image and Gallery media remain abstract development placeholders. Genuine client photography, captions, ordering, alt text, and usage rights remain client dependencies.
 - Trial Enquiry now validates and persists consent server-side, but production-grade rate limiting or a managed bot challenge is still required before launch.
 - Privacy and Terms are structured drafts, not approved legal documents, and are marked `noindex` until reviewed.
 - Docker is not installed. The established hosted suite passed 61/61 and the eight new Milestone 7 assertions passed 8/8 in a rolled-back hosted SQL Editor transaction; the one-command 69-test CLI wrapper could not run on this host.
@@ -232,6 +240,9 @@ Last updated: 2026-09-27
 - **MILESTONE 7 DATABASE VERIFIED:** migration `20260925000200` is applied, hosted schema lint is clean, linked type generation matches the checked-in type, and the eight new rollback-only safety assertions passed 8/8. The prior 61/61 remains the latest full-suite run.
 - **MILESTONE 7 INTEGRATION LIMIT:** no legitimate future session/customer credential set was available for a safe live end-to-end booking mutation, so the admin/customer lifecycle is not claimed as hosted browser-verified.
 - **MILESTONE 7 DEPLOYMENT VERIFIED:** Vercel marked code-bearing commit `525c421` as a Production deployment with status Ready and assigned `https://yoga-website-three-kappa.vercel.app`; the subsequent documentation-only deployment was also Ready. Hosted smoke checks passed there for Classes, Schedule, Workshops, Gallery, Book a Trial Class, and the anonymous `/admin` → `/login?next=%2Fadmin` guard, with no application-error state.
+- **PRODUCTION PHOTOGRAPHY DATABASE VERIFIED:** linked migrations `20260927000100` and `20260927000200` are applied, hosted schema lint is clean, all 12 published classes expose the reviewed relative media paths, and all current Storage objects load through the existing public-read boundary.
+- **PRODUCTION PHOTOGRAPHY AUTOMATED VERIFIED:** `pnpm test:auth` passed 4/4, `pnpm test:customer` passed 6/6, `pnpm test:admin` passed 6/6, ESLint, strict TypeScript, and `git diff --check` passed, and `pnpm exec next build --webpack` completed successfully on 2026-09-27.
+- **PRODUCTION PHOTOGRAPHY BROWSER VERIFIED:** Homepage, Classes, and all 12 class-detail routes passed 70 local route/viewport checks at 390, 768, 1024, 1280, and 1440 pixels with one `h1`, no broken images, no horizontal overflow, and no browser console errors or warnings. Hero and class-card crops were also visually reviewed at every required width.
 
 ## Exact recommended next implementation task
 

@@ -134,6 +134,7 @@ The client questionnaire requested some of these capabilities. They are recorded
 - Admin schedule entry and display use `Asia/Kolkata` (India Standard Time) as the provisional operating timezone. Stored timestamps remain UTC instants; the client must reconfirm the business timezone before launch.
 - Published classes, sessions, workshops, and gallery items are authoritative for public/customer surfaces. Static class editorial copy may supplement, but never override, managed records.
 - Trial enquiries persist only after server validation and affirmative consent. Public errors remain generic; internal provider/database details are never shown to visitors.
+- Licensed stock may illustrate general yoga practice categories and the Homepage hero only when its source and license are recorded. It must never be presented as the founder, an instructor identity, a real Prabha Yogashala student, studio, class, workshop, testimonial, award, or endorsement.
 
 ## Standard language
 
@@ -155,7 +156,7 @@ Do not use generated phrases such as “Consult Master,” “Enquire Shala,” 
 - Pricing, tax treatment, and whether a public pricing page should launch as a placeholder or remain unpublished.
 - Cancellation and rescheduling rules.
 - Workshop details and publication process.
-- Approved photography and image-use rights.
+- Approved real founder, studio, class, workshop, and gallery photography with image-use rights. Licensed category illustration provenance is maintained separately in `DESIGN_SYSTEM.md`.
 - Gallery content and captions.
 - FAQ answers.
 - Privacy policy, terms, governing jurisdiction, and legal business identity.

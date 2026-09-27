@@ -121,6 +121,14 @@ Milestone 7 implements one admin-only application shell over `/admin` and the ma
 
 Public classes, class details, schedule, workshops, gallery, and homepage previews now read published, non-archived Supabase records. The verified static practice catalogue remains a supplemental editorial source for known slugs only. The trial form uses a server action with Zod validation, a honeypot, affirmative-consent persistence, and generic errors. Rate limiting or a managed bot challenge remains a production-hardening dependency.
 
+The Homepage hero is a versioned local asset rendered with `next/image`. Class
+photography remains data-managed: `classes.media_path` stores a relative object
+path, the server data layer derives the public `class-media` Storage URL, and
+class cards render that URL with stable responsive image bounds. A missing path
+falls back to the branded abstract card treatment. Exact stock provenance and
+the boundary between illustrative stock and genuine client media live in
+`DESIGN_SYSTEM.md`.
+
 ## Relational model
 
 Milestone 4 implements the database model below. Detailed relationships, access rules, migration commands, and Storage boundaries are maintained in `DATABASE.md`.
@@ -150,7 +158,7 @@ Transitions must be enforced in server/database logic, not inferred from button 
 
 ## Storage
 
-Use the public-read, admin-write `class-media`, `workshop-media`, `gallery-media`, and `founder-media` buckets only for approved media. Store object paths in PostgreSQL, not public URLs. Bucket limits and MIME allowlists provide baseline enforcement; future server workflows must also validate content, extension, MIME type, size, filename, and media rights. Object bytes are managed through the Storage API, never by directly editing `storage.objects`.
+Use the public-read, admin-write `class-media`, `workshop-media`, `gallery-media`, and `founder-media` buckets only for approved media. Store object paths in PostgreSQL, not public URLs. Licensed class illustrations use the `class-media/stock/<slug>.jpg` object convention and a `-vN` suffix when an immutable asset is superseded; later administrator-assigned media is preserved by migrations and remains authoritative. Bucket limits and MIME allowlists provide baseline enforcement; future server workflows must also validate content, extension, MIME type, size, filename, and media rights. Object bytes are managed through the Storage API, never by directly editing `storage.objects`.
 
 ## Error, loading, and empty states
 

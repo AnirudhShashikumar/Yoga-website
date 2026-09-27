@@ -17,12 +17,24 @@ async function client() {
 
 const classFields = "id,slug,name,short_description,description,category,levels,available_formats,media_path,featured,sort_order" as const;
 
+function withClassMedia<T extends { media_path: string | null }>(
+  supabase: Awaited<ReturnType<typeof createSupabaseServerClient>>,
+  classItem: T,
+) {
+  return {
+    ...classItem,
+    mediaUrl: classItem.media_path
+      ? supabase.storage.from("class-media").getPublicUrl(classItem.media_path).data.publicUrl
+      : null,
+  };
+}
+
 export async function getPublicClasses(): Promise<PublicDataResult<PublicClass[]>> {
   const supabase = await client();
   if (!supabase) return { status: "error" };
   const { data, error } = await supabase.from("classes").select(classFields).eq("published", true).is("archived_at", null).order("sort_order").order("name");
   if (error || !data) return { status: "error" };
-  return { status: "success", data };
+  return { status: "success", data: data.map((classItem) => withClassMedia(supabase, classItem)) };
 }
 
 export async function getPublicClassBySlug(slug: string): Promise<PublicDataResult<PublicClass | null>> {
@@ -30,7 +42,7 @@ export async function getPublicClassBySlug(slug: string): Promise<PublicDataResu
   if (!supabase) return { status: "error" };
   const { data, error } = await supabase.from("classes").select(classFields).eq("slug", slug).eq("published", true).is("archived_at", null).maybeSingle();
   if (error) return { status: "error" };
-  return { status: "success", data };
+  return { status: "success", data: data ? withClassMedia(supabase, data) : null };
 }
 
 export async function getPublicSessions(): Promise<PublicDataResult<PublicSession[]>> {

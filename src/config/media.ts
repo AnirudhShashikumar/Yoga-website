@@ -4,11 +4,17 @@ export type PlaceholderMedia = Readonly<{
   replacementRequired: true;
 }>;
 
+export type ProductionMedia = Readonly<{
+  src: string;
+  alt: string;
+  replacementRequired: false;
+}>;
+
 export const homeMedia = {
   hero: {
-    src: "/images/placeholders/hero-practice.svg",
-    alt: "",
-    replacementRequired: true,
+    src: "/images/editorial/home-hero-yoga.jpg",
+    alt: "A practitioner holding a side-plank yoga pose in a plant-filled room.",
+    replacementRequired: false,
   },
   gallery: [
     {
@@ -28,7 +34,7 @@ export const homeMedia = {
     },
   ],
 } as const satisfies {
-  hero: PlaceholderMedia;
+  hero: ProductionMedia;
   gallery: readonly PlaceholderMedia[];
 };
 

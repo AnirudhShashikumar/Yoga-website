@@ -1,4 +1,5 @@
 import type { Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Card } from "@/components/ui/card";
@@ -7,8 +8,6 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getPublicClasses } from "@/features/public/data";
-
-const tones = ["bg-sage", "bg-sky", "bg-amber-100", "bg-surface-muted"] as const;
 
 export async function PracticePreview() {
   const result = await getPublicClasses();
@@ -34,24 +33,41 @@ export async function PracticePreview() {
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {featured.map((practice, index) => (
-            <Card key={practice.name} className="flex min-h-64 flex-col p-6">
-              <div
-                aria-hidden="true"
-                className={`flex size-11 items-center justify-center rounded-full ${tones[index]} font-display text-lg font-semibold text-brand-strong`}
-              >
-                {String(index + 1).padStart(2, "0")}
+            <Card key={practice.name} className="group flex min-h-72 flex-col overflow-hidden p-0 sm:p-0">
+              <div className="relative min-h-36 overflow-hidden bg-gradient-to-br from-sage via-surface-subtle to-sky">
+                {practice.mediaUrl ? (
+                  <Image
+                    src={practice.mediaUrl}
+                    alt=""
+                    fill
+                    sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                ) : null}
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-gradient-to-t from-brand-strong/65 via-brand-strong/10 to-transparent"
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-4 left-5 font-display text-3xl text-white/90"
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </span>
               </div>
-              <h3 className="mt-8 font-display text-2xl font-medium text-brand-strong">
-                {practice.name}
-              </h3>
-              <p className="mt-3 text-base leading-7 text-muted">{practice.short_description}</p>
-              <Link
-                href={`/classes/${practice.slug}` as Route}
-                className="mt-auto inline-flex min-h-11 items-end pt-5 text-sm font-bold text-brand"
-              >
-                View Class
-                <ArrowRightIcon className="ml-2 size-4" />
-              </Link>
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="font-display text-2xl font-medium text-brand-strong">
+                  {practice.name}
+                </h3>
+                <p className="mt-3 text-base leading-7 text-muted">{practice.short_description}</p>
+                <Link
+                  href={`/classes/${practice.slug}` as Route}
+                  className="mt-auto inline-flex min-h-11 items-end pt-5 text-sm font-bold text-brand"
+                >
+                  View Class
+                  <ArrowRightIcon className="ml-2 size-4" />
+                </Link>
+              </div>
             </Card>
           ))}
         </div>

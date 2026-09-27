@@ -151,9 +151,64 @@ The standalone admin Stitch screenshot is a direction reference, not a source of
 
 - Use natural daylight, authentic movement, calm studio textures, and varied ages/abilities when licensed assets are available.
 - Do not treat Stitch’s temporary Google-hosted image URLs as production assets or proof of client identity.
-- The client currently reports no professional photography. Image selection and rights remain unresolved.
+- The client currently reports no professional photography. The Homepage hero and class-category cards use the licensed stock set documented below; identity, studio, gallery, and event media remain unresolved.
 - Never use an AI-generated face as the real instructor or founder.
 - All meaningful images require useful alt text; decorative images use empty alt text.
+
+### Production photography audit
+
+The public-route audit covered the Homepage, About, Classes, all 12 class details,
+Schedule, Pricing, Workshops, Gallery, FAQ, Contact, Book, Privacy, and Terms. The
+classification is: **A** licensed stock is appropriate, **B** genuine Prabha
+Yogashala photography is required, **C** remain abstract/decorative, **D** media is
+data-managed and must not be hardcoded, and **E** already correct.
+
+| Location | Audited pre-integration state | Class | Production decision |
+| --- | --- | --- | --- |
+| Homepage hero | Local abstract `hero-practice.svg` | A | A single licensed signature yoga photograph may replace it without changing the hero hierarchy. |
+| Homepage class preview | Numbered abstract cards | D | Class media must come from the existing class record/media system; retain the number and restrained card treatment. |
+| Classes grid and related-class cards | Numbered gradient image bands | D | Render approved class media only through each database class record; retain a branded abstract fallback. |
+| 12 class-detail pages | No practice image | D | The same approved class-record media may be used contextually; do not introduce a separate hardcoded image map. |
+| About founder area | Clearly labelled neutral placeholder | B | Keep until an approved real founder portrait and identity are supplied. Never substitute stock. |
+| Homepage gallery preview | Three clearly abstract placeholders when no managed media exists | B/D | Keep truthful abstract fallbacks. Real items remain managed by published Gallery records. |
+| Gallery page | Six clearly labelled abstract placeholders when empty | B/D | Keep until approved real Prabha Yogashala media is uploaded and published. Do not use stock as documentary evidence. |
+| Homepage workshop preview | Decorative color field, no photo | C/D | Keep abstract while no real published workshop media exists. Any future workshop image remains record-managed and must document the real event. |
+| Workshops page | Data-driven empty state or record cards | D | Do not add stock. Future workshop media must come from the workshop record and accurately represent the event. |
+| Page heroes other than Homepage | Typographic/tonal composition | C | Keep abstract; photography would add repetition without improving meaning. |
+| Schedule, Pricing, FAQ, Contact, Book, Privacy, Terms | No image placeholders beyond shared brand assets | C/E | No photography needed. |
+| Public header/footer and browser icons | Approved official logo/mark | E | Preserve unchanged. These are brand assets, not photography. |
+
+### Licensed stock manifest
+
+All entries below were acquired on 2026-09-27 from Pexels under the
+[Pexels license](https://www.pexels.com/license/). The license permits free
+website and commercial use, modification, and use without mandatory
+attribution. Source attribution is retained here for provenance. People and
+places shown are generic category illustrations: they are not Prabha Yogashala
+staff, customers, premises, classes, events, or endorsements.
+
+| Local asset / placement | Practice intent | Photographer | Original source | License |
+| --- | --- | --- | --- | --- |
+| `public/images/editorial/home-hero-yoga.jpg` — Homepage hero | Calm individual practice in natural light | Vitaly Gariev | [Indoor yoga session in a cozy living-room setting](https://www.pexels.com/photo/indoor-yoga-session-in-cozy-living-room-setting-36764986/) | Pexels |
+| `public/images/practices/hatha-yoga.jpg` — Hatha cards | Grounded seated practice | Vivaan Rupani | [Woman sitting while doing yoga](https://www.pexels.com/photo/woman-sitting-while-doing-yoga-7351823/) | Pexels |
+| `public/images/practices/ashtanga-yoga.jpg` — Ashtanga cards | Active studio practice | FbyF Studio | [Yoga session with natural light in a modern studio](https://www.pexels.com/photo/yoga-session-with-natural-light-in-modern-studio-29720739/) | Pexels |
+| `public/images/practices/power-yoga.jpg` — Power cards | Strength-focused posture | Klaus Nielsen | [Sportswoman doing yoga on a mat in a studio](https://www.pexels.com/photo/black-sportswoman-doing-yoga-on-mat-in-studio-6303431/) | Pexels |
+| `public/images/practices/yin-yoga.jpg` — Yin cards | Floor-based restorative posture | Miriam Alonso | [Woman practising a reclining yoga posture](https://www.pexels.com/photo/flexible-woman-practicing-yoga-in-jathara-parivartanasana-7592454/) | Pexels |
+| `public/images/practices/yoga-sports.jpg` — Yoga Sports cards | Athletic balance and control | Vlada Karpovich | [Woman balancing on a yoga mat](https://www.pexels.com/photo/a-woman-balancing-her-body-on-a-yoga-mat-4534694/) | Pexels |
+| `public/images/practices/meditation.jpg` — Meditation cards | Quiet seated meditation | Tim Samuel | [Woman doing yoga](https://www.pexels.com/photo/woman-doing-yoga-6697354/) | Pexels |
+| `public/images/practices/pranayama.jpg` — Pranayama cards | Visible guided breathing practice | Rishikesh Yoga Valley School | [Woman practising pranayama indoors](https://www.pexels.com/photo/woman-practicing-pranayama-yoga-indoors-38811730/) | Pexels |
+| `public/images/practices/personal-yoga.jpg` — Personal Yoga cards | One-to-one instruction | Elina Fairytale | [Yoga instructor helping a student](https://www.pexels.com/photo/yoga-instructor-helping-a-student-3822194/) | Pexels |
+| `public/images/practices/corporate-yoga.jpg` — Corporate Yoga cards | Workplace group wellbeing | Andrea Piacquadio | [Colleagues meditating together](https://www.pexels.com/photo/diverse-group-of-colleagues-having-meditation-together-3860619/) | Pexels |
+| `public/images/practices/prenatal-yoga.jpg` — Prenatal Yoga cards | Supervised prenatal practice | Pavel Danilyuk | [Pregnant woman sitting on a yoga mat](https://www.pexels.com/photo/pregnant-woman-sitting-on-yoga-mat-7055630/) | Pexels |
+| `public/images/practices/kids-yoga.jpg` — Kids Yoga cards | Supervised child practice | AI25.Studio | [Woman teaching a girl to do yoga](https://www.pexels.com/photo/woman-teaching-a-girl-to-do-yoga-6288086/) | Pexels |
+| `public/images/practices/therapy-yoga.jpg` — Therapy Yoga cards | Gentle assisted movement; no treatment claim | Robert Ortner | [Yoga instructor helping a student with a pose](https://www.pexels.com/photo/yoga-instructor-helping-student-with-pose-37182830/) | Pexels |
+
+The hero is a versioned local asset. The twelve practice assets are also kept
+locally as the reviewed source set and are uploaded to the public-read,
+admin-write `class-media` bucket under `stock/<slug>.jpg`; a version suffix is
+used when an immutable production object is superseded. Database records store
+only those relative paths. The UI resolves them through Supabase Storage and
+retains the approved abstract treatment if a record has no media path.
 
 ## Motion
 

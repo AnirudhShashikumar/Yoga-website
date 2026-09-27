@@ -52,9 +52,13 @@ export function Hero() {
                 src={homeMedia.hero.src}
                 alt={homeMedia.hero.alt}
                 fill
-                priority
-                sizes="(max-width: 1023px) 90vw, 38vw"
-                className="object-cover"
+                preload
+                sizes="(max-width: 639px) 200vw, (max-width: 1023px) 170vw, 75vw"
+                className="object-cover object-[24%_center]"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-brand/5"
               />
               <div
                 aria-hidden="true"
@@ -75,4 +79,3 @@ export function Hero() {
     </section>
   );
 }
-

@@ -1,4 +1,5 @@
 import type { Route } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
@@ -9,11 +10,24 @@ import { categoryLabels, type PublicClass } from "@/features/public/types";
 export function ClassCard({ practice, index }: { practice: PublicClass; index: number }) {
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-brand/10 bg-surface shadow-card transition-transform hover:-translate-y-1">
-      <div className="flex min-h-40 items-end justify-between bg-gradient-to-br from-sage via-surface-subtle to-sky p-6">
-        <span className="font-display text-5xl text-brand/20" aria-hidden="true">
+      <div className="relative flex min-h-44 items-end justify-between overflow-hidden bg-gradient-to-br from-sage via-surface-subtle to-sky p-6">
+        {practice.mediaUrl ? (
+          <Image
+            src={practice.mediaUrl}
+            alt=""
+            fill
+            sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        ) : null}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-brand-strong/70 via-brand-strong/15 to-transparent"
+        />
+        <span className="relative z-10 font-display text-5xl text-white/90" aria-hidden="true">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <Badge tone="neutral">{categoryLabels[practice.category]}</Badge>
+        <Badge tone="neutral" className="relative z-10">{categoryLabels[practice.category]}</Badge>
       </div>
       <div className="flex flex-1 flex-col p-6">
         <h2 className="font-display text-2xl font-medium text-brand-strong">
