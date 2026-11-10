@@ -33,8 +33,14 @@ The product must be maintainable, secure, accessible, fast, responsive, extensib
 - Brand: Prabha Yogashala.
 - Philosophy supplied by the client: “Positive & Healthy Life.”
 - The approved official logo is preserved unchanged at `assets-source/branding/prabha-yogashala-logo-original.png` (SHA-256 `869a1c284fa2782f0ee1d157e1b12e9018a8e8e081fa66df0c3ff32c9cf02e9c`). Its tree, meditating figure, supporting hand, lettering, proportions, and green palette must not be redrawn or reinterpreted.
-- Teaching experience: 7 years. Do not silently convert this to “7+ years.”
-- Qualifications supplied: “M.Sc” and “NIS Certification Course.” Do not expand, rename, or imply an accrediting body until exact wording is confirmed.
+- Instructor: Karthika B; verified professional designation: Yoga Teacher.
+- Teaching experience: over 7 years; yoga practice: 18 years.
+- Qualification: M.Sc. in Yogic Science, Mangalore University, Konaje, 2022.
+- Certification: SAI NS NIS Yoga Coach Certification, completed through the Sports Authority of India at SAI NS NIS Patiala, Punjab, in March 2022.
+- Education also verified in the supplied profile: B.Com, Vivekananda Degree College, Puttur (Mangalore University), 2020; PUC, Vivekananda PU College, Puttur, 2017; SSLC, Sandeepani Rural Education Society, 2015.
+- Verified professional background includes Karnataka State Juniors and Seniors Team Coach from 2022 onward; Competition Manager for the 5th Senior Yogasana Sports Championship in Tumkur, 2024; Judge at the 38th National Games in Almora, Uttarakhand, 2025; Judge at the All India Police Games in Chhattisgarh, 2024; official judge at the Khelo India University Games in Tripura, 2024; second- and third-place finishes at international yoga competitions in Puducherry in 2020 and 2023; representation of Mangalore University at the All India Inter-University Yogasana Championship in Odisha; and completion of Level 1 National Judges training through Yogasana Bharat.
+- Location in the professional profile: Bangalore, India. This does not establish a public studio address.
+- The authoritative instructor source is preserved locally at `assets-source/instructor/Karthika B Profile.pdf` (SHA-256 `ec65b60fd10c76cb3ae34de85bca035ce6d59ed3dddfa38bcb4506ddf214c9c7`). Because it contains a personal telephone number and email that are not approved for publication, the PDF is explicitly excluded from Git and deployment; retain the website’s established business contact channels.
 - Audience: ages 10 and above; beginner, intermediate, and advanced practitioners.
 - General availability: morning 5:00 AM–8:00 AM and evening 5:00 PM–8:00 PM.
 - Exact sessions and class schedule: not finalized.
@@ -146,8 +152,6 @@ Do not use generated phrases such as “Consult Master,” “Enquire Shala,” 
 
 ## Client information required
 
-- Instructor or founder name and approved biography.
-- Exact M.Sc discipline and official NIS course/certification wording.
 - Physical studio address, service area, and whether Google Maps should be used.
 - Public email address and confirmation of the WhatsApp number and social URLs.
 - Approved class descriptions, benefits, levels, formats, durations, days, and capacities.
@@ -156,7 +160,7 @@ Do not use generated phrases such as “Consult Master,” “Enquire Shala,” 
 - Pricing, tax treatment, and whether a public pricing page should launch as a placeholder or remain unpublished.
 - Cancellation and rescheduling rules.
 - Workshop details and publication process.
-- Approved real founder, studio, class, workshop, and gallery photography with image-use rights. Licensed category illustration provenance is maintained separately in `DESIGN_SYSTEM.md`.
+- Approved real studio, class, workshop, and gallery photography with image-use rights. The verified instructor portrait is already integrated; licensed category illustration provenance is maintained separately in `DESIGN_SYSTEM.md`.
 - Gallery content and captions.
 - FAQ answers.
 - Privacy policy, terms, governing jurisdiction, and legal business identity.

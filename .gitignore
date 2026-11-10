@@ -17,3 +17,6 @@ coverage/
 .idea/
 .vscode/
 .vercel
+
+# Client source documents that contain non-public personal contact details
+assets-source/instructor/Karthika B Profile.pdf

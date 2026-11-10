@@ -40,9 +40,9 @@ export const homeMedia = {
 
 export const publicMedia = {
   founder: {
-    src: "/images/placeholders/founder-neutral.svg",
-    alt: "",
-    replacementRequired: true,
+    src: "/images/instructor/karthika-b.jpg",
+    alt: "Portrait of yoga instructor Karthika B",
+    replacementRequired: false,
   },
   gallery: [
     ...homeMedia.gallery,
@@ -63,6 +63,6 @@ export const publicMedia = {
     },
   ],
 } as const satisfies {
-  founder: PlaceholderMedia;
+  founder: ProductionMedia;
   gallery: readonly PlaceholderMedia[];
 };

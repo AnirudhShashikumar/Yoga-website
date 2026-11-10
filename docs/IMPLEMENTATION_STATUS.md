@@ -1,6 +1,6 @@
 # Prabha Yogashala Implementation Status
 
-Last updated: 2026-09-27
+Last updated: 2026-11-10
 
 ## Completed
 
@@ -139,11 +139,19 @@ Last updated: 2026-09-27
 - Extended the public class data layer to resolve record-managed Storage paths and integrated responsive `next/image` treatments into Homepage practice previews, Classes, and related-class cards while preserving numbering, hierarchy, abstract fallbacks, and decorative image semantics.
 - Added no AI imagery, hotlinked runtime asset, founder surrogate, fabricated business content, new service, or unrelated page redesign.
 
+### Verified instructor profile integration
+
+- Preserved the supplied one-page professional profile unchanged under the local `assets-source/instructor/` path, excluded it from Git/deployment because it contains non-public contact details, and extracted its embedded 640×426 JPEG portrait directly at native resolution.
+- Replaced the About-page instructor placeholder with Karthika B’s verified name, Yoga Teacher designation, approved biography, over-seven-year teaching experience, 18 years of practice, M.Sc. in Yogic Science, and SAI NS NIS coaching certification without changing the approved section layout.
+- Updated the existing About summary cards, Homepage trust bar, and instructor-contact FAQ where the previously generic wording was directly superseded by the verified profile.
+- Did not publish the personal email or telephone number from the profile, did not add an achievements section where none existed, and introduced no database, authentication, booking, admin, or deployment-configuration change.
+
 ## In progress
 
 - No Milestone 7 source implementation item remains in progress.
 - No Milestone 7 deployment item remains in progress.
 - No production-photography source, database, or local verification item remains in progress.
+- No instructor-profile source, verification, or deployment item remains in progress.
 
 ## Remaining
 
@@ -154,14 +162,13 @@ Last updated: 2026-09-27
 
 ## Client information required
 
-- Instructor/founder name, approved biography, approved portrait, and exact qualification wording.
 - Confirmed phone, social links, public email, address, and service area.
 - Approved class copy, benefits, formats, durations, capacities, and schedule.
 - Pricing decision and approved prices.
 - Booking cancellation/rescheduling policy.
 - Confirmation that `Asia/Kolkata` is the business scheduling timezone.
 - Workshop and gallery content.
-- Approved real founder, studio, class, workshop, and gallery photography with usage rights, captions, ordering, and meaningful alt text. Licensed generic hero/class illustrations are already documented and integrated.
+- Approved real studio, class, workshop, and gallery photography with usage rights, captions, ordering, and meaningful alt text. The verified instructor portrait and licensed generic hero/class illustrations are already integrated.
 - Final approved FAQ wording, Privacy Policy, and Terms & Conditions.
 - Legal business identity, governing jurisdiction, privacy-request contact, and policy effective dates.
 - Domain, Vercel, Supabase, and business-email ownership decisions.
@@ -179,7 +186,7 @@ Last updated: 2026-09-27
 - The light design system is approved; dark-mode tokens are not.
 - The project is intentionally pinned to TypeScript 6 and ESLint 9 because the current Next.js lint plugins do not yet support TypeScript 7 or ESLint 10. Revisit together during a controlled dependency upgrade.
 - The Homepage hero and class cards use documented licensed stock illustrations. They must not be described as Prabha Yogashala people, premises, or sessions.
-- The About founder image and Gallery media remain abstract development placeholders. Genuine client photography, captions, ordering, alt text, and usage rights remain client dependencies.
+- The About instructor portrait is verified and integrated. Gallery media remains an abstract development placeholder; genuine studio, class, event, and gallery photography still requires client approval, captions, ordering, alt text, and usage rights.
 - Trial Enquiry now validates and persists consent server-side, but production-grade rate limiting or a managed bot challenge is still required before launch.
 - Privacy and Terms are structured drafts, not approved legal documents, and are marked `noindex` until reviewed.
 - Docker is not installed. The established hosted suite passed 61/61 and the eight new Milestone 7 assertions passed 8/8 in a rolled-back hosted SQL Editor transaction; the one-command 69-test CLI wrapper could not run on this host.
@@ -244,6 +251,9 @@ Last updated: 2026-09-27
 - **PRODUCTION PHOTOGRAPHY AUTOMATED VERIFIED:** `pnpm test:auth` passed 4/4, `pnpm test:customer` passed 6/6, `pnpm test:admin` passed 6/6, ESLint, strict TypeScript, and `git diff --check` passed, and `pnpm exec next build --webpack` completed successfully on 2026-09-27.
 - **PRODUCTION PHOTOGRAPHY LOCAL BROWSER VERIFIED:** Homepage, Classes, and all 12 class-detail routes passed 70 local route/viewport checks at 390, 768, 1024, 1280, and 1440 pixels with one `h1`, no broken images, no horizontal overflow, and no browser console errors or warnings. Hero and class-card crops were also visually reviewed at every required width.
 - **PRODUCTION PHOTOGRAPHY DEPLOYMENT VERIFIED:** code-bearing commit `0c67fa0` is active at `https://yoga-website-three-kappa.vercel.app`. The same 70 hosted route/viewport checks passed with no broken images, overflow, heading regression, or console warning/error, and the deployed hero and class grid received a final visual review.
+- **INSTRUCTOR PROFILE SOURCE VERIFIED:** the complete supplied PDF was rendered and visually inspected; its only embedded image is a clean 640×426 JPEG portrait. The production asset is a byte-for-byte direct extraction, and the preserved PDF and portrait hashes are recorded in `PROJECT_CONTEXT.md` and `DESIGN_SYSTEM.md`.
+- **INSTRUCTOR PROFILE AUTOMATED VERIFIED:** `pnpm test:auth` passed 4/4, `pnpm test:customer` passed 6/6, `pnpm test:admin` passed 6/6, ESLint, strict TypeScript, and `git diff --check` passed, and `pnpm exec next build --webpack` completed successfully on 2026-11-10.
+- **INSTRUCTOR PROFILE LOCAL BROWSER VERIFIED:** Homepage, About, and FAQ passed 15 route/viewport checks at 390, 768, 1024, 1280, and 1440 pixels with one `h1`, no horizontal overflow, and no instructor placeholder text. The portrait, approved biography, three qualification cards, Homepage trust bar, and FAQ wording received focused visual/content review.
 
 ## Exact recommended next implementation task
 

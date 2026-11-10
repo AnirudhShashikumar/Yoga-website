@@ -14,7 +14,7 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn about the Positive & Healthy Life philosophy, teaching approach, experience, and qualifications behind Prabha Yogashala.",
+    "Meet yoga teacher Karthika B and learn about the experience, qualifications, and teaching approach behind Prabha Yogashala.",
 };
 
 const approach = [
@@ -32,9 +32,9 @@ export default function AboutPage() {
         description="Prabha Yogashala welcomes practitioners aged 10 and above through online and offline yoga, meditation, and breath-focused practice."
         aside={
           <div className="grid grid-cols-3 gap-3 rounded-2xl border border-brand/10 bg-surface p-5 shadow-card">
-            <div><p className="font-display text-3xl text-brand-strong">7</p><p className="mt-1 text-xs font-semibold text-muted">Years</p></div>
-            <div><p className="font-display text-2xl text-brand-strong">M.Sc</p><p className="mt-1 text-xs font-semibold text-muted">Qualification</p></div>
-            <div><p className="font-display text-xl text-brand-strong">NIS</p><p className="mt-1 text-xs font-semibold text-muted">Course</p></div>
+            <div><p className="font-display text-3xl text-brand-strong">7+</p><p className="mt-1 text-xs font-semibold text-muted">Years teaching</p></div>
+            <div><p className="font-display text-2xl text-brand-strong">M.Sc.</p><p className="mt-1 text-xs font-semibold text-muted">Yogic Science</p></div>
+            <div><p className="font-display text-xl text-brand-strong">SAI NS NIS</p><p className="mt-1 text-xs font-semibold text-muted">Yoga Coach</p></div>
           </div>
         }
       />
@@ -50,7 +50,7 @@ export default function AboutPage() {
                 Prabha Yogashala is guided by the client-supplied philosophy <strong className="font-semibold text-brand-strong">{siteConfig.philosophy}</strong>. Its public offering brings together yoga, meditation, and pranayama for a broad range of experience levels.
               </p>
               <p>
-                The website reflects what is confirmed today: {siteConfig.experienceYears} years of teaching experience, the qualifications “M.Sc” and “NIS Certification Course,” online and offline delivery, and a welcoming audience from age 10. Details that still require client approval remain clearly identified rather than being filled with invented copy.
+                The website reflects what is confirmed today: Karthika B brings over 7 years of teaching experience, 18 years of yoga practice, an M.Sc. in Yogic Science, and SAI NS NIS Yoga Coach Certification to online and offline instruction for practitioners aged 10 and above.
               </p>
             </div>
           </div>
@@ -62,23 +62,19 @@ export default function AboutPage() {
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-brand/10 bg-surface shadow-floating">
-                <Image src={publicMedia.founder.src} alt={publicMedia.founder.alt} fill sizes="(max-width: 1023px) 90vw, 36vw" className="object-cover" />
-                <div className="absolute inset-x-5 bottom-5 rounded-2xl bg-background/95 p-5 backdrop-blur">
-                  <p className="text-sm font-bold uppercase tracking-[0.12em] text-brand">Content placeholder</p>
-                  <p className="mt-2 text-sm leading-6 text-muted">Approved founder portrait and identity are required before launch.</p>
-                </div>
+                <Image src={publicMedia.founder.src} alt={publicMedia.founder.alt} fill sizes="(max-width: 1023px) 90vw, 36vw" className="object-cover object-center" />
               </div>
             </div>
             <div className="lg:col-span-7">
-              <Badge tone="sage">Instructor / Founder</Badge>
-              <h2 className="mt-5 font-display text-3xl font-medium leading-tight text-brand-strong sm:text-4xl">A teaching profile grounded in verified facts.</h2>
+              <Badge tone="sage">{siteConfig.instructor.designation}</Badge>
+              <h2 className="mt-5 font-display text-3xl font-medium leading-tight text-brand-strong sm:text-4xl">Meet Karthika B</h2>
               <p className="mt-5 text-lg leading-8 text-muted">
-                The instructor’s name, detailed biography, qualification specialization, and portrait have not been approved for publication. This space preserves the intended editorial presentation without assigning a fictional identity.
+                Karthika B is a certified yoga instructor and yoga athlete with over 7 years of teaching experience and 18 years of yoga practice. With an M.Sc. in Yogic Science and SAI NS NIS coaching certification, he brings together academic knowledge, practical training, and competitive Yogasana experience to guide students at different stages of their practice.
               </p>
               <dl className="mt-8 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl border border-brand/10 bg-surface p-5"><dt className="text-xs font-bold uppercase tracking-[0.12em] text-brand">Experience</dt><dd className="mt-2 font-display text-2xl text-brand-strong">7 years</dd></div>
-                <div className="rounded-2xl border border-brand/10 bg-surface p-5"><dt className="text-xs font-bold uppercase tracking-[0.12em] text-brand">Qualification</dt><dd className="mt-2 font-display text-2xl text-brand-strong">M.Sc</dd></div>
-                <div className="rounded-2xl border border-brand/10 bg-surface p-5"><dt className="text-xs font-bold uppercase tracking-[0.12em] text-brand">Course</dt><dd className="mt-2 font-display text-xl text-brand-strong">NIS Certification Course</dd></div>
+                <div className="rounded-2xl border border-brand/10 bg-surface p-5"><dt className="text-xs font-bold uppercase tracking-[0.12em] text-brand">Experience</dt><dd className="mt-2 font-display text-2xl text-brand-strong">7+ Years Teaching</dd></div>
+                <div className="rounded-2xl border border-brand/10 bg-surface p-5"><dt className="text-xs font-bold uppercase tracking-[0.12em] text-brand">Qualification</dt><dd className="mt-2 font-display text-2xl text-brand-strong">M.Sc. in Yogic Science</dd></div>
+                <div className="rounded-2xl border border-brand/10 bg-surface p-5"><dt className="text-xs font-bold uppercase tracking-[0.12em] text-brand">Certification</dt><dd className="mt-2 font-display text-xl text-brand-strong">SAI NS NIS Yoga Coach</dd></div>
               </dl>
             </div>
           </div>

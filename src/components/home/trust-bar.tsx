@@ -3,8 +3,8 @@ import { siteConfig } from "@/config/site";
 
 const trustItems = [
   { value: `${siteConfig.experienceYears} Years`, label: "Teaching experience" },
-  { value: siteConfig.qualifications[0], label: "Qualification supplied" },
-  { value: siteConfig.qualifications[1], label: "Certification course" },
+  { value: siteConfig.qualifications[0], label: "Qualification" },
+  { value: siteConfig.qualifications[1], label: "Yoga coach certification" },
 ] as const;
 
 export function TrustBar() {

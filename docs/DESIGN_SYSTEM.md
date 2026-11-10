@@ -151,7 +151,7 @@ The standalone admin Stitch screenshot is a direction reference, not a source of
 
 - Use natural daylight, authentic movement, calm studio textures, and varied ages/abilities when licensed assets are available.
 - Do not treat Stitch’s temporary Google-hosted image URLs as production assets or proof of client identity.
-- The client currently reports no professional photography. The Homepage hero and class-category cards use the licensed stock set documented below; identity, studio, gallery, and event media remain unresolved.
+- The verified instructor profile supplies Karthika B’s real portrait. The Homepage hero and class-category cards use the licensed stock set documented below; studio, gallery, and event media remain unresolved.
 - Never use an AI-generated face as the real instructor or founder.
 - All meaningful images require useful alt text; decorative images use empty alt text.
 
@@ -169,7 +169,7 @@ data-managed and must not be hardcoded, and **E** already correct.
 | Homepage class preview | Numbered abstract cards | D | Class media must come from the existing class record/media system; retain the number and restrained card treatment. |
 | Classes grid and related-class cards | Numbered gradient image bands | D | Render approved class media only through each database class record; retain a branded abstract fallback. |
 | 12 class-detail pages | No practice image | D | The same approved class-record media may be used contextually; do not introduce a separate hardcoded image map. |
-| About founder area | Clearly labelled neutral placeholder | B | Keep until an approved real founder portrait and identity are supplied. Never substitute stock. |
+| About instructor area | Verified instructor portrait | A | Extracted directly from Karthika B’s official profile PDF. Never substitute stock. |
 | Homepage gallery preview | Three clearly abstract placeholders when no managed media exists | B/D | Keep truthful abstract fallbacks. Real items remain managed by published Gallery records. |
 | Gallery page | Six clearly labelled abstract placeholders when empty | B/D | Keep until approved real Prabha Yogashala media is uploaded and published. Do not use stock as documentary evidence. |
 | Homepage workshop preview | Decorative color field, no photo | C/D | Keep abstract while no real published workshop media exists. Any future workshop image remains record-managed and must document the real event. |
@@ -177,6 +177,14 @@ data-managed and must not be hardcoded, and **E** already correct.
 | Page heroes other than Homepage | Typographic/tonal composition | C | Keep abstract; photography would add repetition without improving meaning. |
 | Schedule, Pricing, FAQ, Contact, Book, Privacy, Terms | No image placeholders beyond shared brand assets | C/E | No photography needed. |
 | Public header/footer and browser icons | Approved official logo/mark | E | Preserve unchanged. These are brand assets, not photography. |
+
+### Verified instructor asset
+
+- Source: `assets-source/instructor/Karthika B Profile.pdf`, supplied for this integration and preserved unchanged locally. The source PDF contains non-public contact details and is excluded from Git and deployment.
+- Portrait: the PDF’s embedded 640×426 JPEG was extracted directly at its native resolution to `public/images/instructor/karthika-b.jpg`; it is not a screenshot, generated face, or enhanced reconstruction.
+- Treatment: the existing 4:5 About-page container performs a centered CSS crop while preserving natural proportions, color, rounded corners, and layout.
+- Alt text: “Portrait of yoga instructor Karthika B”.
+- The portrait documents Karthika B only; it is not evidence of a studio, class, event, or other person.
 
 ### Licensed stock manifest
 

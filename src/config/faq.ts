@@ -27,7 +27,7 @@ export const frequentlyAskedQuestions = [
   {
     question: "How do I contact the instructor?",
     answer:
-      "Use the verified WhatsApp link on this website. The instructor’s public name and biography will be added only after client approval.",
+      "Use the verified WhatsApp link on this website to contact Prabha Yogashala about classes with yoga teacher Karthika B.",
   },
   {
     question: "What should I prepare before a session?",

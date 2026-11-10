@@ -3,8 +3,20 @@ export const siteConfig = {
   philosophy: "Positive & Healthy Life",
   description:
     "Yoga instruction for practitioners aged 10 and above, offered online and offline.",
-  experienceYears: 7,
-  qualifications: ["M.Sc", "NIS Certification Course"] as const,
+  experienceYears: "7+",
+  qualifications: [
+    "M.Sc. in Yogic Science",
+    "SAI NS NIS Yoga Coach Certification",
+  ] as const,
+  instructor: {
+    name: "Karthika B",
+    designation: "Yoga Teacher",
+    teachingExperience: "Over 7 years",
+    practiceExperience: "18 years",
+    qualification: "M.Sc. in Yogic Science",
+    certification: "SAI NS NIS Yoga Coach Certification",
+    location: "Bangalore, India",
+  },
   availability: {
     morning: "5:00 AM–8:00 AM",
     evening: "5:00 PM–8:00 PM",
