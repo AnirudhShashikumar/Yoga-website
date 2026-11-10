@@ -254,6 +254,7 @@ Last updated: 2026-11-10
 - **INSTRUCTOR PROFILE SOURCE VERIFIED:** the complete supplied PDF was rendered and visually inspected; its only embedded image is a clean 640×426 JPEG portrait. The production asset is a byte-for-byte direct extraction, and the preserved PDF and portrait hashes are recorded in `PROJECT_CONTEXT.md` and `DESIGN_SYSTEM.md`.
 - **INSTRUCTOR PROFILE AUTOMATED VERIFIED:** `pnpm test:auth` passed 4/4, `pnpm test:customer` passed 6/6, `pnpm test:admin` passed 6/6, ESLint, strict TypeScript, and `git diff --check` passed, and `pnpm exec next build --webpack` completed successfully on 2026-11-10.
 - **INSTRUCTOR PROFILE LOCAL BROWSER VERIFIED:** Homepage, About, and FAQ passed 15 route/viewport checks at 390, 768, 1024, 1280, and 1440 pixels with one `h1`, no horizontal overflow, and no instructor placeholder text. The portrait, approved biography, three qualification cards, Homepage trust bar, and FAQ wording received focused visual/content review.
+- **INSTRUCTOR PROFILE DEPLOYMENT VERIFIED:** code-bearing commit `6f3eb2e` is live at `https://yoga-website-anirudh6.vercel.app`. Homepage, About, and FAQ passed the same 15 hosted route/viewport checks with the verified content, one `h1`, no horizontal overflow, no instructor placeholder text, and a successfully loaded portrait. The former `yoga-website-three-kappa.vercel.app` alias remains on an older deployment and is not treated as current production evidence.
 
 ## Exact recommended next implementation task
 
