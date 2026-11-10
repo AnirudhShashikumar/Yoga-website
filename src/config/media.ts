@@ -18,6 +18,34 @@ export const homeMedia = {
   },
   gallery: [
     {
+      src: "/images/editorial/home-gallery-movement.jpg",
+      alt: "A woman holding a warrior yoga pose in a bright indoor practice space.",
+      replacementRequired: false,
+    },
+    {
+      src: "/images/editorial/home-gallery-breath.jpg",
+      alt: "A woman practicing alternate-nostril breathing with her eyes closed.",
+      replacementRequired: false,
+    },
+    {
+      src: "/images/editorial/home-gallery-stillness.jpg",
+      alt: "A woman seated in meditation with warm patterned sunlight across her face.",
+      replacementRequired: false,
+    },
+  ],
+} as const satisfies {
+  hero: ProductionMedia;
+  gallery: readonly ProductionMedia[];
+};
+
+export const publicMedia = {
+  founder: {
+    src: "/images/instructor/karthika-b.jpg",
+    alt: "Portrait of yoga instructor Karthika B",
+    replacementRequired: false,
+  },
+  gallery: [
+    {
       src: "/images/placeholders/gallery-movement.svg",
       alt: "",
       replacementRequired: true,
@@ -32,20 +60,6 @@ export const homeMedia = {
       alt: "",
       replacementRequired: true,
     },
-  ],
-} as const satisfies {
-  hero: ProductionMedia;
-  gallery: readonly PlaceholderMedia[];
-};
-
-export const publicMedia = {
-  founder: {
-    src: "/images/instructor/karthika-b.jpg",
-    alt: "Portrait of yoga instructor Karthika B",
-    replacementRequired: false,
-  },
-  gallery: [
-    ...homeMedia.gallery,
     {
       src: "/images/placeholders/gallery-balance.svg",
       alt: "",

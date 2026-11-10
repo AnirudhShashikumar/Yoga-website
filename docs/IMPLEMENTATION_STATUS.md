@@ -146,6 +146,11 @@ Last updated: 2026-11-10
 - Updated the existing About summary cards, Homepage trust bar, and instructor-contact FAQ where the previously generic wording was directly superseded by the verified profile.
 - Did not publish the personal email or telephone number from the profile, did not add an achievements section where none existed, and introduced no database, authentication, booking, admin, or deployment-configuration change.
 
+### Homepage gallery photography
+
+- Replaced only the Homepage Movement, Breath, and Stillness abstract fallbacks with three locally hosted, free-to-use Pexels photographs selected for their exact editorial concepts and responsive crop quality.
+- Added meaningful alt text and source/license provenance. The separate public Gallery page retains its six clearly labelled development placeholders until approved Prabha Yogashala gallery media is supplied.
+
 ## In progress
 
 - No Milestone 7 source implementation item remains in progress.
@@ -255,6 +260,8 @@ Last updated: 2026-11-10
 - **INSTRUCTOR PROFILE AUTOMATED VERIFIED:** `pnpm test:auth` passed 4/4, `pnpm test:customer` passed 6/6, `pnpm test:admin` passed 6/6, ESLint, strict TypeScript, and `git diff --check` passed, and `pnpm exec next build --webpack` completed successfully on 2026-11-10.
 - **INSTRUCTOR PROFILE LOCAL BROWSER VERIFIED:** Homepage, About, and FAQ passed 15 route/viewport checks at 390, 768, 1024, 1280, and 1440 pixels with one `h1`, no horizontal overflow, and no instructor placeholder text. The portrait, approved biography, three qualification cards, Homepage trust bar, and FAQ wording received focused visual/content review.
 - **INSTRUCTOR PROFILE DEPLOYMENT VERIFIED:** code-bearing commit `6f3eb2e` is live at `https://yoga-website-anirudh6.vercel.app`. Homepage, About, and FAQ passed the same 15 hosted route/viewport checks with the verified content, one `h1`, no horizontal overflow, no instructor placeholder text, and a successfully loaded portrait. The former `yoga-website-three-kappa.vercel.app` alias remains on an older deployment and is not treated as current production evidence.
+- **HOMEPAGE GALLERY AUTOMATED VERIFIED:** `pnpm test:auth` passed 4/4, `pnpm test:customer` passed 6/6, `pnpm test:admin` passed 6/6, ESLint, strict TypeScript, and `git diff --check` passed, and `pnpm exec next build --webpack` completed successfully on 2026-11-10.
+- **HOMEPAGE GALLERY LOCAL BROWSER VERIFIED:** the three licensed Homepage photographs loaded with meaningful alt text and no horizontal overflow at 390, 768, 1024, 1280, and 1440 pixels. All three crops were visually reviewed at mobile and desktop sizes. The separate public Gallery page still renders all six original labelled placeholders and none of the new Homepage assets.
 
 ## Exact recommended next implementation task
 

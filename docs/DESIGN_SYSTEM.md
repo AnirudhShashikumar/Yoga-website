@@ -170,7 +170,7 @@ data-managed and must not be hardcoded, and **E** already correct.
 | Classes grid and related-class cards | Numbered gradient image bands | D | Render approved class media only through each database class record; retain a branded abstract fallback. |
 | 12 class-detail pages | No practice image | D | The same approved class-record media may be used contextually; do not introduce a separate hardcoded image map. |
 | About instructor area | Verified instructor portrait | A | Extracted directly from Karthika B’s official profile PDF. Never substitute stock. |
-| Homepage gallery preview | Three clearly abstract placeholders when no managed media exists | B/D | Keep truthful abstract fallbacks. Real items remain managed by published Gallery records. |
+| Homepage gallery preview | Three licensed editorial photographs | A | Movement, breath, and stillness use locally hosted Pexels photographs with documented provenance. They remain generic editorial imagery, not Prabha Yogashala people, premises, classes, or events. |
 | Gallery page | Six clearly labelled abstract placeholders when empty | B/D | Keep until approved real Prabha Yogashala media is uploaded and published. Do not use stock as documentary evidence. |
 | Homepage workshop preview | Decorative color field, no photo | C/D | Keep abstract while no real published workshop media exists. Any future workshop image remains record-managed and must document the real event. |
 | Workshops page | Data-driven empty state or record cards | D | Do not add stock. Future workshop media must come from the workshop record and accurately represent the event. |
@@ -188,7 +188,8 @@ data-managed and must not be hardcoded, and **E** already correct.
 
 ### Licensed stock manifest
 
-All entries below were acquired on 2026-09-27 from Pexels under the
+The original hero/practice set was acquired on 2026-09-27; the three Homepage
+gallery photographs were acquired on 2026-11-10. All came from Pexels under the
 [Pexels license](https://www.pexels.com/license/). The license permits free
 website and commercial use, modification, and use without mandatory
 attribution. Source attribution is retained here for provenance. People and
@@ -198,6 +199,9 @@ staff, customers, premises, classes, events, or endorsements.
 | Local asset / placement | Practice intent | Photographer | Original source | License |
 | --- | --- | --- | --- | --- |
 | `public/images/editorial/home-hero-yoga.jpg` — Homepage hero | Calm individual practice in natural light | Vitaly Gariev | [Indoor yoga session in a cozy living-room setting](https://www.pexels.com/photo/indoor-yoga-session-in-cozy-living-room-setting-36764986/) | Pexels |
+| `public/images/editorial/home-gallery-movement.jpg` — Homepage Movement card | Active warrior posture in a bright indoor space | Vlada Karpovich | [A woman doing yoga](https://www.pexels.com/photo/a-woman-doing-yoga-4534586/) | Pexels |
+| `public/images/editorial/home-gallery-breath.jpg` — Homepage Breath card | Alternate-nostril breathing close-up | Ivan S | [A woman doing nostril breathing](https://www.pexels.com/photo/a-woman-doing-nostril-breathing-6648567/) | Pexels |
+| `public/images/editorial/home-gallery-stillness.jpg` — Homepage Stillness card | Quiet seated meditation in warm patterned light | Andry Sasongko | [Peaceful indoor yoga meditation session](https://www.pexels.com/photo/peaceful-indoor-yoga-meditation-session-40471896/) | Pexels |
 | `public/images/practices/hatha-yoga.jpg` — Hatha cards | Grounded seated practice | Vivaan Rupani | [Woman sitting while doing yoga](https://www.pexels.com/photo/woman-sitting-while-doing-yoga-7351823/) | Pexels |
 | `public/images/practices/ashtanga-yoga.jpg` — Ashtanga cards | Active studio practice | FbyF Studio | [Yoga session with natural light in a modern studio](https://www.pexels.com/photo/yoga-session-with-natural-light-in-modern-studio-29720739/) | Pexels |
 | `public/images/practices/power-yoga.jpg` — Power cards | Strength-focused posture | Klaus Nielsen | [Sportswoman doing yoga on a mat in a studio](https://www.pexels.com/photo/black-sportswoman-doing-yoga-on-mat-in-studio-6303431/) | Pexels |
